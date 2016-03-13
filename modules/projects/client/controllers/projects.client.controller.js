@@ -413,6 +413,11 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		};
 
+		$scope.testList1 = [{'title': 'Standard1'},{'title': 'Standard2'},{'title': 'Standard3'}];
+        $scope.list4 = [];
+        $scope.hideMe = function() {
+            return $scope.list4.length > 0;
+        };
 
 
 	}
