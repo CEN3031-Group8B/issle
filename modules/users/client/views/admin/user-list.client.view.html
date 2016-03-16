@@ -11,8 +11,26 @@
   </div>
   <div class="list-group">
     <a data-ng-repeat="user in pagedItems" data-ui-sref="admin.user({userId: user._id})" class="list-group-item">
-      <h4 class="list-group-item-heading" data-ng-bind="user.username"></h4>
-      <p class="list-group-item-text" data-ng-bind="user.email"></p>
+      <div class="row">
+        <div class="col-md-3"><strong>Username</strong></div>
+        <div class="col-md-3" data-ng-bind="user.username"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Email</strong></div>
+          <div class="col-md-3" data-ng-bind="user.email"></div>
+           </div>
+      <div class="row">
+        <div class="col-md-3"><strong>School</strong></div>
+        <div class="col-md-3" data-ng-bind="user.school"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Age</strong></div>
+        <div class="col-md-3" data-ng-bind="user.age"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><strong>Grades Taught</strong></div>
+        <div class="col-md-3" data-ng-bind="user.gradesTaught"></div>
+      </div>
     </a>
   </div>
 
