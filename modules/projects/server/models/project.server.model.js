@@ -95,17 +95,23 @@ var ProjectSchema = new Schema({
 			type: String,
 			default: ''
 		},
+		//FOR NEW SCHEMA
 		learningObjective: {
+			type: String,
+			default: ''
+		},
+		Constraints: {
 			type: String,
 			default: ''
 		}
 	},
+	//FOR NEW SCHEMA
 	research: {
-		researchFocus: {
+		focus: {
 			type: String,
 			default: ''
 		},
-		researchResources: {
+		resources: {
 			type: String,
 			default: ''
 		}
@@ -123,39 +129,44 @@ var ProjectSchema = new Schema({
 			type: String,
 			default: ''
 		},
-		imagineList: {
+		//FOR NEW SCHEMA
+		list: {
 			type: String,
 			default: ''
 		}
 	},
+	//FOR NEW SCHEMA
 	plan: {
-		planSelect: {
+		select: {
 			type: String,
 			default: ''
 		},
-		planResources: {
+		resources: {
 			type: String,
 			default: ''
 		}
 	},
+	//FOR NEW SCHEMA
 	createStep:{
-		createBuild:{
+		build:{
 			type: String,
 			default: ''
 		}
 	},
+	//FOR NEW SCHEMA
 	testStep:{
-		testDesign: {
+		design: {
 			type: String,
 			default: ''
 		},
-		testSuccess:{
+		success:{
 			type: String,
 			default: ''
 		}
 	},
+	//FOR NEW SCHEMA
 	improve:{
-		improveChange: {
+		change: {
 			type: String,
 			default: ''
 		}
