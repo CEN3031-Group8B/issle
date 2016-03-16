@@ -43,6 +43,9 @@ var ProjectSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
+	//admins:{
+	//type: [Schema.Types.ObjectId('STRING')]
+	//}
 	minGrade: {
 		type: Number,
 		default: 0
