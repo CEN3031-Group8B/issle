@@ -15,7 +15,10 @@ module.exports = {
         'public/lib/angular-ui-utils/ui-utils.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/angular-file-upload.js',
-        'public/lib/angular-linkify/angular-linkify.js'
+        'public/lib/angular-linkify/angular-linkify.js',
+        'public/lib/jquery/dist/jquery.min.js',
+        'public/lib/jquery-ui/jquery-ui.min.js',
+        'public/lib/angular-dragdrop/src/angular-dragdrop.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

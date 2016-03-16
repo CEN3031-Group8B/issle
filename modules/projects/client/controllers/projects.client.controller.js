@@ -250,6 +250,62 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			}
 		};
 
+		/////////////////////////////////////////////////////////////////////////////////////////////
+		// Remix Project
+
+		$scope.remix = function() {
+           console.log('In $scope.remix');
+           console.log(this.name);
+
+           	var project_old = $scope.project;
+            var project = new Projects ({
+				name: project_old.name,
+				created: project_old.created,
+				user: project_old.user,
+				status: project_old.status,
+				isPublic: project_old.isPublic,
+				minGrade: project_old.minGrade,
+				maxGrade: project_old.maxGrade,
+				ask: project_old.ask,
+				imagine: project_old.imagine,
+				essentialDetails: project_old.essentialDetails
+			});
+
+
+			// Redirect after save
+			project.$save(function(response) {
+
+				if($scope.uploaderC.queue.length > 0) {
+
+					$scope.uploaderC.queue[0].url = '/api/projects/picture/' + response._id;
+					$scope.uploaderC.uploadAll();
+				}
+				
+				// Clear form fields
+				$scope.name = '';
+
+
+				$location.path('projects/' + response._id);
+
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+
+
+			
+		};
+
+
+		// Redirect after save
+			
+
+
+
+
+
+		/////////////////////////////////////////////////////////////////////////////////////////////
+
 		// Find a list of Projects
 		$scope.find = function() {
 			$scope.projects = Projects.query();
@@ -413,6 +469,11 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		};
 
+		$scope.testList1 = [{'title': 'Standard1'},{'title': 'Standard2'},{'title': 'Standard3'}];
+        $scope.list4 = [];
+        $scope.hideMe = function() {
+            return $scope.list4.length > 0;
+        };
 
 
 	}
