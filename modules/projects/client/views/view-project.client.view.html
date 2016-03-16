@@ -206,14 +206,14 @@
             <div class="row" style="padding-bottom: 1%">
                 <div class="col-md-12">
                     <div class="pull-right">
+                   
+                        <a class="btn btn-info" data-ng-show="authentication.user._id!==NULL" data-ng-click="remix();">Remix</button </a>            
+                        
                         <a class="btn btn-success" onclick="window.print()">
                             Print Project
                         </a>
                     </div>
                     <div class="pull-right" data-ng-show="authentication.user._id === project.user._id">
-                        <a id="remix" class="btn btn-primary" data-ui-sref="projects.edit({projectId: project._id})">
-                            Remix
-                        </a>
                         <a id="edit" class="btn btn-primary" data-ui-sref="projects.edit({projectId: project._id})">
                             Edit
                         </a>
