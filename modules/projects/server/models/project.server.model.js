@@ -79,7 +79,7 @@ var ProjectSchema = new Schema({
 		}
 	},
 	ask: {
-		goal: {
+		/*goal: {
 			type: String,
 			default: ''
 		},
@@ -94,7 +94,7 @@ var ProjectSchema = new Schema({
 		constraints: {
 			type: String,
 			default: ''
-		},
+		},*/
 		//FOR NEW SCHEMA
 		learningObjective: {
 			type: String,
@@ -117,7 +117,7 @@ var ProjectSchema = new Schema({
 		}
 	},
 	imagine: {
-		brainstorm: {
+		/*brainstorm: {
 			type: String,
 			default: ''
 		},
@@ -128,7 +128,7 @@ var ProjectSchema = new Schema({
 		materials: {
 			type: String,
 			default: ''
-		},
+		},*/
 		//FOR NEW SCHEMA
 		list: {
 			type: String,

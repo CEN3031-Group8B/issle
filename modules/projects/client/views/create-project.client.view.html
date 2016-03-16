@@ -135,30 +135,21 @@
 
                 <div class="panel panel-blue">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Ask</h3>
+                        <h3 class="panel-title">Ask: Identify the needs and constraints</h3>
                     </div>
                     <div class="panel-body">
-                        <a name="1"><font size = "3">Describe your goal:</font></a>
-                    <span class="glyphicon glyphicon-question-sign"
-                          data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
-                    </span>
+                        <a name="1"><font size = "3">What is the goal of the project?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
                         <br>
-                        <textarea class="form-control" rows="8" data-ng-model="ask.goal"></textarea>
-
-                        <a name="2"><font size = "3">What's the major problem or underlying question?</font></a>
-                    <span class="glyphicon glyphicon-question-sign"
-                          data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                        <textarea class="form-control" rows="8" data-ng-model="ask.learningObjective"></textarea>
+                        
+                        <a name="2"><font size = "3">What limits are there on the design, application or materials for students in reaching their engineering goal. Get the students to realize these limits, and to design with these limits in mind</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                         <br>
-                        <textarea class="form-control" rows="4" data-ng-model="ask.problemStatement"></textarea>
-                        <br>
-                        <a name="2"><font size = "3">How can your students solve this problem?</font></a>
-                        <br>
-                        <textarea class="form-control" rows="3" data-ng-model="ask.solvingProblem"></textarea>
-                        <br>
-                        <a name="3"><font size = "3">List your constraints:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                            data-toggle="tooltip" data-original-title="Share" title ="What constraints you? Money? The objects required to complete the task? Specific materials or utensils? List everything you can think of."></span>
-                        <br>
-                        <textarea class="form-control" rows="4" data-ng-model="ask.constraints"></textarea>
+                        <textarea class="form-control" rows="4" data-ng-model="ask.Constraints"></textarea>
                         <br>
 
                         <div class="cart"> 
@@ -173,42 +164,143 @@
 
                     </div>
                 </div>
-                <!-- The imagine section, which also contains the picutre. --> 
+
                 <div class="panel panel-blue">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Imagine</h3>
+                        <h3 class="panel-title">Research the problem</h3>
                     </div>
                     <div class="panel-body">
+                        <a name="3"><font size = "3">What do you want students to learn from their research?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="research.focus"></textarea>
+                        
+                        <a name="4"><font size = "3">What resources will they use?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                        <br>
+                        <textarea class="form-control" rows="4" data-ng-model="research.resources"></textarea>
+                        
+                        
+                    </div>
+                </div>
 
-                        <a name="4"><font size = "3">What are some solutions? Brainstorm ideas.</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                                                data-toggle="tooltip" data-original-title="Share" title ="This is probably the most crucial part. Identify one or multiple solutions to the problem you have identified earlier. Check examples for more information. "></span>
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Imagine: Develop possible solutions</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a name="5"><font size = "3">Have students list possible solutions, even ones that won’t work. (They may inspire other ideas)</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
                         <br>
-                        <textarea class="form-control" rows="4" data-ng-model="imagine.brainstorm"></textarea>
-                        <br>
-                        <h3>Plan</h3>
-                        <font size="3">Draw a diagram or any other representation of your project.</font><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
-                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="imagine.list"></textarea>
+                        
+                        
+                    </div>
+                </div>
 
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Plan: Select a promising solution</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a name="6"><font size = "3">How should your students decide which potential solution is best?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="plan.select"></textarea>
+                        
+                        <a name="7"><font size = "3">Students should ask: what resources does the selected solution require? What will you have ready for them to use?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                        <br>
+                        <textarea class="form-control" rows="4" data-ng-model="plan.resources"></textarea>
+                        
+                    </div>
+                </div>
+
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Create: Build a prototype</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a name="8"><font size = "3">Engineers build prototypes and small models to test if their design ideas will work for their application. What kind of prototype or model will your students build? How will you support them in the building of this model</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="createStep.build"></textarea>
+                        
+                        
+                        <br>
+                        
+                    </div>
+                </div>
+
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Test and evaluate prototype</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a name="9"><font size = "3">Have students design 1-2 tests to evaluate their model, changing only one variable related to the performance requirements of their idea</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="testStep.design"></textarea>
+                        
+                        <a name="2"><font size = "3">Ask: Does the test show the model solves the problem? How well? Why does it work well/ or not work well for the application?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                        <br>
+                        <textarea class="form-control" rows="4" data-ng-model="testStep.success"></textarea>
+                        <br>
+                        
+                    </div>
+                </div>
+
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Improve: Redesign as needed</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a name="10"><font size = "3">Prompt: What would you change in the prototype next time?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="improve.change"></textarea>
+                    </div>
+                </div>
+
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Worksheet Upload</h3>
+                    </div>
+                    <div class="panel-body">
+                        
+                        <font size="3">If you would like to upload a worksheet for your project to share, you can do so here:</font><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+                        <br>
+                        
                         <!-- Picture upload -->
                         <div class="form-group text-center">
                             <img data-ng-src="{{imageURL}}" alt="No Picture Uploaded Yet" class="img-thumbnail">
-                        </div>
+                                </div>
                         <div class="text-center form-group">
                             <span class="btn btn-default btn-file">
                                 Select Image <input type="file" nv-file-select uploader="uploaderC" accept="image/jpeg">
-                            </span>
+                                    </span>
                         </div>
-
+                        
                         <br>
-                        <a name="5"><font size = "3">List the materials you need.</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                                  data-toggle="tooltip" data-original-title="Share" title ="Include only the basic items/utensils needed to complete the task. No need to list every little think. Check the tip section for a list of items not to include if you are unsure."></span>
-                        <br>
-                        <textarea class="form-control" rows="4" data-ng-model="imagine.materials"></textarea>
-
-                        <br>
-
                     </div>
                 </div>
+
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Essential Sketch & Details: </h3>
