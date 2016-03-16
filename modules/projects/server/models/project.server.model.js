@@ -94,6 +94,20 @@ var ProjectSchema = new Schema({
 		constraints: {
 			type: String,
 			default: ''
+		},
+		learningObjective: {
+			type: String,
+			default: ''
+		}
+	},
+	research: {
+		researchFocus: {
+			type: String,
+			default: ''
+		},
+		researchResources: {
+			type: String,
+			default: ''
 		}
 	},
 	imagine: {
@@ -106,6 +120,42 @@ var ProjectSchema = new Schema({
 			default: ''
 		},
 		materials: {
+			type: String,
+			default: ''
+		},
+		imagineList: {
+			type: String,
+			default: ''
+		}
+	},
+	plan: {
+		planSelect: {
+			type: String,
+			default: ''
+		},
+		planResources: {
+			type: String,
+			default: ''
+		}
+	},
+	createStep:{
+		createBuild:{
+			type: String,
+			default: ''
+		}
+	},
+	testStep:{
+		testDesign: {
+			type: String,
+			default: ''
+		},
+		testSuccess:{
+			type: String,
+			default: ''
+		}
+	},
+	improve:{
+		improveChange: {
 			type: String,
 			default: ''
 		}
