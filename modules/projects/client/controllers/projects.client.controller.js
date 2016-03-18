@@ -1,8 +1,8 @@
 'use strict';
 // Projects controller
 
-angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$sce', '$location', '$window', '$timeout', 'Authentication', 'Projects', 'FileUploader', 'linkify',
-	function($scope, $stateParams, $sce, $location, $window, $timeout, Authentication, Projects, FileUploader, linkify ) {
+angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$sce', '$location', '$window', '$timeout', 'Authentication', 'Projects', 'FileUploader', 'linkify', 'Users',
+	function($scope, $stateParams, $sce, $location, $window, $timeout, Authentication, Projects, FileUploader, linkify , Users ) {
 		$scope.authentication = Authentication;
 
 		// Create file uploader instance
@@ -263,6 +263,18 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		};
 
+		//get userID for collaborator from email
+		$scope.addCollab = function(collabEmail) {
+
+			if(collabEmail) {
+				//$scope.collabPerson = Users.findOne({email: collabEmail};
+				$scope.collabPerson=Projects.addCollab.addCollab()
+			}
+			
+			console.log(collabEmail);
+			console.log($scope.collabPerson);
+		};
+
 		// Called after the user selected a new picture file
 		$scope.uploader.onAfterAddingFile = function (fileItem) {
 			if ($window.FileReader) {
@@ -413,6 +425,11 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		};
 
+		$scope.testList1 = [{'title': 'Standard1'},{'title': 'Standard2'},{'title': 'Standard3'}];
+        $scope.list4 = [];
+        $scope.hideMe = function() {
+            return $scope.list4.length > 0;
+        };
 
 
 	}

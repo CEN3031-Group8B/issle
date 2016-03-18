@@ -9,6 +9,8 @@ module.exports = function(app) {
 		.get(projects.list).all(projectsPolicy.isAllowed)
 		.post(projects.create);
 
+	//app.route('/api/')
+
 	app.route('/api/projects/:projectId').all()
 		.get(projects.read)
 		.put(projects.update)
@@ -16,7 +18,10 @@ module.exports = function(app) {
 
 	app.route('/api/projects/picture/:projectId').post(projects.uploadDiagram); // Route to upload image
 
+	app.route('/api/projects/:userID/addCollab/:email').get(projects.addCollab);
+
 	// Finish by binding the Project middleware
 	app.param('projectId', projects.projectByID);
-
+	app.param('collab', projects.suppliedEmail);
+	app.param('userId', projects.userIdByEmail);
 };

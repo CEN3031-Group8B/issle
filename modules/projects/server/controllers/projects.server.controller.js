@@ -7,6 +7,7 @@
  path = require('path'),
  mongoose = require('mongoose'),
  Project = mongoose.model('Project'),
+ User = mongoose.model('User'),
  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
  knox = require(path.resolve('./config/lib/knox.js')), // S3 Connection
  knoxClient = knox.knoxClient;
@@ -195,9 +196,35 @@
 	 });
  };
 
+ /**
+ * Add Collaborator to Project
+ */
+ exports.addCollab = function(req, res) {
+ 	res.jsonp(req.body);
+ };
+
 /**
  * Project middleware
  */
+ exports.userIdByEmail = function(req, res, next, id) { User.findById(id).populate('user', 'displayName').exec(function(err, project) {
+ 	if (err) return next(err);
+ 	if (! project) return next(new Error('Failed to load Project ' + id));
+ 	req.project = project ;
+ 	next();
+ });
+};
+
+/**
+ * Project middleware
+ */
+ exports.suppliedEmail = function(req, res, next, email) { User.findById(id).populate('user', 'displayName').exec(function(err, email) {
+ 	if (err) return next(err);
+ 	if (! project) return next(new Error('Failed to load Project ' + id));
+ 	req.email = email ;
+ 	next();
+ });
+};
+
  exports.projectByID = function(req, res, next, id) { Project.findById(id).populate('user', 'displayName').exec(function(err, project) {
  	if (err) return next(err);
  	if (! project) return next(new Error('Failed to load Project ' + id));
