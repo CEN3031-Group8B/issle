@@ -55,29 +55,29 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 	
 	$scope.County = function(){
 		$scope.schoolList=[];
-		console.log($scope.school);
+		$scope.credentials.county=$scope.county;
 		if($scope.county.trim()===$scope.countyList[1]){
 			$scope.schoolList=[];
 			for(var i=0;i<$scope.county1.length;i++){
 				$scope.schoolList.push($scope.county1[i]);
 			}
-			$scope.school=$scope.county1[0];
+			//$scope.school=$scope.county1[0];
 		}
 		else if($scope.county.trim()===$scope.countyList[2]){
 			$scope.schoolList=[];
 			for(var i=0;i<$scope.county2.length;i++){
 				$scope.schoolList.push($scope.county2[i]);
 			}
-			$scope.school=$scope.county2[0];
+			//$scope.school=$scope.county2[0];
 		}
 		else{
 			$scope.schoolList=[];
 			for(var i=0;i<$scope.county0.length;i++){
 				$scope.schoolList.push($scope.county0[i]);
 			}
-			$scope.school=$scope.county0[0];
+			//$scope.school=$scope.county0[0];
 		}
-	
+		console.log($scope.school);
 	};
 	
 
