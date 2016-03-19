@@ -86,10 +86,12 @@ module.exports.initMiddleware = function (app) {
   app.use(flash());
 
   // Add multipart handling middleware
-  app.use(multer({
+  /*app.use(multer({
     dest: './uploads/',
     inMemory: true
-  }));
+  })); */
+
+  var upload = multer({dest: './uploads' });
 };
 
 /**
