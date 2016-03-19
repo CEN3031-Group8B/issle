@@ -35,6 +35,51 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         $scope.error = response.message;
       });
     };
+	
+	$scope.val="o0";
+	$scope.School = function(value){
+		if(value!=""){
+			return false;
+		}
+		return true;
+	};
+	
+	
+	$scope.countyList = ['None','Alachua', 'Broward'];
+	$scope.schoolList=[];
+	$scope.county0=['None0','None1','None2'];
+	$scope.county1=['University of Florida', 'Sante Fe'];
+	$scope.county2=['Mater','Lakes','Stirrup'];
+	$scope.County='';
+	$scope.School='';
+	
+	$scope.county = function(){
+		$scope.schoolList=[];
+		console.log($scope.School);
+		if($scope.County.trim()===$scope.countyList[1]){
+			$scope.schoolList=[];
+			for(var i=0;i<$scope.county1.length;i++){
+				$scope.schoolList.push($scope.county1[i]);
+			}
+			$scope.School=$scope.county1[0];
+		}
+		else if($scope.County.trim()===$scope.countyList[2]){
+			$scope.schoolList=[];
+			for(var i=0;i<$scope.county2.length;i++){
+				$scope.schoolList.push($scope.county2[i]);
+			}
+			$scope.School=$scope.county2[0];
+		}
+		else{
+			$scope.schoolList=[];
+			for(var i=0;i<$scope.county0.length;i++){
+				$scope.schoolList.push($scope.county0[i]);
+			}
+			$scope.School=$scope.county0[0];
+		}
+	
+	};
+	
 
     // OAuth provider request
     $scope.callOauthProvider = function (url) {

@@ -38,7 +38,29 @@
                    placeholder="Email">
             </div>
           </div>
-          <div class="form-group">
+		  
+		  	
+			
+<div class="styled-select">
+		<span class="input-group-addon">
+		<i class="text-muted glyphicon glyphicon-envelope"></i>
+		</span>
+    <select ng-model="County" ng-change="county()" >
+			<option value="" selected disabled>Choose County</option>
+			<option ng-repeat="County in countyList">{{County}}
+    </select>
+
+	<select data-ng-model="credentials.school" class="form-control">
+				<option value="" selected disabled>Choose School</option> 
+				<option ng-repeat="school in schoolList">{{school}}</option>
+			</select>	
+		
+
+</div>
+			
+			
+				
+      <!--    <div class="form-group">
             <div class="input-group input-group-lg">
                 <span class="input-group-addon">
                   <i class = "text-muted glyphicon glyphicon-education"></i>
@@ -46,25 +68,7 @@
                 <input type="text" required id="school" name="school" class="form-control"
                      data-ng-model="credentials.school" placeholder="School Name">
             </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group input-group-lg">
-               <span class="input-group-addon">
-                  <i class = "text-muted glyphicon glyphicon-info-sign"></i>
-                </span>
-                <input type="text" required id="age" name="age" class="form-control"
-                     data-ng-model="credentials.age" placeholder="Age">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon">
-                  <i class = "text-muted glyphicon glyphicon-info-sign"></i>
-                </span>
-                <input type="text" required id="gradesTaught" name="gradesTaught" class="form-control"
-                     data-ng-model="credentials.gradesTaught" placeholder="Grades You Teach">
-            </div>
-          </div>
+          </div>  -->
           <div class="form-group">
             <div class="input-group input-group-lg">
               <span class="input-group-addon">
