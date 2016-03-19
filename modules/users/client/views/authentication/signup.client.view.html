@@ -45,9 +45,9 @@
 		<span class="input-group-addon">
 		<i class="text-muted glyphicon glyphicon-envelope"></i>
 		</span>
-    <select ng-model="County" ng-change="county()" >
+    <select ng-model="county" ng-change="County()" >
 			<option value="" selected disabled>Choose County</option>
-			<option ng-repeat="County in countyList">{{County}}
+			<option ng-repeat="county in countyList">{{county}}
     </select>
 
 	<select data-ng-model="credentials.school" class="form-control">
