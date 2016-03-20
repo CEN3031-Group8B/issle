@@ -89,8 +89,9 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			}
 			//the slice is used to clean up so that the last standard does not have a quote and a space
 			//we do not need it for projects since overall projects will never be used to display to the user
-			$scope.essentialDetails.overallStandards = $scope.essentialDetails.overallStandards.slice(0, -2);
+			//$scope.essentialDetails.overallStandards = $scope.essentialDetails.overallStandards.slice(0, -2);
 
+			
 
 			var project = new Projects ({
 				name: this.name,
@@ -100,8 +101,14 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				isPublic: this.isPublic,
 				minGrade: this.minGrade,
 				maxGrade: this.maxGrade,
+				list4: this.list4,
 				ask: this.ask,
+				research: this.research,
 				imagine: this.imagine,
+				plan: this.plan,
+				createStep: this.createStep,
+				testStep: this.testStep,
+				improveStep: this.improveStep,
 				essentialDetails: this.essentialDetails,
 				rating: null
 			});
