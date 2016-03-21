@@ -26,6 +26,14 @@ var SubjectSchema = new Schema({
 });
 
 /**
+* Drag Drop List Schema
+*/
+var dragListSchema = new Schema({
+	benchmark: String,
+	default: ''
+});
+
+/**
  * Project Schema
  */
 var ProjectSchema = new Schema({
@@ -78,6 +86,7 @@ var ProjectSchema = new Schema({
 			type: Number
 		}
 	},
+	list4: [dragListSchema],
 	ask: {
 		/*goal: {
 			type: String,
@@ -130,14 +139,14 @@ var ProjectSchema = new Schema({
 			default: ''
 		},*/
 		//FOR NEW SCHEMA
-		list: {
+		listStep: {
 			type: String,
 			default: ''
 		}
 	},
 	//FOR NEW SCHEMA
 	plan: {
-		select: {
+		selectStep: {
 			type: String,
 			default: ''
 		},
@@ -148,25 +157,25 @@ var ProjectSchema = new Schema({
 	},
 	//FOR NEW SCHEMA
 	createStep:{
-		build:{
+		buildStep:{
 			type: String,
 			default: ''
 		}
 	},
 	//FOR NEW SCHEMA
 	testStep:{
-		design: {
+		designStep: {
 			type: String,
 			default: ''
 		},
-		success:{
+		successStep:{
 			type: String,
 			default: ''
 		}
 	},
 	//FOR NEW SCHEMA
-	improve:{
-		change: {
+	improveStep:{
+		changeStep: {
 			type: String,
 			default: ''
 		}
