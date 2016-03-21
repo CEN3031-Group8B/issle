@@ -64,7 +64,7 @@ var UserSchema = new Schema({
   county: {
   	type: String,
   	trim: true,
-  	default: ''
+  	default: '',
   },
   age:{
     type: String,
