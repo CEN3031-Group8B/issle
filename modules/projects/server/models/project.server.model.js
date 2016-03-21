@@ -112,7 +112,8 @@ var ProjectSchema = new Schema({
 		Constraints: {
 			type: String,
 			default: ''
-		}
+		},
+		standardStep: [dragListSchema]
 	},
 	//FOR NEW SCHEMA
 	research: {
