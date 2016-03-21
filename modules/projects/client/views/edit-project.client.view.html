@@ -2,112 +2,204 @@
     <div data-ng-show="project.user._id">
         <form class="container-fluid">
             <div class="row" data-ng-show="authentication.user._id===project.user._id">
-            <!-- goes in previous line after row... data-ng-show="authentication.user._id===project.user._id" -->
+                <!-- goes in previous line after row... data-ng-show="authentication.user._id===project.user._id" -->
                 <div class="col-sm-3 col-md-2 sidebar">
-
+                    
                     <ul class="nav nav-sidebar">
                         <li class="active">
-                        <li class="active"><a href="#"><h4>Design Menu</h4></a></li>
-                        <p class="text-center">
-                        <li><a href="#1">Basic Goal</a></li>
-                        <li><a href="#2">Identifying Problem</a></li>
-                        <li><a href="#3">Figuring Constraints</a></li>
-                        <li><a href="#4">Brainstorm Solutions</a></li>
-                        <li><a href="#5">Listing Materials</a></li>
-                        <li><a href="#6">E.Sketch- Math</a></li>
-                        <li><a href="#7">E.Sketch- Science</a></li>
-                        <li><a href="#8">E.Sketch- Literature</a></li>
-                        <li><a href="#9">E.Sketch- SocialStudies</a></li>
-                        <li class="active"><a href="#"><H4>Help Menu</h4></a></li>
-                        <li><a data-ui-sref="projects.list">View other Projects</a></li>
-                        <li><a data-ui-sref="support.example">Example</a></li>
-                        <li><a data-ui-sref="support.faq">FAQ</a></li>
-                        </p>
-                    </ul>
-
+                            <li class="active"><a href="#"><h4>Design Menu</h4></a></li>
+                            <p class="text-center">
+                            <li><a href="#1">Basic Goal</a></li>
+                            <li><a href="#2">Identifying Problem</a></li>
+                            <li><a href="#3">Figuring Constraints</a></li>
+                            <li><a href="#4">Brainstorm Solutions</a></li>
+                            <li><a href="#5">Listing Materials</a></li>
+                            <li><a href="#6">E.Sketch- Math</a></li>
+                            <li><a href="#7">E.Sketch- Science</a></li>
+                            <li><a href="#8">E.Sketch- Literature</a></li>
+                            <li><a href="#9">E.Sketch- SocialStudies</a></li>
+                            <li class="active"><a href="#"><H4>Help Menu</h4></a></li>
+                            <li><a data-ui-sref="projects.list">View other Projects</a></li>
+                            <li><a data-ui-sref="support.example">Example</a></li>
+                            <li><a data-ui-sref="support.faq">FAQ</a></li>
+                            </p>
+                            </ul>
+                    
                 </div>
-
+                
                 <div class="col-sm-8 col-sm-offset-3 col-md-8 col-md-offset-2 main">
-
+                    
                     <h2 class="sub-header">Design : <input type="text" placeholder="Project Name" data-ng-model="project.name"></h2>
-
+                    
                     <h4 class="sub-header" style="display: inline-block;">Grade(s) : <input type="number" min="0" max="12" placeholder="3" data-ng-model="project.minGrade">
                         - <input type="number" min="0" max="12" placeholder="5" data-ng-model="project.maxGrade"></h4>
-
-
+                    
+                    
                     <div class="btn-group" role="group">
                         <button type="button" class="btn" ng-class="{ 'active btn-success': (project.isPublic === true)}" ng-click="project.isPublic = true">Public</button>
                         <button type="button" class="btn" ng-class="{ 'active btn-success': (project.isPublic === false)}" ng-click="project.isPublic = false">Private</button>
                     </div>
-
+                    
                     <div class="panel panel-blue">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Ask</h3>
+                            <h3 class="panel-title">Ask: Identify the needs and constraints</h3>
                         </div>
                         <div class="panel-body">
-                            <a name="1"><font size = "3">Describe your goal:</font></a>
-                        <span class="glyphicon glyphicon-question-sign"
-                              data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you  want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
-                        </span>
+                            <a name="1"><font size = "3">What is the goal of the project?</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you  want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                            </span>
                             <br>
-                            <textarea class="form-control" rows="8" data-ng-model="project.ask.goal"></textarea>
-
-                            <a name="2"><font size = "3">What's the major problem or underlying question?</font></a>
-                        <span class="glyphicon glyphicon-question-sign"
-                              data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                            <textarea class="form-control" rows="8" data-ng-model="project.ask.learningObjective"></textarea>
+                            
+                            <a name="2"><font size = "3">What limits are there on the design, application or materials for students in reaching their engineering goal. Get the students to realize these limits, and to design with these limits in mind</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                             <br>
-                            <textarea class="form-control" rows="4" data-ng-model="project.ask.problemStatement"></textarea>
+                            <textarea class="form-control" rows="4" data-ng-model="project.ask.Constraints"></textarea>
                             <br>
-                            <a name="2"><font size = "3">How can your students solve this problem?</font></a>
-                            <br>
-                            <textarea class="form-control" rows="3" data-ng-model="project.ask.solvingProblem"></textarea>
-                            <br>
-                            <a name="3"><font size = "3">List your constraints:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                                data-toggle="tooltip" data-original-title="Share" title ="What constraints you? Money? The objects required to complete the task? Specific materials or utensils? List everything you can think of."></span>
-                            <br>
-                            <textarea class="form-control" rows="4" data-ng-model="project.ask.constraints"></textarea>
-                            <br>
-
                         </div>
                     </div>
+                    
                     <div class="panel panel-blue">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Imagine</h3>
+                            <h3 class="panel-title">Research the problem</h3>
                         </div>
                         <div class="panel-body">
-
-                            <a name="4"><font size = "3">What are some solutions? Brainstorm ideas.</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                                                    data-toggle="tooltip" data-original-title="Share" title ="This is probably the most crucial part. Identify one or multiple solutions to the problem you have identified earlier. Check examples for more information. "></span>
+                            <a name="3"><font size = "3">What do you want students to learn from their research?</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you  want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                            </span>
                             <br>
-                            <textarea class="form-control" rows="4" data-ng-model="project.imagine.brainstorm"></textarea>
+                            <textarea class="form-control" rows="8" data-ng-model="project.research.focus"></textarea>
+                            
+                            <a name="4"><font size = "3">What resources will they use?</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                             <br>
-                            <h3>Plan</h3>
-                            <font size="3">Draw a diagram or any other representation of your project.</font><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+                            <textarea class="form-control" rows="4" data-ng-model="project.research.resources"></textarea>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-blue">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Imagine: Develop possible solutions</h3>
+                        </div>
+                        <div class="panel-body">
+                            <a name="5"><font size = "3">Have students list possible solutions, even ones that won’t work. (They may inspire other ideas)</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you  want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                            </span>
+                            <br>
+                            <textarea class="form-control" rows="8" data-ng-model="project.imagine.listStep"></textarea>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-blue">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Plan: Select a promising solution</h3>
+                        </div>
+                        <div class="panel-body">
+                            <a name="6"><font size = "3">How should your students decide which potential solution is best?</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you  want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                            </span>
+                            <br>
+                            <textarea class="form-control" rows="8" data-ng-model="project.plan.selectStep"></textarea>
+                            
+                            <a name="7"><font size = "3">Students should ask: what resources does the selected solution require? What will you have ready for them to use?</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                            <br>
+                            <textarea class="form-control" rows="4" data-ng-model="project.plan.resources"></textarea>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-blue">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Create: Build a prototype</h3>
+                        </div>
+                        <div class="panel-body">
+                            <a name="8"><font size = "3">Engineers build prototypes and small models to test if their design ideas will work for their application. What kind of prototype or model will your students build? How will you support them in the building of this model?</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you  want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                            </span>
+                            <br>
+                            <textarea class="form-control" rows="8" data-ng-model="project.createStep.buildStep"></textarea>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-blue">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Test and evaluate prototype</h3>
+                        </div>
+                        <div class="panel-body">
+                            <a name="9"><font size = "3">Have students design 1-2 tests to evaluate their model, changing only one variable related to the performance requirements of their idea.</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you  want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                            </span>
+                            <br>
+                            <textarea class="form-control" rows="8" data-ng-model="project.testStep.designStep"></textarea>
+                            
+                            <a name="10"><font size = "3">Ask: Does the test show the model solves the problem? How well? Why does it work well/ or not work well for the application?</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                            <br>
+                            <textarea class="form-control" rows="4" data-ng-model="project.testStep.successStep"></textarea>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-blue">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Improve: Redesign as needed</h3>
+                        </div>
+                        <div class="panel-body">
+                            <a name="11"><font size = "3">Prompt: What would you change in the prototype next time?</font></a>
+                            <span class="glyphicon glyphicon-question-sign"
+                                data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you  want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                            </span>
+                            <br>
+                            <textarea class="form-control" rows="8" data-ng-model="project.improveStep.changeStep"></textarea>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="panel panel-blue">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Worksheet Upload</h3>
+                        </div>
+                        <div class="panel-body">
+                            
+                            <font size="3">If you would like to upload a worksheet for your project to share, you can do so here:</font><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
                             <br>
                             <!-- Picture upload -->
                             <div class="form-group text-center" ng-init="setImgURL(project)">
                                 <img data-ng-src="{{project.imagine.plan}}" alt="No Picture Uploaded Yet" class="img-thumbnail">
-                            </div>
+                                    </div>
                             <div class="text-center form-group">
-                            <span class="btn btn-default btn-file">
-                                Select Image <input type="file" nv-file-select uploader="uploader" accept="image/jpeg">
-                            </span>
+                                <span class="btn btn-default btn-file">
+                                    Select Image <input type="file" nv-file-select uploader="uploader" accept="image/jpeg">
+                                        </span>
                             </div>
-                            <br>
-                            <a name="5"><font size = "3">List the materials you need.</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                                      data-toggle="tooltip" data-original-title="Share" title ="Include only the basic items/utensils needed to complete the task. No need to list every little think. Check the tip section for a list of items not to include if you are unsure."></span>
-                            <br>
-                            <textarea class="form-control" rows="4" data-ng-model="project.imagine.materials"></textarea>
-
                             <br>
                         </div>
                     </div>
+                    
+                    
                     <div class="panel panel-blue">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Essential Sketch & Details: </h3>
+                            <h3 class="panel-title">Essential Sketch and Details: </h3>
                         </div>
                         <div class="panel-body">
-
+                            
                             Now that we've established a basic guideline as to what the project is, we can focus on tying it to all the different subject areas to make sure that a wider range of benchmarks are met. Simply list the main idea and how it relates to each field, followed
                             by details.
                             <br>
@@ -134,89 +226,89 @@
                              </div>
                              </body>
                              !-->
-
+                            
                             <a name="6"><font size = "3">Main Idea-mathematics:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                                data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a mathematics standard. You can look at the examples for some ideas or search standards for more information. "></span></span>
+                                data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a mathematics standard. You can look at the examples for some ideas or search standards for more information. "></span></span>
                             <br>
                             <span data-ng-init="essentialDetails.mathDetails.subjectName = 'Mathematics'"></span>
-                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.mathDetails[0].mainIdea"> Essential Details & What students will do:
-                            <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.mathDetails[0].details"></textarea>
-                            Linked Math Standard(s):
-                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.mathDetails[0].standards">
-                            <br>
-                            <br>
-
-                            <a name="7"><font size = "3">Main Idea-science:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                            data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a science standard. You can look at the examples for some ideas or search standards for more information."></span>
-                            <br>
-                            <span data-ng-init="essentialDetails.scienceDetails.subjectName = 'Science'"></span>
-                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.scienceDetails[0].mainIdea"> Essential Details & What students will do:
-                            <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.scienceDetails[0].details"></textarea>
-                            Linked Science Standard(s):
-                            <input id="sci" type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.scienceDetails[0].standards">
-                            <br>
-                            <br>
-                            
-                            <a name="8"><font size = "3">Main Idea-literature:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                               data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a literature standard. You can look at the examples for some ideas or search standards for more information."></span>
-                            <br>
-                            <span data-ng-init="essentialDetails.litDetails.subjectName = 'Literature'"></span>
-                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.litDetails[0].mainIdea"> Essential Details & What students will do:
-                            <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.litDetails[0].details"></textarea>
-                            Linked Literature Standard(s):
-                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.litDetails[0].standards">
-                            <br>
-                            <br>
-
-                            <a name="9"><font size = "3">Main Idea-social studies:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                                   data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a social studies standard. You can look at the examples for some ideas or search standards for more information."></span>
-                            <br>
-                            <span data-ng-init="essentialDetails.ssDetails.subjectName = 'SocialStudies'"></span>
-                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.ssDetails[0].mainIdea"> Essential Details & What students will do:
-                            <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.ssDetails[0].details"></textarea>
-                            Linked SocialStudies Standard(s):
-                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.ssDetails[0].standards">
-                            <br>
-                            <br>
-
-                            <div data-ng-repeat="subz in project.essentialDetails.otherSubject">
-                            <div class="panel panel-blue">
-                            <div class="panel-heading">
-                               <h3 class="panel-title">{{subz.subjectName}}</h3>
-                                </div>
-                                
-                                
-                                
-                                <div class="panel-body">
-                              <div class = "row">
-                <a><font size = "3">Main Idea: </font></a>
-                <textarea class="form-control" rows="3" placeholder="" data-ng-model="subz.mainIdea"> </textarea>
-                        Essential Details & What students will do:
-                        <textarea class="form-control" rows="4" data-ng-model="subz.details"></textarea>
-                        Linked Standard(s): 
-                         <input type="text" class="form-control" placeholder="" data-ng-model="subz.standards"></input>
-                        <br>
-                        <br>
-                        </div>
-                                   
-                            </div>
-                            </div>
-                            </div>
-                            
-                            
-                            
-                    
-
-
-                            <a>
-                                <font size="3">How will students communicate findings?</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                                       data-toggle="tooltip" data-original-title="Share" title ="Be sure that this method of communication is feasible. Presentations, diagrams, reports or demos are some common ways to present findings."></span>
-                            <br>
-                            <textarea class="form-control" rows="5" data-ng-model="project.essentialDetails.communicateFindings"></textarea>
-                            <br>
-                        </div>
+                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.mathDetails[0].mainIdea"> Essential Details and What students will do:
+                                <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.mathDetails[0].details"></textarea>
+                                Linked Math Standard(s):
+                                <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.mathDetails[0].standards">
+                                    <br>
+                                    <br>
+                                    
+                                    <a name="7"><font size = "3">Main Idea-science:</font></a><span class="glyphicon glyphicon-question-sign"
+                                        data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a science standard. You can look at the examples for some ideas or search standards for more information."></span>
+                                    <br>
+                                    <span data-ng-init="essentialDetails.scienceDetails.subjectName = 'Science'"></span>
+                                    <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.scienceDetails[0].mainIdea"> Essential Details and What students will do:
+                                        <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.scienceDetails[0].details"></textarea>
+                                        Linked Science Standard(s):
+                                        <input id="sci" type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.scienceDetails[0].standards">
+                                            <br>
+                                            <br>
+                                            
+                                            <a name="8"><font size = "3">Main Idea-literature:</font></a><span class="glyphicon glyphicon-question-sign"
+                                                data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a literature standard. You can look at the examples for some ideas or search standards for more information."></span>
+                                            <br>
+                                            <span data-ng-init="essentialDetails.litDetails.subjectName = 'Literature'"></span>
+                                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.litDetails[0].mainIdea"> Essential Details and What students will do:
+                                                <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.litDetails[0].details"></textarea>
+                                                Linked Literature Standard(s):
+                                                <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.litDetails[0].standards">
+                                                    <br>
+                                                    <br>
+                                                    
+                                                    <a name="9"><font size = "3">Main Idea-social studies:</font></a><span class="glyphicon glyphicon-question-sign"
+                                                        data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a social studies standard. You can look at the examples for some ideas or search standards for more information."></span>
+                                                    <br>
+                                                    <span data-ng-init="essentialDetails.ssDetails.subjectName = 'SocialStudies'"></span>
+                                                    <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.ssDetails[0].mainIdea"> Essential Details and What students will do:
+                                                        <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.ssDetails[0].details"></textarea>
+                                                        Linked SocialStudies Standard(s):
+                                                        <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.ssDetails[0].standards">
+                                                            <br>
+                                                            <br>
+                                                            
+                                                            <div data-ng-repeat="subz in project.essentialDetails.otherSubject">
+                                                                <div class="panel panel-blue">
+                                                                    <div class="panel-heading">
+                                                                        <h3 class="panel-title">{{subz.subjectName}}</h3>
+                                                                    </div>
+                                                                    
+                                                                    
+                                                                    
+                                                                    <div class="panel-body">
+                                                                        <div class = "row">
+                                                                            <a><font size = "3">Main Idea: </font></a>
+                                                                            <textarea class="form-control" rows="3" placeholder="" data-ng-model="subz.mainIdea"> </textarea>
+                                                                            Essential Details and What students will do:
+                                                                            <textarea class="form-control" rows="4" data-ng-model="subz.details"></textarea>
+                                                                            Linked Standard(s):
+                                                                            <input type="text" class="form-control" placeholder="" data-ng-model="subz.standards"></input>
+                                                                            <br>
+                                                                            <br>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            <a>
+                                                                <font size="3">How will students communicate findings?</font></a><span class="glyphicon glyphicon-question-sign"
+                                                                    data-toggle="tooltip" data-original-title="Share" title ="Be sure that this method of communication is feasible. Presentations, diagrams, reports or demos are some common ways to present findings."></span>
+                                                                <br>
+                                                                <textarea class="form-control" rows="5" data-ng-model="project.essentialDetails.communicateFindings"></textarea>
+                                                                <br>
+                                                            </div>
                     </div>
-
+                    
                     <div class="row">
                         <div class="col-md-3 col-md-offset-1">
                             <button id="submit" type="button" class="btn btn-success btn-block btn-lg" data-ng-click="project.status = 'Active'; CombineStandards(); update();">Submit</button>
@@ -229,17 +321,17 @@
             </div>
         </form>
         <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
-        <span data-ng-hide="authentication.user._id===project.user._id">
-        <!-- goes in previous line after span... data-ng-hide="authentication.user._id===project.user._id"-->
-            <div class="alert alert-success" role="alert">
-                <p>Project Page Not Available. This could be because you did not create this project, or you're not signed in to see it.</p>
-                <p><a data-ui-sref="home" class="alert-link">Click here to return to the home page</a></p>
-                <p><a data-ui-sref="projects.list" class="alert-link">Click here to search for a project</a></p>
-            </div>
-        </span>
+            <span data-ng-hide="authentication.user._id===project.user._id">
+                <!-- goes in previous line after span... data-ng-hide="authentication.user._id===project.user._id"-->
+                <div class="alert alert-success" role="alert">
+                    <p>Project Page Not Available. This could be because you did not create this project, or you're not signed in to see it.</p>
+                    <p><a data-ui-sref="home" class="alert-link">Click here to return to the home page</a></p>
+                    <p><a data-ui-sref="projects.list" class="alert-link">Click here to search for a project</a></p>
+                </div>
+            </span>
         </div>
     </div>
-
+    
     <div style="padding-top: 25%" data-ng-hide="project.user._id">
         <div style="display: flex;align-items: center; justify-content: center">
             <div style="color: #64bed8" class="la-cube-transition">
@@ -249,5 +341,5 @@
         </div>
         <h2 class="text-center">Loading</h2>
     </div>
-
+    
 </section>
