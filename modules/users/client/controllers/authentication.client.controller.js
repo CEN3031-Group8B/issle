@@ -36,14 +36,9 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       });
     };
 	
-	//$scope.val="o0";
-	//$scope.school = function(value){
-	//	if(value!=""){
-	//		return false;
-	//	}
-	//	return true;
-	//};
-	
+	/*
+	Created my own lists manually just for testing purposes
+	*/
 	
 	$scope.countyList = ['None','Alachua', 'Broward'];
 	$scope.schoolList=[];
