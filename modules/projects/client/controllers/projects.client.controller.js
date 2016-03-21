@@ -268,7 +268,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 			if(collabEmail) {
 				//$scope.collabPerson = Users.findOne({email: collabEmail};
-				$scope.collabPerson=Projects.addCollab.addCollab()
+				$scope.collabPerson=Projects.addCollab.query({param1: collabEmail});
 			}
 			
 			console.log(collabEmail);

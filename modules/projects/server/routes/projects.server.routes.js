@@ -18,10 +18,8 @@ module.exports = function(app) {
 
 	app.route('/api/projects/picture/:projectId').post(projects.uploadDiagram); // Route to upload image
 
-	app.route('/api/projects/:userID/addCollab/:email').get(projects.addCollab);
+	app.route('/api/projects/addCollab/:email').get(projects.read);
 
 	// Finish by binding the Project middleware
 	app.param('projectId', projects.projectByID);
-	app.param('collab', projects.suppliedEmail);
-	app.param('userId', projects.userIdByEmail);
 };

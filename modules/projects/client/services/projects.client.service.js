@@ -10,11 +10,9 @@ angular.module('projects').factory('Projects', ['$resource',
 				  }
 				}),
 				
-				addCollab: $resource('api/projects/:projectId/addCollab/:email',{projectId: '@_id'},{
+				addCollab: $resource('api/projects/addCollab/:email',{param1: ''},{
 					addCollab : {
-						method: 'GET', 
-						//url: 'api/projects/:userId/addCollab/:email', 
-						params:{}
+						method: 'GET'
 					}
 			     //return "dur" + email;
 			   })

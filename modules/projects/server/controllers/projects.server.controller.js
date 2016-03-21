@@ -199,36 +199,19 @@
  /**
  * Add Collaborator to Project
  */
- exports.addCollab = function(req, res) {
- 	res.jsonp(req.body);
+ exports.addCollab = function(req, res, next) {User.find().where('email').eq(req.params.param1).exec(function(err, user) {
+    if (err)  return next(err);
+    if (!user) return next(new Error('failed to find user'));
+    req.collab = user;
+    res.jsonp(user);
+    next();
+    });
  };
-
-/**
- * Project middleware
- */
- exports.userIdByEmail = function(req, res, next, id) { User.findById(id).populate('user', 'displayName').exec(function(err, project) {
- 	if (err) return next(err);
- 	if (! project) return next(new Error('Failed to load Project ' + id));
- 	req.project = project ;
- 	next();
- });
-};
-
-/**
- * Project middleware
- */
- exports.suppliedEmail = function(req, res, next, email) { User.findById(id).populate('user', 'displayName').exec(function(err, email) {
- 	if (err) return next(err);
- 	if (! project) return next(new Error('Failed to load Project ' + id));
- 	req.email = email ;
- 	next();
- });
-};
 
  exports.projectByID = function(req, res, next, id) { Project.findById(id).populate('user', 'displayName').exec(function(err, project) {
  	if (err) return next(err);
  	if (! project) return next(new Error('Failed to load Project ' + id));
  	req.project = project ;
  	next();
- });
+ 	});
 };
