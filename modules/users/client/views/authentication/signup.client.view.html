@@ -38,15 +38,23 @@
                    placeholder="Email">
             </div>
           </div>
-          <div class="form-group">
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon">
-                  <i class = "text-muted glyphicon glyphicon-education"></i>
-                </span>
-                <input type="text" required id="school" name="school" class="form-control"
-                     data-ng-model="credentials.school" placeholder="School Name">
-            </div>
-          </div>
+		  <!-- My version of school format-->
+		  <div class="form-group">
+			 <div class="input-group input-group-lg">
+			  <span class="input-group-addon">
+				<i class="text-muted glyphicon glyphicon-education"></i>
+			  </span>
+			  <select  id="county" name="county" class="form-control" ng-model="county" ng-change="County()">
+			    <option value="" selected disabled>Choose County</option>
+			    <option ng-repeat="county in countyList">{{county}}
+			  </select>
+			  <select required id="school" name="school" class="form-control" ng-model="credentials.school" >
+				<option value="" selected disabled>Choose School</option> 
+				<option ng-repeat="school in schoolList">{{school}}</option>
+			  </select>	
+			 </div>
+		  </div>
+		  <!-- end of my  school format -->
           <div class="form-group">
             <div class="input-group input-group-lg">
               <span class="input-group-addon">
