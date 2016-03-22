@@ -270,9 +270,14 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
            console.log('In $scope.remix');
            console.log(this.name);
 
+
+
            	var project_old = $scope.project;
+           	var project_old_name = [];
+           	project_old_name.push(project_old.name);
+           	project_old_name.push(" Remix");
             var project = new Projects ({
-				name: project_old.name,
+				name: project_old_name,
 				created: project_old.created,
 				user: project_old.user,
 				status: project_old.status,
