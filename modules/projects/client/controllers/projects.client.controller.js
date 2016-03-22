@@ -102,18 +102,18 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				minGrade: this.minGrade,
 				maxGrade: this.maxGrade,
 				askStandardStep: this.askStandardStep,
-				ask: this.ask,
 				researchStandardStep: this.researchStandardStep,
-				research: this.research,
 				imagineStandardStep: this.imagineStandardStep,
-				imagine: this.imagine,
 				planStandardStep: this.planStandardStep,
-				plan: this.plan,
 				createStandardStep: this.createStandardStep,
-				createStep: this.createStep,
 				testStandardStep: this.testStandardStep,
-				testStep: this.testStep,
 				improveStandardStep: this.improveStandardStep,
+				ask: this.ask,
+				research: this.research,
+				imagine: this.imagine,
+				plan: this.plan,
+				createStep: this.createStep,
+				testStep: this.testStep,
 				improveStep: this.improveStep,
 				essentialDetails: this.essentialDetails,
 				rating: null
@@ -510,6 +510,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		$scope.improveStandardStep = [];
         $scope.improveHideMe = function() {
             return $scope.improveStandardStep.length > 0;
-        };	
+        };
 	}
 ]);

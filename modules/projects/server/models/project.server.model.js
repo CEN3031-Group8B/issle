@@ -127,6 +127,7 @@ var ProjectSchema = new Schema({
 			default: ''
 		}
 	},
+	imagineStandardStep: [dragListSchema],
 	imagine: {
 		/*brainstorm: {
 			type: String,
@@ -147,6 +148,7 @@ var ProjectSchema = new Schema({
 		}
 	},
 	//FOR NEW SCHEMA
+	planStandardStep: [dragListSchema],
 	plan: {
 		selectStep: {
 			type: String,
@@ -158,6 +160,7 @@ var ProjectSchema = new Schema({
 		}
 	},
 	//FOR NEW SCHEMA
+	createStandardStep: [dragListSchema],
 	createStep:{
 		buildStep:{
 			type: String,
@@ -165,6 +168,7 @@ var ProjectSchema = new Schema({
 		}
 	},
 	//FOR NEW SCHEMA
+	testStandardStep: [dragListSchema],
 	testStep:{
 		designStep: {
 			type: String,
@@ -176,6 +180,7 @@ var ProjectSchema = new Schema({
 		}
 	},
 	//FOR NEW SCHEMA
+	improveStandardStep: [dragListSchema],
 	improveStep:{
 		changeStep: {
 			type: String,
