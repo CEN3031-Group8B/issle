@@ -120,7 +120,7 @@
             
             <!--<div class="col-sm-7 col-sm-offset-3 col-md-8 col-md-offset-2 main" data-ng-hide="authentication.user._id==NULL" data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}"> -->
             
-            <div class="col-sm-7  col-md-8 main" data-ng-hide="authentication.user._id==NULL" data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}">
+            <div class="col-sm-7  col-md-8 main" data-ng-hide="authentication.user._id==NULL">
                 
                 <h2 class="sub-header">Design : <input id="name" type="text" placeholder="Project Name" data-ng-model="name"></h2>
                 
@@ -132,7 +132,7 @@
                     <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === true)}" ng-click="isPublic = true">Public</button>
                     <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === false)}" ng-click="isPublic = false">Private</button>
                 </div>
-                
+                <div data-drop="true" ng-model='askStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Ask: Identify the needs and constraints</h3>
@@ -152,19 +152,19 @@
                         <textarea class="form-control" rows="4" data-ng-model="ask.Constraints"></textarea>
                         <br>
                         
-                        <div class="cart">
+                        <div class="askStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
                             <ol>
-                                <li ng-repeat="item in list4 track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
-                                <li class="placeholder" ng-hide="hideMe()">Add your Standards here</li>
+                                <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="askHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
                         </div>
-                        
+                        </div>
                     </div>
                 </div>
-                
+                <div data-drop="true" ng-model='researchStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Research the problem</h3>
@@ -182,11 +182,19 @@
                             data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                         <br>
                         <textarea class="form-control" rows="4" data-ng-model="research.resources"></textarea>
-                        
-                        
+                        <div class="researchStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in researchStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="researchStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="researchHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
+                        </div>
                     </div>
                 </div>
-                
+                <div data-drop="true" ng-model='imagineStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Imagine: Develop possible solutions</h3>
@@ -198,11 +206,19 @@
                         </span>
                         <br>
                         <textarea class="form-control" rows="8" data-ng-model="imagine.listStep"></textarea>
-                        
-                        
+                        <div class="imagineStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in imagineStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="imagineStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="imagineHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
+                        </div>
                     </div>
                 </div>
-                
+                <div data-drop="true" ng-model='planStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Plan: Select a promising solution</h3>
@@ -220,10 +236,19 @@
                             data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                         <br>
                         <textarea class="form-control" rows="4" data-ng-model="plan.resources"></textarea>
-                        
+                        <div class="planStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in planStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="planStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="planHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
                     </div>
                 </div>
-                
+                </div>
+                <div data-drop="true" ng-model='createStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Create: Build a prototype</h3>
@@ -235,13 +260,20 @@
                         </span>
                         <br>
                         <textarea class="form-control" rows="8" data-ng-model="createStep.buildStep"></textarea>
-                        
-                        
                         <br>
-                        
+                        <div class="createStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in createStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="createStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="createHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
                     </div>
                 </div>
-                
+                </div>
+                <div data-drop="true" ng-model='testStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Test and evaluate prototype</h3>
@@ -260,10 +292,19 @@
                         <br>
                         <textarea class="form-control" rows="4" data-ng-model="testStep.successStep"></textarea>
                         <br>
-                        
+                        <div class="testStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in testStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="testStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="testHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
                     </div>
                 </div>
-                
+                </div>
+                <div data-drop="true" ng-model='improveStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Improve: Redesign as needed</h3>
@@ -275,9 +316,18 @@
                         </span>
                         <br>
                         <textarea class="form-control" rows="8" data-ng-model="improveStep.changeStep"></textarea>
+                        <div class="improveStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in improveStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="improveStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="improveHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
                     </div>
                 </div>
-                
+                </div>
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Worksheet Upload</h3>

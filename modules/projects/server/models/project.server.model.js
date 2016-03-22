@@ -86,7 +86,7 @@ var ProjectSchema = new Schema({
 			type: Number
 		}
 	},
-	list4: [dragListSchema],
+	askStandardStep: [dragListSchema],
 	ask: {
 		/*goal: {
 			type: String,
@@ -113,9 +113,10 @@ var ProjectSchema = new Schema({
 			type: String,
 			default: ''
 		},
-		standardStep: [dragListSchema]
+		//standardStep: [dragListSchema]
 	},
 	//FOR NEW SCHEMA
+	researchStandardStep: [dragListSchema],
 	research: {
 		focus: {
 			type: String,
