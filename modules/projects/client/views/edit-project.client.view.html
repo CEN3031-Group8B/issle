@@ -287,122 +287,16 @@
                         </div>
                     </div>
                     
-                    
-                    <div class="panel panel-blue">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Essential Sketch and Details: </h3>
-                        </div>
-                        <div class="panel-body">
-                            
-                            Now that we've established a basic guideline as to what the project is, we can focus on tying it to all the different subject areas to make sure that a wider range of benchmarks are met. Simply list the main idea and how it relates to each field, followed
-                            by details.
-                            <br>
-                            Think about the central subjects dealing with your project. Check all those that apply:
-                            <br>
-                            <!-- <ul>
-                             <li><input type="checkbox" data-ng-model="project.essentialDetails.mainIncludeMath"/><label>Mathematics</label></li>
-                             <li><input type="checkbox" data-ng-model="project.essentialDetails.mainIncludeScience"/><label>Science</label></li>
-                             <li><input type="checkbox" data-ng-model="project.essentialDetails.mainIncludeLiterature"/><label>Literature</label></li>
-                             <li><input type="checkbox" data-ng-model="project.essentialDetails.mainIncludeSocialStudies"/><label>Social Studies</label></li>
-                             </ul>
-                             <body ng-app>
-                             <div ng-controller="SubjectSelectCtrl">
-                             <table>
-                             <tr ng-repeat="subjects in subjectList">
-                             <td>
-                             <div>{{item.text}}</div>
-                             </td>
-                             <td>
-                             <input type="checkbox" ng-model="item.isTrue" />
-                             </td>
-                             </tr>
-                             </table>
-                             </div>
-                             </body>
-                             !-->
-                            
-                            <a name="6"><font size = "3">Main Idea-mathematics:</font></a><span class="glyphicon glyphicon-question-sign"
-                                data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a mathematics standard. You can look at the examples for some ideas or search standards for more information. "></span></span>
-                            <br>
-                            <span data-ng-init="essentialDetails.mathDetails.subjectName = 'Mathematics'"></span>
-                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.mathDetails[0].mainIdea"> Essential Details and What students will do:
-                                <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.mathDetails[0].details"></textarea>
-                                Linked Math Standard(s):
-                                <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.mathDetails[0].standards">
-                                    <br>
-                                    <br>
-                                    
-                                    <a name="7"><font size = "3">Main Idea-science:</font></a><span class="glyphicon glyphicon-question-sign"
-                                        data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a science standard. You can look at the examples for some ideas or search standards for more information."></span>
-                                    <br>
-                                    <span data-ng-init="essentialDetails.scienceDetails.subjectName = 'Science'"></span>
-                                    <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.scienceDetails[0].mainIdea"> Essential Details and What students will do:
-                                        <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.scienceDetails[0].details"></textarea>
-                                        Linked Science Standard(s):
-                                        <input id="sci" type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.scienceDetails[0].standards">
-                                            <br>
-                                            <br>
-                                            
-                                            <a name="8"><font size = "3">Main Idea-literature:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a literature standard. You can look at the examples for some ideas or search standards for more information."></span>
-                                            <br>
-                                            <span data-ng-init="essentialDetails.litDetails.subjectName = 'Literature'"></span>
-                                            <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.litDetails[0].mainIdea"> Essential Details and What students will do:
-                                                <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.litDetails[0].details"></textarea>
-                                                Linked Literature Standard(s):
-                                                <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.litDetails[0].standards">
-                                                    <br>
-                                                    <br>
-                                                    
-                                                    <a name="9"><font size = "3">Main Idea-social studies:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                        data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a social studies standard. You can look at the examples for some ideas or search standards for more information."></span>
-                                                    <br>
-                                                    <span data-ng-init="essentialDetails.ssDetails.subjectName = 'SocialStudies'"></span>
-                                                    <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.ssDetails[0].mainIdea"> Essential Details and What students will do:
-                                                        <textarea class="form-control" rows="4" data-ng-model="project.essentialDetails.ssDetails[0].details"></textarea>
-                                                        Linked SocialStudies Standard(s):
-                                                        <input type="text" class="form-control" placeholder="" data-ng-model="project.essentialDetails.ssDetails[0].standards">
-                                                            <br>
-                                                            <br>
-                                                            
-                                                            <div data-ng-repeat="subz in project.essentialDetails.otherSubject">
-                                                                <div class="panel panel-blue">
-                                                                    <div class="panel-heading">
-                                                                        <h3 class="panel-title">{{subz.subjectName}}</h3>
-                                                                    </div>
-                                                                    
-                                                                    
-                                                                    
-                                                                    <div class="panel-body">
-                                                                        <div class = "row">
-                                                                            <a><font size = "3">Main Idea: </font></a>
-                                                                            <textarea class="form-control" rows="3" placeholder="" data-ng-model="subz.mainIdea"> </textarea>
-                                                                            Essential Details and What students will do:
-                                                                            <textarea class="form-control" rows="4" data-ng-model="subz.details"></textarea>
-                                                                            Linked Standard(s):
-                                                                            <input type="text" class="form-control" placeholder="" data-ng-model="subz.standards"></input>
-                                                                            <br>
-                                                                            <br>
-                                                                        </div>
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            <a>
-                                                                <font size="3">How will students communicate findings?</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                    data-toggle="tooltip" data-original-title="Share" title ="Be sure that this method of communication is feasible. Presentations, diagrams, reports or demos are some common ways to present findings."></span>
-                                                                <br>
-                                                                <textarea class="form-control" rows="5" data-ng-model="project.essentialDetails.communicateFindings"></textarea>
-                                                                <br>
-                                                            </div>
-                    </div>
-                    
+
+                  <!--   <!-- An absolutely horrible way to solve the bottom problem 
+                  Doesnt seem needed for edit page
+                        <span data-ng-init="essentialDetails.mathDetails.subjectName = 'Mathematics'"></span>
+                        <span data-ng-init="essentialDetails.scienceDetails.subjectName = 'Science'"></span>
+                        <span data-ng-init="essentialDetails.litDetails.subjectName = 'Literature'"></span>
+                        <span data-ng-init="essentialDetails.ssDetails.subjectName = 'SocialStudies'"></span>
+                        <!-- An absolutely horrible way to solve the bottom problem -->
+                     -->
+
                     <div class="row">
                         <div class="col-md-3 col-md-offset-1">
                             <button id="submit" type="button" class="btn btn-success btn-block btn-lg" data-ng-click="project.status = 'Active'; CombineStandards(); update();">Submit</button>
