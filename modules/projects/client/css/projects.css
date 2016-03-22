@@ -23,6 +23,7 @@
 		background-color: #f5f5f5;
 		border-right: 1px solid #fbc650;
 		border-top: 1px solid #fbc650;
+		border-left: 1px solid #fbc650;
 		bottom: 0;
 		display: block;
 		left: 0;
@@ -35,6 +36,41 @@
 	}
 }
 
+.askStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.researchStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.imagineStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.planStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.createStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.testStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.improveStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
 /* Side Button CS*/
 .sideButtons {
     display: none;

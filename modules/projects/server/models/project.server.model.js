@@ -26,6 +26,14 @@ var SubjectSchema = new Schema({
 });
 
 /**
+* Drag Drop List Schema
+*/
+var dragListSchema = new Schema({
+	benchmark: String,
+	default: ''
+});
+
+/**
  * Project Schema
  */
 var ProjectSchema = new Schema({
@@ -78,8 +86,9 @@ var ProjectSchema = new Schema({
 			type: Number
 		}
 	},
+	askStandardStep: [dragListSchema],
 	ask: {
-		goal: {
+		/*goal: {
 			type: String,
 			default: ''
 		},
@@ -94,10 +103,33 @@ var ProjectSchema = new Schema({
 		constraints: {
 			type: String,
 			default: ''
+		},*/
+		//FOR NEW SCHEMA
+		learningObjective: {
+			type: String,
+			default: ''
+		},
+		Constraints: {
+			type: String,
+			default: ''
+		},
+		//standardStep: [dragListSchema]
+	},
+	//FOR NEW SCHEMA
+	researchStandardStep: [dragListSchema],
+	research: {
+		focus: {
+			type: String,
+			default: ''
+		},
+		resources: {
+			type: String,
+			default: ''
 		}
 	},
+	imagineStandardStep: [dragListSchema],
 	imagine: {
-		brainstorm: {
+		/*brainstorm: {
 			type: String,
 			default: ''
 		},
@@ -106,6 +138,51 @@ var ProjectSchema = new Schema({
 			default: ''
 		},
 		materials: {
+			type: String,
+			default: ''
+		},*/
+		//FOR NEW SCHEMA
+		listStep: {
+			type: String,
+			default: ''
+		}
+	},
+	//FOR NEW SCHEMA
+	planStandardStep: [dragListSchema],
+	plan: {
+		selectStep: {
+			type: String,
+			default: ''
+		},
+		resources: {
+			type: String,
+			default: ''
+		}
+	},
+	//FOR NEW SCHEMA
+	createStandardStep: [dragListSchema],
+	createStep:{
+		buildStep:{
+			type: String,
+			default: ''
+		}
+	},
+	//FOR NEW SCHEMA
+	testStandardStep: [dragListSchema],
+	testStep:{
+		designStep: {
+			type: String,
+			default: ''
+		},
+		successStep:{
+			type: String,
+			default: ''
+		}
+	},
+	//FOR NEW SCHEMA
+	improveStandardStep: [dragListSchema],
+	improveStep:{
+		changeStep: {
 			type: String,
 			default: ''
 		}
