@@ -18,7 +18,7 @@ module.exports = function(app) {
 
 	app.route('/api/projects/picture/:projectId').post(projects.uploadDiagram); // Route to upload image
 
-	app.route('/api/projects/addCollab/:email').get(projects.read);
+	app.route('/api/projects/addCollab/:email').get(projects.addCollab);
 
 	// Finish by binding the Project middleware
 	app.param('projectId', projects.projectByID);

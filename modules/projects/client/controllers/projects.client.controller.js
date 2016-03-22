@@ -252,12 +252,12 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		// Find a list of Projects
 		$scope.find = function() {
-			$scope.projects = Projects.query();
+			$scope.projects = Projects.projSubmit.query();
 		};
 
 		// Find existing Project
 		$scope.findOne = function() {
-			$scope.project = Projects.get({
+			$scope.project = Projects.projSubmit.get({
 				projectId: $stateParams.projectId
 			});
 
@@ -268,7 +268,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 			if(collabEmail) {
 				//$scope.collabPerson = Users.findOne({email: collabEmail};
-				$scope.collabPerson=Projects.addCollab.query({param1: collabEmail});
+				$scope.collabPerson=Projects.addCollab.query({email: collabEmail});
 			}
 			
 			console.log(collabEmail);
