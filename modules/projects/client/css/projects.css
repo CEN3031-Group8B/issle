@@ -36,7 +36,37 @@
 	}
 }
 
-.cart { 
+.askStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.researchStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.imagineStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.planStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.createStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.testStandardCart { 
+    width: 600px; 
+    float: left; 
+    margin-top: 1em; 
+}
+.improveStandardCart { 
     width: 600px; 
     float: left; 
     margin-top: 1em; 
