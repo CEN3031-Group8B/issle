@@ -101,13 +101,19 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				isPublic: this.isPublic,
 				minGrade: this.minGrade,
 				maxGrade: this.maxGrade,
-				list4: this.list4,
+				askStandardStep: this.askStandardStep,
 				ask: this.ask,
+				researchStandardStep: this.researchStandardStep,
 				research: this.research,
+				imagineStandardStep: this.imagineStandardStep,
 				imagine: this.imagine,
+				planStandardStep: this.planStandardStep,
 				plan: this.plan,
+				createStandardStep: this.createStandardStep,
 				createStep: this.createStep,
+				testStandardStep: this.testStandardStep,
 				testStep: this.testStep,
+				improveStandardStep: this.improveStandardStep,
 				improveStep: this.improveStep,
 				essentialDetails: this.essentialDetails,
 				rating: null
@@ -477,11 +483,33 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		};
 
 		$scope.testList1 = [{'title': 'Standard1'},{'title': 'Standard2'},{'title': 'Standard3'}];
-        $scope.list4 = [];
-        $scope.hideMe = function() {
-            return $scope.list4.length > 0;
+        $scope.askStandardStep = [];
+        $scope.askHideMe = function() {
+            return $scope.askStandardStep.length > 0;
         };
-
-
+        $scope.researchStandardStep = [];
+        $scope.researchHideMe = function() {
+            return $scope.researchStandardStep.length > 0;
+        };
+        $scope.imagineStandardStep = [];
+        $scope.imagineHideMe = function() {
+            return $scope.imagineStandardStep.length > 0;
+        };
+		$scope.planStandardStep = [];
+        $scope.planHideMe = function() {
+            return $scope.planStandardStep.length > 0;
+        };
+        $scope.createStandardStep = [];
+        $scope.createHideMe = function() {
+            return $scope.createStandardStep.length > 0;
+        };
+		$scope.testStandardStep = [];
+        $scope.testHideMe = function() {
+            return $scope.testStandardStep.length > 0;
+        };		
+		$scope.improveStandardStep = [];
+        $scope.improveHideMe = function() {
+            return $scope.improveStandardStep.length > 0;
+        };	
 	}
 ]);
