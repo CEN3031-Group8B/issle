@@ -270,18 +270,36 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
            console.log('In $scope.remix');
            console.log(this.name);
 
+
+
            	var project_old = $scope.project;
+           	var project_old_name = [];
+           	project_old_name.push(project_old.name);
+           	project_old_name.push(" Remix");
             var project = new Projects ({
-				name: project_old.name,
+				name: project_old_name,
 				created: project_old.created,
 				user: project_old.user,
 				status: project_old.status,
 				isPublic: project_old.isPublic,
 				minGrade: project_old.minGrade,
 				maxGrade: project_old.maxGrade,
+				askStandardStep: project_old.askStandardStep,
 				ask: project_old.ask,
+				researchStandardStep: project_old.researchStandardStep,
+				research: project_old.research,
+				imagineStandardStep: project_old.imagineStandardStep,
 				imagine: project_old.imagine,
-				essentialDetails: project_old.essentialDetails
+				planStandardStep: project_old.planStandardStep,
+				plan: project_old.plan,
+				createStandardStep: project_old.createStandardStep,
+				createStep: project_old.createStep,
+				testStandardStep: project_old.testStandardStep,
+				testStep: project_old.testStep,
+				improveStandardStep: project_old.improveStandardStep,
+				improveStep: project_old.improveStep,
+				essentialDetails: project_old.essentialDetails,
+				rating: null
 			});
 
 
