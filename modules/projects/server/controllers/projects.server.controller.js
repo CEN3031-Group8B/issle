@@ -200,10 +200,14 @@
  * Add Collaborator to Project
  */
  exports.addCollab = function(req, res, next) {User.find().where('email').equals(req.email).sort('-created').populate('user', 'displayName').exec(function(err, user) {
-    if (err)  return next(err);
-    if (!user) return next(new Error('failed to find user'));
-    next();
-    });
+ 		if (err) {
+ 			return res.status(400).send({
+ 			message: errorHandler.getErrorMessage(err)
+ 		});
+ 		} else {
+ 			res.jsonp(user);
+ 		}
+ 	});
  };
 
  // exports.addCollab = function(req, res, next) {User.find().where('email').equals(req.params.param1).exec(function(err, user) {

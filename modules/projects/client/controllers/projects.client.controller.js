@@ -92,7 +92,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			$scope.essentialDetails.overallStandards = $scope.essentialDetails.overallStandards.slice(0, -2);
 
 
-			var project = new Projects ({
+			var project = new Projects.projSubmit ({
 				name: this.name,
 				created: this.created,
 				user: this.user,
@@ -267,8 +267,8 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		$scope.addCollab = function(collabEmail) {
 
 			if(collabEmail) {
-				//$scope.collabPerson = Users.findOne({email: collabEmail};
-				$scope.collabPerson=Projects.addCollab.query({email: collabEmail});
+				$scope.collabPerson = Users.query({email: collabEmail});
+				//$scope.collabPerson=Projects.addCollab.query({email: collabEmail});
 			}
 			
 			console.log(collabEmail);

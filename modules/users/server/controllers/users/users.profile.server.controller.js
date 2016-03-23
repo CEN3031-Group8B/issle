@@ -104,3 +104,19 @@ exports.me = function (req, res) {
   res.json(req.user || null);
 };
 
+/**
+ * id by email
+ */
+exports.findByEmail = function (req, res) {
+  //MAKE req.email work and plug into kow@c.com spot
+  User.find({'email': req.query.email}).sort('-created').populate('user', 'displayName').exec(function (err, user) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(user);
+  });
+};
+
