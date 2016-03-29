@@ -132,7 +132,7 @@
                     <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === true)}" ng-click="isPublic = true">Public</button>
                     <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === false)}" ng-click="isPublic = false">Private</button>
                 </div>
-                <div data-drop="true" ng-model='askStandardStep' jqyoui-droppable="{multiple:true}">
+                <div data-drop="true" data-ng-model='project.askStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Ask: Identify the needs and constraints</h3>
@@ -155,8 +155,8 @@
                         <div class="askStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
-                            <ol ng-model="askStandardStep">
-                                <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}" onDrop="">{{item.benchmark}}</li>
+                            <ol data-ng-model="project.askStandardStep">
+                                <li ng-repeat="item in project.askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="project.askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}" onDrop="">{{item.benchmark}}</li>
                                 <li class="placeholder" ng-hide="askHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
