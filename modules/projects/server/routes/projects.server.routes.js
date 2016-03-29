@@ -22,4 +22,5 @@ module.exports = function(app) {
 
 	// Finish by binding the Project middleware
 	app.param('projectId', projects.projectByID);
+	app.param('email', projects.userByEmail);
 };

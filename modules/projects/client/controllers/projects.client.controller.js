@@ -4,7 +4,7 @@
 angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$sce', '$location', '$window', '$timeout', 'Authentication', 'Projects', 'FileUploader', 'linkify', 'Users',
 	function($scope, $stateParams, $sce, $location, $window, $timeout, Authentication, Projects, FileUploader, linkify , Users ) {
 		$scope.authentication = Authentication;
-
+		$scope.collaborators = [];
 		// Create file uploader instance
 		$scope.uploader = new FileUploader({
 			url: '/api/projects/picture'
@@ -92,7 +92,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			$scope.essentialDetails.overallStandards = $scope.essentialDetails.overallStandards.slice(0, -2);
 
 
-			var project = new Projects.projSubmit ({
+			var project = new Projects ({
 				name: this.name,
 				created: this.created,
 				user: this.user,
@@ -104,6 +104,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				imagine: this.imagine,
 				essentialDetails: this.essentialDetails,
 				rating: null
+				//collabs: this.collaborators //$scope.collaborators
 			});
 
 
@@ -252,12 +253,12 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		// Find a list of Projects
 		$scope.find = function() {
-			$scope.projects = Projects.projSubmit.query();
+			$scope.projects = Projects.query();
 		};
 
 		// Find existing Project
 		$scope.findOne = function() {
-			$scope.project = Projects.projSubmit.get({
+			$scope.project = Projects.get({
 				projectId: $stateParams.projectId
 			});
 
@@ -267,12 +268,11 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		$scope.addCollab = function(collabEmail) {
 
 			if(collabEmail) {
-				$scope.collabPerson = Users.query({email: collabEmail});
-				//$scope.collabPerson=Projects.addCollab.query({email: collabEmail});
-			}
-			
-			console.log(collabEmail);
-			console.log($scope.collabPerson);
+				//$scope.collabPerson = Users.query({email: collabEmail});
+				Projects.addCollab({email: collabEmail}, function(collab){
+					$scope.collaborators.push(collab.id);
+				});
+			}	
 		};
 
 		// Called after the user selected a new picture file

@@ -199,15 +199,19 @@
  /**
  * Add Collaborator to Project
  */
- exports.addCollab = function(req, res, next) {User.find().where('email').equals(req.email).sort('-created').populate('user', 'displayName').exec(function(err, user) {
- 		if (err) {
- 			return res.status(400).send({
- 			message: errorHandler.getErrorMessage(err)
- 		});
- 		} else {
- 			res.jsonp(user);
- 		}
- 	});
+ exports.addCollab = function(req, res) {
+ 	console.log(req.email);
+ 	res.json(req.email);
+
+ 	// User.find().where('email').equals(req.email).sort('-created').populate('user', 'displayName').exec(function(err, user) {
+ 	// 	if (err) {
+ 	// 		return res.status(400).send({
+ 	// 		message: errorHandler.getErrorMessage(err)
+ 	// 	});
+ 	// 	} else {
+ 	// 		res.jsonp(user);
+ 	// 	}
+ 	// });
  };
 
  // exports.addCollab = function(req, res, next) {User.find().where('email').equals(req.params.param1).exec(function(err, user) {
@@ -225,4 +229,22 @@
  	req.project = project ;
  	next();
  	});
+};
+
+
+/**
+ * id by email
+ */
+exports.userByEmail = function (req, res, next, email) {
+  //MAKE req.email work and plug into kow@c.com spot
+  User.findOne({'email': email}, "displayName email").sort('-created').exec(function (err, user) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    req.email = user;
+    next();
+  });
 };

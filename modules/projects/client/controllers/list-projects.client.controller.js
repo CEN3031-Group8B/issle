@@ -6,7 +6,7 @@ angular.module('projects').controller('list-ProjectsController' , ['$scope', '$s
 
 	    // Find a list of Projects
 		$scope.find = function(search) {
-      //$scope.projects = projects.projSubmit.query(); 
+      //$scope.projects = Projects.query(); 
       //the way the search works is by a hiarchy
       //if a project name is put in then that over takes all other search parameters
       //if a standard is put in and but not a standard then that takes priority
@@ -17,13 +17,13 @@ angular.module('projects').controller('list-ProjectsController' , ['$scope', '$s
       if(!search.maxGrade) search.maxGrade = '912';
 
       if(search.searchName){
-        $scope.projects = Projects.projSubmit.query({projectName:search.searchName});
+        $scope.projects = Projects.query({projectName:search.searchName});
       } else if(search.searchText) {
-        $scope.projects = Projects.projSubmit.query({benchmark:search.searchText});
+        $scope.projects = Projects.query({benchmark:search.searchText});
       } else if(search.subject) {
-        $scope.projects = Projects.projSubmit.query({minGrade:search.minGrade,maxGrade:search.maxGrade,subject:search.subject});
+        $scope.projects = Projects.query({minGrade:search.minGrade,maxGrade:search.maxGrade,subject:search.subject});
       } else {
-        $scope.projects = Projects.projSubmit.query({minGrade:search.minGrade,maxGrade:search.maxGrade});
+        $scope.projects = Projects.query({minGrade:search.minGrade,maxGrade:search.maxGrade});
       }
       console.log(search);
 
@@ -75,21 +75,21 @@ angular.module('projects').controller('list-ProjectsController' , ['$scope', '$s
 
     $scope.enterPressName = function(keyEvent, search, show) {
       if(keyEvent.which === 13){
-        $scope.projects = Projects.projSubmit.query({projectName:search.searchName});
+        $scope.projects = Projects.query({projectName:search.searchName});
         $scope.show = true;
       }
     };
 
     $scope.enterPressStandard = function(keyEvent, search, show) {
       if(keyEvent.which === 13){
-        $scope.projects = Projects.projSubmit.query({benchmark:search.searchText});
+        $scope.projects = Projects.query({benchmark:search.searchText});
         $scope.show = true;
       }
     };
 
     // Find existing Project
     $scope.findOne = function() {
-        $scope.project = Projects.projSubmit.get({
+        $scope.project = Projects.get({
             projectId: $stateParams.projectId
         });
     };
