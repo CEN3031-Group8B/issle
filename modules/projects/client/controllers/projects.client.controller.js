@@ -102,18 +102,18 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				minGrade: this.minGrade,
 				maxGrade: this.maxGrade,
 				askStandardStep: this.askStandardStep,
-				ask: this.ask,
 				researchStandardStep: this.researchStandardStep,
-				research: this.research,
 				imagineStandardStep: this.imagineStandardStep,
-				imagine: this.imagine,
 				planStandardStep: this.planStandardStep,
-				plan: this.plan,
 				createStandardStep: this.createStandardStep,
-				createStep: this.createStep,
 				testStandardStep: this.testStandardStep,
-				testStep: this.testStep,
 				improveStandardStep: this.improveStandardStep,
+				ask: this.ask,
+				research: this.research,
+				imagine: this.imagine,
+				plan: this.plan,
+				createStep: this.createStep,
+				testStep: this.testStep,
 				improveStep: this.improveStep,
 				essentialDetails: this.essentialDetails,
 				rating: null
@@ -270,18 +270,36 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
            console.log('In $scope.remix');
            console.log(this.name);
 
+
+
            	var project_old = $scope.project;
+           	var project_old_name = [];
+           	project_old_name.push(project_old.name);
+           	project_old_name.push(" Remix");
             var project = new Projects ({
-				name: project_old.name,
+				name: project_old_name,
 				created: project_old.created,
 				user: project_old.user,
 				status: project_old.status,
 				isPublic: project_old.isPublic,
 				minGrade: project_old.minGrade,
 				maxGrade: project_old.maxGrade,
+				askStandardStep: project_old.askStandardStep,
 				ask: project_old.ask,
+				researchStandardStep: project_old.researchStandardStep,
+				research: project_old.research,
+				imagineStandardStep: project_old.imagineStandardStep,
 				imagine: project_old.imagine,
-				essentialDetails: project_old.essentialDetails
+				planStandardStep: project_old.planStandardStep,
+				plan: project_old.plan,
+				createStandardStep: project_old.createStandardStep,
+				createStep: project_old.createStep,
+				testStandardStep: project_old.testStandardStep,
+				testStep: project_old.testStep,
+				improveStandardStep: project_old.improveStandardStep,
+				improveStep: project_old.improveStep,
+				essentialDetails: project_old.essentialDetails,
+				rating: null
 			});
 
 
@@ -510,6 +528,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		$scope.improveStandardStep = [];
         $scope.improveHideMe = function() {
             return $scope.improveStandardStep.length > 0;
-        };	
+        };
 	}
 ]);
