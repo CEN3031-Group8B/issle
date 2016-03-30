@@ -43,9 +43,6 @@ var ProjectSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
-	//admins:{
-	//type: [Schema.Types.ObjectId('STRING')]
-	//}
 	minGrade: {
 		type: Number,
 		default: 0
@@ -62,6 +59,9 @@ var ProjectSchema = new Schema({
 	isPublic: {
 		type: Boolean,
 		default: false
+	},
+	projAdmin:{
+		type: [Schema.ObjectId],
 	},
 	rating: {
 		ratings: [
