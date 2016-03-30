@@ -180,7 +180,7 @@
 				 }
 			 });
 			 // Concatenate url onto image url
-			 project.imagine.plan = 'https://s3-us-west-2.amazonaws.com/isslepictures/ProjectDrawings/' + req.files.file.name;
+			 project.imagine.plan = 'https://s3.amazonaws.com/issle/ProjectDrawings/' + req.files.file.name;
 			 console.log('updating pic');
 			 project.save(function(err) {
 				 if (err) {

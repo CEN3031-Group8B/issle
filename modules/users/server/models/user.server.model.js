@@ -61,6 +61,21 @@ var UserSchema = new Schema({
     trim: true,
     default: '',
   },
+  county: {
+  	type: String,
+  	trim: true,
+  	default: ''
+  },
+  age:{
+    type: String,
+    trim: true,
+    default: '',
+  },
+  gradesTaught: {
+    type: String,
+    trim: true,
+    default: '',
+  },
   username: {
     type: String,
     unique: 'Username already exists',

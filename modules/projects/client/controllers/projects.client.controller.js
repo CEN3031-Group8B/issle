@@ -95,8 +95,10 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			}
 			//the slice is used to clean up so that the last standard does not have a quote and a space
 			//we do not need it for projects since overall projects will never be used to display to the user
-			$scope.essentialDetails.overallStandards = $scope.essentialDetails.overallStandards.slice(0, -2);
-			//$scope.collaborators.push(this._id);
+
+			//$scope.essentialDetails.overallStandards = $scope.essentialDetails.overallStandards.slice(0, -2);
+
+			
 
 			var project = new Projects ({
 				name: this.name,
@@ -107,8 +109,20 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				projAdmin: this.collaborators,
 				minGrade: this.minGrade,
 				maxGrade: this.maxGrade,
+				askStandardStep: this.askStandardStep,
+				researchStandardStep: this.researchStandardStep,
+				imagineStandardStep: this.imagineStandardStep,
+				planStandardStep: this.planStandardStep,
+				createStandardStep: this.createStandardStep,
+				testStandardStep: this.testStandardStep,
+				improveStandardStep: this.improveStandardStep,
 				ask: this.ask,
+				research: this.research,
 				imagine: this.imagine,
+				plan: this.plan,
+				createStep: this.createStep,
+				testStep: this.testStep,
+				improveStep: this.improveStep,
 				essentialDetails: this.essentialDetails,
 				rating: null
 			});
@@ -254,6 +268,80 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				$scope.uploader.uploadAll();
 			}
 		};
+
+		/////////////////////////////////////////////////////////////////////////////////////////////
+		// Remix Project
+
+		$scope.remix = function() {
+           console.log('In $scope.remix');
+           console.log(this.name);
+
+
+
+           	var project_old = $scope.project;
+           	var project_old_name = [];
+           	project_old_name.push(project_old.name);
+           	project_old_name.push(" Remix");
+            var project = new Projects ({
+				name: project_old_name,
+				created: project_old.created,
+				user: project_old.user,
+				status: project_old.status,
+				isPublic: project_old.isPublic,
+				minGrade: project_old.minGrade,
+				maxGrade: project_old.maxGrade,
+				askStandardStep: project_old.askStandardStep,
+				ask: project_old.ask,
+				researchStandardStep: project_old.researchStandardStep,
+				research: project_old.research,
+				imagineStandardStep: project_old.imagineStandardStep,
+				imagine: project_old.imagine,
+				planStandardStep: project_old.planStandardStep,
+				plan: project_old.plan,
+				createStandardStep: project_old.createStandardStep,
+				createStep: project_old.createStep,
+				testStandardStep: project_old.testStandardStep,
+				testStep: project_old.testStep,
+				improveStandardStep: project_old.improveStandardStep,
+				improveStep: project_old.improveStep,
+				essentialDetails: project_old.essentialDetails,
+				rating: null
+			});
+
+
+			// Redirect after save
+			project.$save(function(response) {
+
+				if($scope.uploaderC.queue.length > 0) {
+
+					$scope.uploaderC.queue[0].url = '/api/projects/picture/' + response._id;
+					$scope.uploaderC.uploadAll();
+				}
+				
+				// Clear form fields
+				$scope.name = '';
+
+
+				$location.path('projects/' + response._id);
+
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+
+
+			
+		};
+
+
+		// Redirect after save
+			
+
+
+
+
+
+		/////////////////////////////////////////////////////////////////////////////////////////////
 
 		// Find a list of Projects
 		$scope.find = function() {
@@ -435,11 +523,34 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		};
 
 		$scope.testList1 = [{'title': 'Standard1'},{'title': 'Standard2'},{'title': 'Standard3'}];
-        $scope.list4 = [];
-        $scope.hideMe = function() {
-            return $scope.list4.length > 0;
+
+        $scope.askStandardStep = [];
+        $scope.askHideMe = function() {
+            return $scope.askStandardStep.length > 0;
         };
-
-
+        $scope.researchStandardStep = [];
+        $scope.researchHideMe = function() {
+            return $scope.researchStandardStep.length > 0;
+        };
+        $scope.imagineStandardStep = [];
+        $scope.imagineHideMe = function() {
+            return $scope.imagineStandardStep.length > 0;
+        };
+		$scope.planStandardStep = [];
+        $scope.planHideMe = function() {
+            return $scope.planStandardStep.length > 0;
+        };
+        $scope.createStandardStep = [];
+        $scope.createHideMe = function() {
+            return $scope.createStandardStep.length > 0;
+        };
+		$scope.testStandardStep = [];
+        $scope.testHideMe = function() {
+            return $scope.testStandardStep.length > 0;
+        };		
+		$scope.improveStandardStep = [];
+        $scope.improveHideMe = function() {
+            return $scope.improveStandardStep.length > 0;
+        };
 	}
 ]);

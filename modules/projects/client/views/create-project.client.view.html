@@ -94,36 +94,36 @@
                                 <td>{{std.subject}}</td>
                                 <td>{{std.grade}}</td>
                                 <td class = "line-break">{{std.bodyOfKnowledge}}</td>
-                              </tr>
-                          </table>
-                        </div>
+                            </tr>
+                        </table>
                     </div>
-
-            <!--     <ul>
-                    <li ng-repeat="item in testList1" ng-show="item.title" data-drag="true" ng-model="testList1" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}">{{item.title}}</li>
-                </ul> 
-            <div class="col-sm-3 col-md-2 sidebar">
-                 this is the sidebar located on the side of the page, to allow easy navigator.
+                </div>
                 
-                <ul class="nav nav-sidebar">
-                    <li class="active">
-                    <li class="active"><a href="#"><h4>Design Menu</h4></a></li>
-                    <p class="text-center">
-                    <li><a id="#1" href="#1">Basic Goals</a></li>
-                    <li><a id="#2" href="#2">Identifying Problem</a></li>
-                    <li><a id="#3" href="#3">Figuring Constraints</a></li>
-                    <li><a id="#4" href="#4">Brainstorm Solutions</a></li>
-                    <li><a id="#5" href="#5">Listing Materials</a></li>
-                    <li><a id="#6" href="#6">E.Sketch- Math</a></li>
-                    <li><a id="#7" href="#7">E.Sketch- Science</a></li>
-                    <li><a id="#8" href="#8">E.Sketch- Literature</a></li>
-                    <li><a id="#9" href="#9">E.Sketch- SocialStudies</a></li>
-                    <li class="active"><a href="#"><H4>Help Menu</h4></a></li>
-                    <li><a data-ui-sref="projects.list">View other Projects</a></li>
-                    <li><a data-ui-sref="support.example">Example</a></li>
-                    <li><a data-ui-sref="support.faq">FAQ</a></li>
-                    </p>
-                </ul> -->
+                <!--     <ul>
+                 <li ng-repeat="item in testList1" ng-show="item.title" data-drag="true" ng-model="testList1" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}">{{item.title}}</li>
+                 </ul>
+                 <div class="col-sm-3 col-md-2 sidebar">
+                 this is the sidebar located on the side of the page, to allow easy navigator.
+                 
+                 <ul class="nav nav-sidebar">
+                 <li class="active">
+                 <li class="active"><a href="#"><h4>Design Menu</h4></a></li>
+                 <p class="text-center">
+                 <li><a id="#1" href="#1">Basic Goals</a></li>
+                 <li><a id="#2" href="#2">Identifying Problem</a></li>
+                 <li><a id="#3" href="#3">Figuring Constraints</a></li>
+                 <li><a id="#4" href="#4">Brainstorm Solutions</a></li>
+                 <li><a id="#5" href="#5">Listing Materials</a></li>
+                 <li><a id="#6" href="#6">E.Sketch- Math</a></li>
+                 <li><a id="#7" href="#7">E.Sketch- Science</a></li>
+                 <li><a id="#8" href="#8">E.Sketch- Literature</a></li>
+                 <li><a id="#9" href="#9">E.Sketch- SocialStudies</a></li>
+                 <li class="active"><a href="#"><H4>Help Menu</h4></a></li>
+                 <li><a data-ui-sref="projects.list">View other Projects</a></li>
+                 <li><a data-ui-sref="support.example">Example</a></li>
+                 <li><a data-ui-sref="support.faq">FAQ</a></li>
+                 </p>
+                 </ul> -->
             </div>
             <!-- This is the main form with the various fileds the user has to fill out. It's linked to the database. -->
             
@@ -149,350 +149,232 @@
                   <button style="background-color:#fbc650" type="button" class="btn" ng-class="" ng-click="addCollab(collab)">Add Collaborator</button>
                   <input type="text" placeholder="Collaborator Email" data-ng-model="collab">
                 </div>
-
+                <div data-drop="true" ng-model='askStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Ask</h3>
+                        <h3 class="panel-title">Ask: Identify the needs and constraints</h3>
                     </div>
                     <div class="panel-body">
-                        <a name="1"><font size = "3">Describe your goal:</font></a>
-                    <span class="glyphicon glyphicon-question-sign"
-                          data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
-                    </span>
-                        <br>
-                        <textarea class="form-control" rows="8" data-ng-model="ask.goal"></textarea>
 
-                        <a name="2"><font size = "3">What's the major problem or underlying question?</font></a>
-                    <span class="glyphicon glyphicon-question-sign"
-                          data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                        <a name="1"><font size = "3">What is the goal of the project?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
                         <br>
-                        <textarea class="form-control" rows="4" data-ng-model="ask.problemStatement"></textarea>
+                        <textarea class="form-control" rows="8" data-ng-model="ask.learningObjective"></textarea>
+                        
+                        <a name="2"><font size = "3">What limits are there on the design, application or materials for students in reaching their engineering goal. Get the students to realize these limits, and to design with these limits in mind</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                         <br>
-                        <a name="2"><font size = "3">How can your students solve this problem?</font></a>
+                        <textarea class="form-control" rows="4" data-ng-model="ask.Constraints"></textarea>
                         <br>
-                        <textarea class="form-control" rows="3" data-ng-model="ask.solvingProblem"></textarea>
-                        <br>
-                        <a name="3"><font size = "3">List your constraints:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                            data-toggle="tooltip" data-original-title="Share" title ="What constraints you? Money? The objects required to complete the task? Specific materials or utensils? List everything you can think of."></span>
-                        <br>
-                        <textarea class="form-control" rows="4" data-ng-model="ask.constraints"></textarea>
-                        <br>
-
-                        <div class="cart"> 
-                            <!--<div class="ui-widget-content"> 
+                        
+                        <div class="askStandardCart">
+                            <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
-                            <ol> 
-                                <li ng-repeat="item in list4 track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
-                                <li class="placeholder" ng-hide="hideMe()">Add your Standards here</li>
+                            <ol ng-model="askStandardStep">
+                                <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}" onDrop="">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="askHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
                         </div>
-
+                        </div>
                     </div>
                 </div>
-                <!-- The imagine section, which also contains the picutre. --> 
+                <div data-drop="true" ng-model='researchStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Imagine</h3>
+                        <h3 class="panel-title">Research the problem</h3>
                     </div>
                     <div class="panel-body">
-
-                        <a name="4"><font size = "3">What are some solutions? Brainstorm ideas.</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                                                data-toggle="tooltip" data-original-title="Share" title ="This is probably the most crucial part. Identify one or multiple solutions to the problem you have identified earlier. Check examples for more information. "></span>
+                        <a name="3"><font size = "3">What do you want students to learn from their research?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
                         <br>
-                        <textarea class="form-control" rows="4" data-ng-model="imagine.brainstorm"></textarea>
+                        <textarea class="form-control" rows="8" data-ng-model="research.focus"></textarea>
+                        
+                        <a name="4"><font size = "3">What resources will they use?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                         <br>
-                        <h3>Plan</h3>
-                        <font size="3">Draw a diagram or any other representation of your project.</font><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+                        <textarea class="form-control" rows="4" data-ng-model="research.resources"></textarea>
+                        <div class="researchStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in researchStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="researchStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="researchHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-drop="true" ng-model='imagineStandardStep' jqyoui-droppable="{multiple:true}">
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Imagine: Develop possible solutions</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a name="5"><font size = "3">Have students list possible solutions, even ones that won’t work. (They may inspire other ideas)</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
                         <br>
-
+                        <textarea class="form-control" rows="8" data-ng-model="imagine.listStep"></textarea>
+                        <div class="imagineStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in imagineStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="imagineStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="imagineHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-drop="true" ng-model='planStandardStep' jqyoui-droppable="{multiple:true}">
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Plan: Select a promising solution</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a name="6"><font size = "3">How should your students decide which potential solution is best?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="plan.selectStep"></textarea>
+                        
+                        <a name="7"><font size = "3">Students should ask: what resources does the selected solution require? What will you have ready for them to use?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                        <br>
+                        <textarea class="form-control" rows="4" data-ng-model="plan.resources"></textarea>
+                        <div class="planStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in planStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="planStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="planHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div data-drop="true" ng-model='createStandardStep' jqyoui-droppable="{multiple:true}">
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Create: Build a prototype</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a name="8"><font size = "3">Engineers build prototypes and small models to test if their design ideas will work for their application. What kind of prototype or model will your students build? How will you support them in the building of this model?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="createStep.buildStep"></textarea>
+                        <br>
+                        <div class="createStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in createStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="createStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="createHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div data-drop="true" ng-model='testStandardStep' jqyoui-droppable="{multiple:true}">
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Test and evaluate prototype</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a name="9"><font size = "3">Have students design 1-2 tests to evaluate their model, changing only one variable related to the performance requirements of their idea.</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="testStep.designStep"></textarea>
+                        
+                        <a name="10"><font size = "3">Ask: Does the test show the model solves the problem? How well? Why does it work well/ or not work well for the application?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                        <br>
+                        <textarea class="form-control" rows="4" data-ng-model="testStep.successStep"></textarea>
+                        <br>
+                        <div class="testStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in testStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="testStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="testHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div data-drop="true" ng-model='improveStandardStep' jqyoui-droppable="{multiple:true}">
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Improve: Redesign as needed</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a name="11"><font size = "3">Prompt: What would you change in the prototype next time?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="improveStep.changeStep"></textarea>
+                        <div class="improveStandardCart">
+                            <!--<div class="ui-widget-content">
+                             if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
+                            <ol>
+                                <li ng-repeat="item in improveStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="improveStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li class="placeholder" ng-hide="improveHideMe()">Add your Standards here</li>
+                            </ol>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="panel panel-blue">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Worksheet Upload</h3>
+                    </div>
+                    <div class="panel-body">
+                        
+                        <font size="3">If you would like to upload a worksheet for your project to share, you can do so here:</font><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+                        <br>
+                        
                         <!-- Picture upload -->
                         <div class="form-group text-center">
                             <img data-ng-src="{{imageURL}}" alt="No Picture Uploaded Yet" class="img-thumbnail">
-                        </div>
+                                </div>
                         <div class="text-center form-group">
                             <span class="btn btn-default btn-file">
                                 Select Image <input type="file" nv-file-select uploader="uploaderC" accept="image/jpeg">
-                            </span>
+                                    </span>
                         </div>
-
+                        
                         <br>
-                        <a name="5"><font size = "3">List the materials you need.</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                                  data-toggle="tooltip" data-original-title="Share" title ="Include only the basic items/utensils needed to complete the task. No need to list every little think. Check the tip section for a list of items not to include if you are unsure."></span>
-                        <br>
-                        <textarea class="form-control" rows="4" data-ng-model="imagine.materials"></textarea>
-
-                        <br>
-
                     </div>
                 </div>
-                <div class="panel panel-blue">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Essential Sketch & Details: </h3>
-                    </div>
-                    <div class="panel-body">
-                        <!-- We now establish the 4 main secionts- math, science, social studies, and literature. -->
-
-                        Now that we've established a basic guideline as to what the project is, we can focus on tying it to all the different subject areas to make sure that a wider range of benchmarks are met. Simply list the main idea and how it relates to each field, followed
-                        by details.
-                        <br>
-
-                        <a name="6"><font size = "3">Main Idea-mathematics:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                            data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a mathematics standard. You can look at the examples for some ideas or search standards for more information. "></span></span>
-                        <br>
-                        <span data-ng-init="essentialDetails.mathDetails.subjectName = 'Mathematics'"></span>
-                        <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.mathDetails.mainIdea"> Essential Details & What students will do:
-                        <textarea class="form-control" rows="4" data-ng-model="essentialDetails.mathDetails.details"></textarea>
-                        Linked Math Standard(s):
-                        <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.mathDetails.standards">
-                        <br>
-                        <br>
-
-                        <a name="7"><font size = "3">Main Idea-science:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                        data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a science standard. You can look at the examples for some ideas or search standards for more information."></span>
-                        <br>
-                        <span data-ng-init="essentialDetails.scienceDetails.subjectName = 'Science'"></span>
-                        <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.scienceDetails.mainIdea"> Essential Details & What students will do:
-                        <textarea class="form-control" rows="4" data-ng-model="essentialDetails.scienceDetails.details"></textarea>
-                        Linked Science Standard(s):
-                        <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.scienceDetails.standards">
-                        <br>
-                        <br>
-
-                        <a name="8"><font size = "3">Main Idea-literature:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                           data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a literature standard. You can look at the examples for some ideas or search standards for more information."></span>
-                        <br>
-                        <span data-ng-init="essentialDetails.litDetails.subjectName = 'Literature'"></span>
-                        <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.litDetails.mainIdea"> Essential Details & What students will do:
-                        <textarea class="form-control" rows="4" data-ng-model="essentialDetails.litDetails.details"></textarea>
-                        Linked Literature Standard(s):
-                        <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.litDetails.standards">
-                        <br>
-                        <br>
-
-                        <a name="9"><font size = "3">Main Idea-social studies:</font></a><span class="glyphicon glyphicon-question-sign"
-                                                                                               data-toggle="tooltip" data-original-title="Share" title ="Try tying your main problem/goal into a social studies standard. You can look at the examples for some ideas or search standards for more information."></span>
-                        <br>
-                        <span data-ng-init="essentialDetails.ssDetails.subjectName = 'SocialStudies'"></span>
-                        <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.ssDetails.mainIdea"> Essential Details & What students will do:
-                        <textarea class="form-control" rows="4" data-ng-model="essentialDetails.ssDetails.details"></textarea>
-                        Linked Social Studies Standard(s):
-                        <input id="ss" type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.ssDetails.standards">
-                        <br>
-                        <br>
-
-         <!-- Below is the code to add a subject. The same code is repeated to add up to a toal of 5 topics. -->
-         
-            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-            <center><button type="submit" class="btn btn-primary btn-block" ng-click="show1 = true; essentialDetails.otherSubject = []; essentialDetails.otherSubject.push()">Add a subject</button></center></div>
-            
-            <div ng-show="show1">
                 
-                <br>
-                <br>
-                <div class = "row">
-                <div class="col-sm-5 col-md-7">
-                <a><font size = "3">Main Idea: </font></a>
-                <textarea class="form-control" rows="3" placeholder="" data-ng-model="essentialDetails.otherSubject[0].mainIdea"> </textarea>
-                </div>
-                <div class="col-sm-4  col-md-3">
-                <h4>Subject: 
-                <select style="height:27px; width: 250px" ng-model="essentialDetails.otherSubject[0].subjectName">
-                  <option value="">Select one...</option>
-                  <option value="Dance">Dance</option>
-                  <option value="English Language Development">English Language Development</option>
-                  <option value="Gifted">Gifted</option>
-                  <option value="Health Education">Health Education</option>
-                  <option value="Music">Music</option>
-                  <option value="Physical Education">Physical Education</option>
-                  <option value="Special Skills">Special Skills</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Theatre">Theatre</option>
-                  <option value="Visual Art">Visual Art</option>
-                </select>
-              </h4>
-              </div>
-              </div>
-              
-                        Essential Details & What students will do:
-                        <textarea class="form-control" rows="4" data-ng-model="essentialDetails.otherSubject[0].details"></textarea>
-                        Linked Standard(s): 
-                         <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.otherSubject[0].standards"></input>
-                        <br>
-                        <br>
-            <div class="col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-4">
-            <center><button type="submit" class="btn btn-primary btn-block" ng-click="show2 = true; essentialDetails.otherSubject.push({})">Add another subject</button></center></div>
-            </div>
-            <!-- This is the second subject they can add. -->
-                <div ng-show="show2">
-                <br>
-                <br>
-                <div class = "row">
-                <div class="col-sm-7 col-md-7">
-                <a><font size = "3">Main Idea: </font></a>
-                <textarea class="form-control" rows="3" placeholder="" data-ng-model="essentialDetails.otherSubject[1].mainIdea"> </textarea>
-                </div>
-                <div class="col-sm-3  col-md-3">
-                <h4>Subject: 
-                <select style="height:27px; width: 250px" ng-model="essentialDetails.otherSubject[1].subjectName">
-                  <option value="">Select one...</option>
-                  <option value="Dance">Dance</option>
-                  <option value="English Language Development">English Language Development</option>
-                  <option value="Gifted">Gifted</option>
-                  <option value="Health Education">Health Education</option>
-                  <option value="Music">Music</option>
-                  <option value="Physical Education">Physical Education</option>
-                  <option value="Special Skills">Special Skills</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Theatre">Theatre</option>
-                  <option value="Visual Art">Visual Art</option>
-                </select>
-              </h4>
-              </div>
-              </div>
-              <span data-ng-init="essentialDetails.ssDetails.subjectName = 'SocialStudies'"></span>
-              
-                        Essential Details & What students will do:
-                        <textarea class="form-control" rows="4" data-ng-model="essentialDetails.otherSubject[1].details"></textarea>
-                        Linked Standard(s): 
-                         <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.otherSubject[1].standards"></input>
-                        <br>
-                        <br>
-            <div class="col-sm-3 col-md-4">
-            </div>
-            <div class="col-sm-5  col-md-4">
-            <center><button type="submit" class="btn btn-primary btn-block btn-md" ng-click="show3 = true; essentialDetails.otherSubject.push({})">Add another subject</button></center></div>
-            </div>
-            
-        <!-- This is the third subject you can add. -->
-              <div ng-show="show3">
-                <br>
-                <br>
-                <div class = "row">
-                <div class="col-sm-5 col-md-7">
-                <a><font size = "3">Main Idea: </font></a>
-                <textarea class="form-control" rows="3" placeholder="" data-ng-model="essentialDetails.otherSubject[2].mainIdea"> </textarea>
-                </div>
-                <div class="col-sm-4  col-md-3">
-                <h4>Subject: 
-                <select style="height:27px; width: 250px" ng-model="essentialDetails.otherSubject[2].subjectName">
-                  <option value="">Select one...</option>
-                  <option value="Dance">Dance</option>
-                  <option value="English Language Development">English Language Development</option>
-                  <option value="Gifted">Gifted</option>
-                  <option value="Health Education">Health Education</option>
-                  <option value="Music">Music</option>
-                  <option value="Physical Education">Physical Education</option>
-                  <option value="Special Skills">Special Skills</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Theatre">Theatre</option>
-                  <option value="Visual Art">Visual Art</option>
-                </select>
-              </h4>
-              </div>
-              </div>
-              
-                        Essential Details & What students will do:
-                        <textarea class="form-control" rows="4" data-ng-model="essentialDetails.otherSubject[2].details"></textarea>
-                        Linked Standard(s): 
-                         <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.otherSubject[2].standards"></input>
-                        <br>
-                        <br>
-            <div class="col-sm-3 col-md-4">
-            </div>
-            <div class="col-sm-5  col-md-4">
-            <center><button type="submit" class="btn btn-primary btn-block btn-md" ng-click="show4 = true; essentialDetails.otherSubject.push({})">Add another subject</button></center></div>
-            </div>
-    <!-- This is the fourth subject you can add -->     
-            
-         <div ng-show="show4">
-                <br>
-                <br>
-                <div class = "row">
-                <div class="col-sm-7 col-md-7">
-                <a><font size = "3">Main Idea: </font></a>
-                <textarea class="form-control" rows="3" placeholder="" data-ng-model="essentialDetails.otherSubject[3].mainIdea"> </textarea>
-                </div>
-                <div class="col-sm-3  col-md-3">
-                <h4>Subject: 
-                <select style="height:27px; width: 250px" ng-model="essentialDetails.otherSubject[3].subjectName">
-                  <option value="">Select one...</option>
-                  <option value="Dance">Dance</option>
-                  <option value="English Language Development">English Language Development</option>
-                  <option value="Gifted">Gifted</option>
-                  <option value="Health Education">Health Education</option>
-                  <option value="Music">Music</option>
-                  <option value="Physical Education">Physical Education</option>
-                  <option value="Special Skills">Special Skills</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Theatre">Theatre</option>
-                  <option value="Visual Art">Visual Art</option>
-                </select>
-              </h4>
-              </div>
-              </div>
-              <span data-ng-init="essentialDetails.ssDetails.subjectName = 'SocialStudies'"></span>
-              
-                        Essential Details & What students will do:
-                        <textarea class="form-control" rows="4" data-ng-model="essentialDetails.otherSubject[3].details"></textarea>
-                        Linked Standard(s): 
-                         <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.otherSubject[3].standards"></input>
-                        <br>
-                        <br>
-            <div class="col-sm-3 col-md-4">
-            </div>
-            <div class="col-sm-5  col-md-4">
-            <center><button type="submit" class="btn btn-primary btn-block btn-md" ng-click="show5 = true; essentialDetails.otherSubject.push({})">Add another subject</button></center></div>
-            </div>
-            
-     <!-- This is the fifth subject you can add --> 
-     
-             <div ng-show="show5">
-                <br>
-                <br>
-                <div class = "row">
-                <div class="col-sm-7 col-md-7">
-                <a><font size = "3">Main Idea: </font></a>
-                <textarea class="form-control" rows="3" placeholder="" data-ng-model="essentialDetails.otherSubject[4].mainIdea"> </textarea>
-                </div>
-                <div class="col-sm-3  col-md-3">
-                <h4>Subject: 
-                <select style="height:27px; width: 250px" ng-model="essentialDetails.otherSubject[4].subjectName">
-                  <option value="">Select one...</option>
-                  <option value="Dance">Dance</option>
-                  <option value="English Language Development">English Language Development</option>
-                  <option value="Gifted">Gifted</option>
-                  <option value="Health Education">Health Education</option>
-                  <option value="Music">Music</option>
-                  <option value="Physical Education">Physical Education</option>
-                  <option value="Special Skills">Special Skills</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Theatre">Theatre</option>
-                  <option value="Visual Art">Visual Art</option>
-                </select>
-              </h4>
-              </div>
-              </div>
-              
-                        Essential Details & What students will do:
-                        <textarea class="form-control" rows="4" data-ng-model="essentialDetails.otherSubject[4].details"></textarea>
-                        Linked Standard(s): 
-                         <input type="text" class="form-control" placeholder="" data-ng-model="essentialDetails.otherSubject[4].standards"></input>
-                        <br>
-                        <br>
-            </div>
-            <div class="col-sm-4 col-md-4">
-            </div>
-            <div class="col-sm-4  col-md-4">
-            </div>
-            </div>
-             
-          <a> <font size="3">How will students communicate findings?</font></a><span class="glyphicon glyphicon-question-sign"
-                        data-toggle="tooltip" data-original-title="Share" title ="Be sure that this method of communication is feasible. Presentations, diagrams, reports or demos are some common ways to present findings."></span>
-                        <br>
-                        <textarea class="form-control" rows="5" data-ng-model="essentialDetails.communicateFindings"></textarea>
-                        <br>
-                    </div>
+                        <!-- An absolutely horrible way to solve the bottom problem -->
+                        <span data-ng-init="essentialDetails.mathDetails.subjectName = 'Mathematics'"></span>
+                        <span data-ng-init="essentialDetails.scienceDetails.subjectName = 'Science'"></span>
+                        <span data-ng-init="essentialDetails.litDetails.subjectName = 'Literature'"></span>
+                        <span data-ng-init="essentialDetails.ssDetails.subjectName = 'SocialStudies'"></span>
+                        <!-- An absolutely horrible way to solve the bottom problem -->
 
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
@@ -502,18 +384,18 @@
                         <button id="save" type="button" class="btn btn-primary btn-block btn-lg" data-ng-click="status = 'In Progress'; create()";>Save Draft</button>
                     </div>
                 </div>
-
+                
             </div>
-    <!-- The form has ended. Below are the buttons to submit the informaton, which will link it to the database. -->              
+            <!-- The form has ended. Below are the buttons to submit the informaton, which will link it to the database. -->
             
             <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-3 main">
-            <span data-ng-show="authentication.user._id===NULL">
-                <div class="alert alert-success" role="alert">
-                    <p>Please sign in or sign up before you create a project</p>
-                    <p><a data-ui-sref="authentication.signup" class="alert-link">Click here to signup</a></p>
-                    <p><a data-ui-sref="authentication.signin" class="alert-link">Click here to signin</a></p>
-                </div>
-            </span>
+                <span data-ng-show="authentication.user._id===NULL">
+                    <div class="alert alert-success" role="alert">
+                        <p>Please sign in or sign up before you create a project</p>
+                        <p><a data-ui-sref="authentication.signup" class="alert-link">Click here to signup</a></p>
+                        <p><a data-ui-sref="authentication.signin" class="alert-link">Click here to signin</a></p>
+                    </div>
+                </span>
             </div>
         </div>
     </form>

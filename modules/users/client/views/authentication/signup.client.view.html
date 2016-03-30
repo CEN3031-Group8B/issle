@@ -40,13 +40,39 @@
           </div>
           <div class="form-group">
             <div class="input-group input-group-lg">
-                <span class="input-group-addon">
-                  <i class = "text-muted glyphicon glyphicon-education"></i>
+               <span class="input-group-addon">
+                  <i class = "text-muted glyphicon glyphicon-info-sign"></i>
                 </span>
-                <input type="text" required id="school" name="school" class="form-control"
-                     data-ng-model="credentials.school" placeholder="School Name">
+                <input type="text" required id="age" name="age" class="form-control"
+                     data-ng-model="credentials.age" placeholder="Age">
             </div>
           </div>
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                  <i class = "text-muted glyphicon glyphicon-info-sign"></i>
+                </span>
+                <input type="text" required id="gradesTaught" name="gradesTaught" class="form-control"
+                     data-ng-model="credentials.gradesTaught" placeholder="Grades You Teach">
+            </div>
+          </div>
+		  <!-- My version of school format-->
+		  <div class="form-group">
+			 <div class="input-group input-group-lg">
+			  <span class="input-group-addon">
+				<i class="text-muted glyphicon glyphicon-education"></i>
+			  </span>
+			  <select  id="county" name="county" class="form-control" ng-model="county" ng-change="County()">
+			    <option value="" selected disabled>Choose County</option>
+			    <option ng-repeat="county in countyList">{{county}}
+			  </select>
+			  <select required id="school" name="school" class="form-control" ng-model="credentials.school" >
+				<option value="" selected disabled>Choose School</option> 
+				<option ng-repeat="school in schoolList">{{school}}</option>
+			  </select>	
+			 </div>
+		  </div>
+		  <!-- end of my  school format -->
           <div class="form-group">
             <div class="input-group input-group-lg">
               <span class="input-group-addon">
