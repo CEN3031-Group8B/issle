@@ -35,7 +35,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.ask.Constraints)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-                        <!--<h5 class="tab"><span ng-bind-html="linkify(askStandardStep)"><span></h5>-->
+                        <ol>
+                                <li ng-repeat="item in project.askStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.askStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -52,7 +54,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.research.resources)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-
+                        <ol>
+                                <li ng-repeat="item in project.researchStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.researchStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -65,6 +69,10 @@
                         
                         <h5 class="tab"><span ng-bind-html="linkify(project.imagine.listStep)"><span></h5>
                         </br>
+                        <h4 class="blue">Linked Standards:</h4>
+                        <ol>
+                                <li ng-repeat="item in project.imagineStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.imagineStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -81,7 +89,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.plan.resources)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-
+                        <ol>
+                                <li ng-repeat="item in project.planStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.planStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -95,7 +105,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.createStep.buildStep)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-
+                        <ol>
+                                <li ng-repeat="item in project.createStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.createStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -112,7 +124,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.testStep.successStep)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-
+                        <ol>
+                                <li ng-repeat="item in project.testStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.testStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -126,7 +140,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.improveStep.changeStep)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-
+                        <ol>
+                                <li ng-repeat="item in project.improveStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.improveStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 

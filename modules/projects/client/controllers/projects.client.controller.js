@@ -522,8 +522,8 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		};
 
-		$scope.testList1 = [{'title': 'Standard1'},{'title': 'Standard2'},{'title': 'Standard3'}];
-
+		
+	//$scope.testList1 = [{'title': 'Standard1'},{'title': 'Standard2'},{'title': 'Standard3'}];
         $scope.askStandardStep = [];
         $scope.askHideMe = function() {
             return $scope.askStandardStep.length > 0;
