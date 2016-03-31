@@ -525,33 +525,40 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		
 	//$scope.testList1 = [{'title': 'Standard1'},{'title': 'Standard2'},{'title': 'Standard3'}];
         $scope.askStandardStep = [];
+        $scope.researchStandardStep = [];
+        $scope.imagineStandardStep = [];
+        $scope.planStandardStep = [];
+        $scope.createStandardStep = [];
+        $scope.testStandardStep = [];
+        $scope.improveStandardStep = [];
+        /*
         $scope.askHideMe = function() {
             return $scope.askStandardStep.length > 0;
         };
-        $scope.researchStandardStep = [];
+        
         $scope.researchHideMe = function() {
             return $scope.researchStandardStep.length > 0;
         };
-        $scope.imagineStandardStep = [];
+        
         $scope.imagineHideMe = function() {
             return $scope.imagineStandardStep.length > 0;
         };
-		$scope.planStandardStep = [];
+		
         $scope.planHideMe = function() {
             return $scope.planStandardStep.length > 0;
         };
-        $scope.createStandardStep = [];
+        
         $scope.createHideMe = function() {
             return $scope.createStandardStep.length > 0;
         };
-		$scope.testStandardStep = [];
+		
         $scope.testHideMe = function() {
             return $scope.testStandardStep.length > 0;
         };		
-		$scope.improveStandardStep = [];
+		
         $scope.improveHideMe = function() {
             return $scope.improveStandardStep.length > 0;
         };
-        
+		*/
 	}
 ]);
