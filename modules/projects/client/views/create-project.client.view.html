@@ -173,7 +173,7 @@
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
                             <ol>
-                                <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}" jqyoui-droppable="{onOut: 'onOut'}" ng-click="removeItem($index)">{{item.benchmark}}   <button ng-click="askStandardStep.splice($index,1)">x</button></li>
+                                <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}" jqyoui-droppable="{onOut: 'onOut'}" ng-click="removeItem($index)">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="askStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="askHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->

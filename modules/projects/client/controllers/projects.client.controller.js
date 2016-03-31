@@ -552,13 +552,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
         $scope.improveHideMe = function() {
             return $scope.improveStandardStep.length > 0;
         };
-
-    //remove Standards
-    $scope.removeItem = function(index) {
-      $scope.askStandardStep.splice(index, 1);
-    }
- 
-
-
+        
 	}
 ]);
