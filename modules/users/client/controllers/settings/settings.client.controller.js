@@ -8,6 +8,7 @@ angular.module('users').controller('SettingsController', ['$scope', 'Authenticat
     // Grab projects that belong to this user
     $scope.getUserProjects = function(){
       Projects.query(
+        //maybe changes here
         {userId : $scope.user._id},
         function(projects) {
           $scope.userProjects = projects;
