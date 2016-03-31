@@ -68,6 +68,9 @@ var ProjectSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
+	projAdmin:{
+		type: [Schema.ObjectId],
+	},
 	rating: {
 		ratings: [
 			{
