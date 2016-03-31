@@ -1,7 +1,6 @@
 <section data-ng-controller="ProjectsController">
     <form class="container-fluid">
         <div class="row">
-            
             <!-- This is the start of the  standards side bar-->
             <div data-ng-controller="StandardsController" class="col-sm-2 col-sm-offset-10 col-md-4 col-md-offset-8 sidebar"> 
 
@@ -129,7 +128,7 @@
             
             <!--<div class="col-sm-7 col-sm-offset-3 col-md-8 col-md-offset-2 main" data-ng-hide="authentication.user._id==NULL" data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}"> -->
 
-            <div class="col-sm-7  col-md-8 main" data-ng-hide="authentication.user._id==NULL" data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}">
+            <div class="col-sm-7  col-md-8 main">
                 
                 <div style="font-size:2em; display: block;" class="sub-header">Design : <input id="name" type="text" placeholder="Project Name" data-ng-model="name">
 
@@ -174,7 +173,7 @@
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
                             <ol>
-                                <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}" onDrop="">{{item.benchmark}}</li>
+                                <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}" jqyoui-droppable="{onOut: 'onOut'}" ng-click="removeItem($index)">{{item.benchmark}}   <button ng-click="askStandardStep.splice($index,1)">x</button></li>
                                 <li class="placeholder" ng-hide="askHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
