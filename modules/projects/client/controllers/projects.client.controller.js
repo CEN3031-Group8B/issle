@@ -5,9 +5,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 	function($scope, $stateParams, $sce, $location, $window, $timeout, Authentication, Projects, FileUploader, linkify , Users ) {
 		$scope.authentication = Authentication;
 		$scope.collaborators = [];
-		var _this = this;
-
-		console.log(_this);
 
 		//maybe should put in the create function
 		$scope.collaborators.push($scope.authentication.user._id);
