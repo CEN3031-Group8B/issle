@@ -345,10 +345,20 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			$scope.projects = Projects.query();
 		};
 
-		// Find existing Project
+		// Find existing Project AND set projectOwnership
 		$scope.findOne = function() {
 			$scope.project = Projects.get({
 				projectId: $stateParams.projectId
+			},
+			function(authentication){
+				console.log($scope.authentication.user);
+				console.log($scope.project.projAdmin);
+			$scope.projectOwnership= false;
+			for(var i in $scope.project.projAdmin){
+              if($scope.project.projAdmin[i] === $scope.authentication.user._id){
+                $scope.projectOwnership= true;
+              }
+            }
 			});
 
 		};

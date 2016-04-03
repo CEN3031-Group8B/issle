@@ -88,7 +88,7 @@
                                <th>Grade(s)</th>
                                <th>Topic</th>
                              </tr>
-                               <tr class="searchRow" ng-repeat="std in standards | filter:searchText" data-drag="true" ng-model="standards" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}">
+                               <tr class="searchRow" ng-repeat="std in standards | filter:searchText" data-drag="true" ng-model="standards" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep', scroll: false}">
                                 <td class = "line-break">{{std.benchmark}}</td>
                                 <td class = "line-break">{{std.description}}</td>
                                 <td>{{std.subject}}</td>
