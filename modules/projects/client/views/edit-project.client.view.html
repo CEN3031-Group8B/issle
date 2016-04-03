@@ -1,7 +1,7 @@
 <section data-ng-controller="ProjectsController" data-ng-init="findOne()">
     <div data-ng-show="project.user._id">
         <form class="container-fluid">
-            <div class="row" data-ng-show="authentication.user._id===project.user._id">
+            <div class="row" data-ng-show="projectOwnership">
                 <div data-ng-controller="StandardsController" class="col-sm-2 col-sm-offset-10 col-md-4 col-md-offset-8 sidebar">
                 
                 <h3 style="text-align:center">Search Standards by:</h3>
@@ -362,7 +362,8 @@
             </div>
         </form>
         <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
-            <span data-ng-hide="authentication.user._id===project.user._id">
+            <!--<span data-ng-hide="authentication.user._id===project.user._id">-->
+            <span data-ng-hide="projectOwnership">
                 <!-- goes in previous line after span... data-ng-hide="authentication.user._id===project.user._id"-->
                 <div class="alert alert-success" role="alert">
                     <p>Project Page Not Available. This could be because you did not create this project, or you're not signed in to see it.</p>
