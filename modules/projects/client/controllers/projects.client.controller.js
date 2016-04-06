@@ -8,6 +8,12 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		//maybe should put in the create function
 		$scope.collaborators.push($scope.authentication.user._id);
+		$scope.collabNotification = {
+			sender: $scope.authentication.user._id
+		};
+		$scope.collabNotification.recipient=[];
+		console.log($scope.collabNotification.recipient)
+
 		// Create file uploader instance
 		$scope.uploader = new FileUploader({
 			url: '/api/projects/picture'
@@ -95,6 +101,14 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 			//$scope.essentialDetails.overallStandards = $scope.essentialDetails.overallStandards.slice(0, -2);
 
+
+			$scope.collabNotification = {
+				sender: this.collabNotification.sender,
+				projectName: this.name,
+				recipient: this.collaborators
+
+			};
+			console.log($scope.collabNotification);
 			
 
 			var project = new Projects ({
@@ -104,6 +118,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				status: this.status,
 				isPublic: this.isPublic,
 				projAdmin: this.collaborators,
+				collabNotification: this.collabNotification,
 				minGrade: this.minGrade,
 				maxGrade: this.maxGrade,
 				askStandardStep: this.askStandardStep,
@@ -371,7 +386,20 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 					if(typeof collab._id !== "undefined"){  // check that a user was returned
 						if($scope.collaborators.indexOf(collab._id) < 0){  //check that it is not in the array already
 							$scope.collaborators.push(collab._id);  //add user id
-							console.log($scope.collaborators);
+							//console.log($scope.collaborators);
+							console.log(collab._id);
+							//collab notification
+							/*$scope.collabNotification.push = {
+								sender: $scope.authentication.user._id,
+							};
+							//$scope.collabNotification.recipient.push(collab._id);
+							
+							console.log('herree');
+
+							
+						
+							console.log($scope.collabNotification);*/
+
 						}
 					}
 					//console.log($scope.collaborators);

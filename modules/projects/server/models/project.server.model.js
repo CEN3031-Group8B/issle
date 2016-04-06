@@ -71,6 +71,17 @@ var ProjectSchema = new Schema({
 	projAdmin:{
 		type: [Schema.ObjectId],
 	},
+	collabNotification:{
+		sender:{
+			type: Schema.ObjectId
+		},
+		projectName:{
+			type: String
+		},
+		recipient:{
+			type: [Schema.ObjectId]
+		}
+	},
 	rating: {
 		ratings: [
 			{
