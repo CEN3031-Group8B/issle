@@ -127,7 +127,7 @@
                     - <input type="number" min="0" max="12" placeholder="5" data-ng-model="project.maxGrade"></h4>
 
                   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  <button style="background-color:#fbc650" type="button" class="btn" ng-class="" ng-click="addCollab(collab)" data-ng-show="authentication.user._id === project.user._id">Add Collaborator</button>
+                  <button style="background-color:#fbc650" type="button" class="btn" ng-class="" ng-click="editCollab(collab)" data-ng-show="authentication.user._id === project.user._id">Add Collaborator</button>
                   <input type="text" placeholder="Collaborator Email" data-ng-model="collab" data-ng-show="authentication.user._id === project.user._id">
                 </div>
                    

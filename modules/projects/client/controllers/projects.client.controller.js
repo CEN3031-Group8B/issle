@@ -365,13 +365,36 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		//get userID for collaborator from email
 		$scope.addCollab = function(collabEmail) {
-
+			//$scope.collaborators = $scope.project.projAdmin;
 			if(collabEmail) {  //check something was typed
 				Projects.addCollab({email: collabEmail}, function(collab){  //lookup user
 					if(typeof collab._id !== "undefined"){  // check that a user was returned
 						if($scope.collaborators.indexOf(collab._id) < 0){  //check that it is not in the array already
 							$scope.collaborators.push(collab._id);  //add user id
 							console.log($scope.collaborators);
+						}
+						// if($scope.project.projAdmin.indexOf(collab._id) < 0){  //check that it is not in the array already
+						// 	$scope.project.projAdmin.push(collab._id);  //add user id
+						// 	console.log($scope.project.projAdmin);
+						// }
+					}
+					//console.log($scope.collaborators);
+				});
+			}	
+		};
+
+		$scope.editCollab = function(collabEmail) {
+			//$scope.collaborators = $scope.project.projAdmin;
+			if(collabEmail) {  //check something was typed
+				Projects.addCollab({email: collabEmail}, function(collab){  //lookup user
+					if(typeof collab._id !== "undefined"){  // check that a user was returned
+						// if($scope.collaborators.indexOf(collab._id) < 0){  //check that it is not in the array already
+						// 	$scope.collaborators.push(collab._id);  //add user id
+						// 	console.log($scope.collaborators);
+						// }
+						if($scope.project.projAdmin.indexOf(collab._id) < 0){  //check that it is not in the array already
+							$scope.project.projAdmin.push(collab._id);  //add user id
+							console.log($scope.project.projAdmin);
 						}
 					}
 					//console.log($scope.collaborators);
