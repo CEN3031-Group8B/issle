@@ -5,9 +5,13 @@ module.exports = {
     lib: {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.css'
+        'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+        'public/lib/jquery-mobile/css/themes/default/jquery.mobile.css'
       ],
       js: [
+        'public/lib/jquery/dist/jquery.min.js',
+        'public/lib/jquery-ui/jquery-ui.min.js',
+        'public/lib/jquery-mobile/js/jquery.mobile.js ',
         'public/lib/angular/angular.js',
         'public/lib/angular-resource/angular-resource.js',
         'public/lib/angular-animate/angular-animate.js',
@@ -16,8 +20,7 @@ module.exports = {
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/angular-file-upload.js',
         'public/lib/angular-linkify/angular-linkify.js',
-        'public/lib/jquery/dist/jquery.min.js',
-        'public/lib/jquery-ui/jquery-ui.min.js',
+        'public/lib/requirejs/require.js',
         'public/lib/angular-dragdrop/src/angular-dragdrop.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
