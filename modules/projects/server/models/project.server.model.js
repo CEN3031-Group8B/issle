@@ -89,7 +89,7 @@ var ProjectSchema = new Schema({
 			type: Number
 		}
 	},
-	mainSub: [],
+	mainSub: String,
 	askStandardStep: [dragListSchema],
 	ask: {
 		/*goal: {
