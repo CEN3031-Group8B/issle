@@ -1,12 +1,38 @@
 
 /* Cloned from support page's CSS for consistent look*/
-
+/*
 #by_class_dropdown{
 	
 }
-
+*/
 /* Size + header  CSS*/
 
+.popover{
+    max-width: 400px;
+}
+.popover-inner {
+    width : 400px;
+}
+
+.circle-container {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    padding: 30px;
+    /*2.8em = 2em*1.4 (2em = half the width of a link with img, 1.4 = sqrt(2))*/
+    border: dashed 1px;
+    border-radius: 50%;
+    margin: 1.75em auto 0;
+}
+
+.circle-container img { display: block; width: 100%; }
+.deg0 { transform: translate(124px, -44px); } /* 12em = half the width of the wrapper */
+.deg51 { transform:  translate(48px,124px) rotate(55deg) translate(0,-180px) rotate(-55deg); }
+.deg102 { transform:  translate(-42px,124px) rotate(102deg) translate(0,-180px) rotate(-102deg); }
+.deg153 { transform:  translate(-114px,124px) rotate(153deg) translate(0,-180px) rotate(-153deg); }
+.deg207 { transform:  translate(114px,90px) rotate(207deg) translate(0,-180px) rotate(-207deg); }
+.deg258 { transform:  translate(16px,90px) rotate(258deg) translate(0,-180px) rotate(-258deg); }
+.deg309 { transform: translate(-84px,90px) rotate(304deg) translate(0,-180px) rotate(-304deg); }
 
 .sub-header {
     border-bottom: 1px solid #eee;
@@ -117,7 +143,7 @@ li {
 .nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
     background-color: #64bed8;
     color: #fff;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     padding-top: 2px;
     height: 40px;
 }

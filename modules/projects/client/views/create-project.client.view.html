@@ -87,7 +87,7 @@
                                <th>Grade(s)</th>
                                <th>Topic</th>
                              </tr>
-                               <tr class="searchRow" ng-repeat="std in standards | filter:searchText" data-drag="true" ng-model="standards" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep', scroll: false}">
+                               <tr class="searchRow" ng-repeat="std in standards | filter:searchText" data-drag="true" ng-model="standards" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep', scroll: false}" style="width:35%">
                                 <td class = "line-break">{{std.benchmark}}</td>
                                 <td class = "line-break">{{std.description}}</td>
                                 <td>{{std.subject}}</td>
@@ -148,11 +148,168 @@
                   <button style="background-color:#fbc650" type="button" class="btn" ng-class="" ng-click="addCollab(collab)">Add Collaborator</button>
                   <input type="text" placeholder="Collaborator Email" data-ng-model="collab">
                 </div>
+                <br>
+<!-- This is the popup image div-->
+                <div class="circle-container">
+
+                  <button popover-placement="bottom" data-toggle="popover" popover-template="'askPopOverTemplate.html'" popover-title="Ask: Identify the Needs and Constraints" type="button" class="btn btn-default deg0">Ask</button>
+
+                  <script type="text/ng-template" id="askPopOverTemplate.html">
+                  <a name="1"><font size = "3">What is the goal of the project?</font></a>
+                  
+                  <span class="glyphicon glyphicon-question-sign"
+                  data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you  want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                  </span>
+                  
+                  <textarea class="form-control" rows="8" data-ng-model="$parent.ask.learningObjective"></textarea>     
+                  <a name="2"><font size = "3">What limits are there on the design, application or materials for students in reaching their engineering goal. Get the students to realize these limits, and to design with these limits in mind</font></a>
+                  
+                  <span class="glyphicon glyphicon-question-sign"
+                  data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                  <br>
+                  <textarea class="form-control" rows="4" data-ng-model="$parent.ask.Constraints"></textarea>
+                  <div class="askStandardCart">
+                  <ol>
+                  <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                  <li class="placeholder" ng-hide="askHideMe()">Add your Standards here</li>
+                  </ol>
+                  </div>
+                  </script>
+
+                  <button popover-placement="left" popover-template="'researchPopOverTemplate.html'" popover-title="Research the problem" type="button" class="btn btn-default deg51">Research</button>
+
+                  <script type="text/ng-template" id="researchPopOverTemplate.html">
+                  
+                  <a name="3"><font size = "3">What do you want students to learn from their research?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="$parent.research.focus"></textarea>
+                        
+                        <a name="4"><font size = "3">What resources will they use?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                        <br>
+                        <textarea class="form-control" rows="4" data-ng-model="$parent.research.resources"></textarea>
+                        <div class="researchStandardCart">
+                            <ol data-ng-model="researchStandardStep">
+                                <li ng-repeat="item in researchStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="researchStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="researchStandardStep.splice($index,1)"></span></li>
+                                <li class="placeholder" ng-hide="researchHideMe()">Add your Standards here</li>
+                            </ol>
+                        </div>
+                 
+                  </script>
+
+                  <button popover-placement="left" popover-template="'imaginePopOverTemplate.html'" popover-title="Imagine: Develop possible solutions" type="button" class="btn btn-default deg102">Imagine</button>
+
+                  <script type="text/ng-template" id="imaginePopOverTemplate.html">
+                  <a name="5"><font size = "3">Have students list possible solutions, even ones that won’t work. (They may inspire other ideas)</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="$parent.imagine.listStep"></textarea>
+                        <div class="imagineStandardCart">
+                            <ol data-ng-model="imagineStandardStep">
+                                <li ng-repeat="item in imagineStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="imagineStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="imagineStandardStep.splice($index,1)"></span></li>
+                                <li class="placeholder" ng-hide="imagineHideMe()">Add your Standards here</li>
+                            </ol>
+                        </div>
+                  </script>
+
+                  <button popover-placement="top" popover-template="'planPopOverTemplate.html'" popover-title="Plan: Select a promising solution" type="button" class="btn btn-default deg153">Plan</button>
+
+                  <script type="text/ng-template" id="planPopOverTemplate.html">
+                  <a name="6"><font size = "3">How should your students decide which potential solution is best?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="$parent.plan.selectStep"></textarea>
+                        
+                        <a name="7"><font size = "3">Students should ask: what resources does the selected solution require? What will you have ready for them to use?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                        <br>
+                        <textarea class="form-control" rows="4" data-ng-model="$parent.plan.resources"></textarea>
+                        <div class="planStandardCart">
+                            <ol data-ng-model="planStandardStep">
+                                <li ng-repeat="item in planStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="planStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="planStandardStep.splice($index,1)"></span></li>
+                                <li class="placeholder" ng-hide="planHideMe()">Add your Standards here</li>
+                            </ol>
+                        </div>
+                  </script>
+
+                  <button popover-placement="top" popover-template="'createPopOverTemplate.html'" popover-title="Create: Build a prototype" type="button" class="btn btn-default deg207">Create</button>
+
+                  <script type="text/ng-template" id="createPopOverTemplate.html">
+                  <a name="8"><font size = "3">Engineers build prototypes and small models to test if their design ideas will work for their application. What kind of prototype or model will your students build? How will you support them in the building of this model?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="$parent.createStep.buildStep"></textarea>
+                        <br>
+                        <div class="createStandardCart">
+                            <ol data-ng-model="createStandardStep">
+                                <li ng-repeat="item in createStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="createStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="createStandardStep.splice($index,1)"></span></li>
+                                <li class="placeholder" ng-hide="createHideMe()">Add your Standards here</li>
+                            </ol>
+                        </div>
+                  </script>
+
+                  <button popover-placement="right" popover-template="'testPopOverTemplate.html'" popover-title="Test and evaluate prototype" type="button" class="btn btn-default deg258">Test/Evaluate</button>
+
+                  <script type="text/ng-template" id="testPopOverTemplate.html">
+                  <a name="9"><font size = "3">Have students design 1-2 tests to evaluate their model, changing only one variable related to the performance requirements of their idea.</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="$parent.testStep.designStep"></textarea>
+                        
+                        <a name="10"><font size = "3">Ask: Does the test show the model solves the problem? How well? Why does it work well/ or not work well for the application?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
+                        <br>
+                        <textarea class="form-control" rows="4" data-ng-model="$parent.testStep.successStep"></textarea>
+                        <br>
+                        <div class="testStandardCart">
+                            <ol data-ng-model="testStandardStep">
+                                <li ng-repeat="item in testStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="testStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="testStandardStep.splice($index,1)"></span></li>
+                                <li class="placeholder" ng-hide="testHideMe()">Add your Standards here</li>
+                            </ol>
+                        </div>
+                  </script>
+
+                  <button popover-placement="right" popover-template="'improvePopOverTemplate.html'" popover-title="Improve: Redesign as needed" type="button" class="btn btn-default deg309">Improve</button>
+
+                  <script type="text/ng-template" id="improvePopOverTemplate.html">
+                  <a name="11"><font size = "3">Prompt: What would you change in the prototype next time?</font></a>
+                        <span class="glyphicon glyphicon-question-sign"
+                            data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
+                        </span>
+                        <br>
+                        <textarea class="form-control" rows="8" data-ng-model="$parent.improveStep.changeStep"></textarea>
+                        <div class="improveStandardCart">
+                            <ol data-ng-model="improveStandardStep">
+                                <li ng-repeat="item in improveStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="improveStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="improveStandardStep.splice($index,1)"></span></li>
+                                <li class="placeholder" ng-hide="improveHideMe()">Add your Standards here</li>
+                            </ol>
+                        </div>
+                  </script>
+
+                </div>
+                <!-- End of pop up div -->
+
                 <div data-drop="true" data-ng-model='askStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Ask: Identify the needs and constraints</h3>
                     </div>
+
+
                     <div class="panel-body">
 
                         <a name="1"><font size = "3">What is the goal of the project?</font></a>
@@ -160,13 +317,13 @@
                             data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
                         </span>
                         <br>
-                        <textarea class="form-control" rows="8" data-ng-model="ask.learningObjective"></textarea>
+                        <textarea class="form-control" rows="8" data-ng-model="ask.learningObjective1"></textarea>
                         
                         <a name="2"><font size = "3">What limits are there on the design, application or materials for students in reaching their engineering goal. Get the students to realize these limits, and to design with these limits in mind</font></a>
                         <span class="glyphicon glyphicon-question-sign"
                             data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                         <br>
-                        <textarea class="form-control" rows="4" data-ng-model="ask.Constraints"></textarea>
+                        <textarea class="form-control" rows="4" data-ng-model="ask.Constraints1"></textarea>
                         <br>
                         
                         <div class="askStandardCart">
@@ -192,13 +349,13 @@
                             data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
                         </span>
                         <br>
-                        <textarea class="form-control" rows="8" data-ng-model="research.focus"></textarea>
+                        <textarea class="form-control" rows="8" data-ng-model="research.focus1"></textarea>
                         
                         <a name="4"><font size = "3">What resources will they use?</font></a>
                         <span class="glyphicon glyphicon-question-sign"
                             data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                         <br>
-                        <textarea class="form-control" rows="4" data-ng-model="research.resources"></textarea>
+                        <textarea class="form-control" rows="4" data-ng-model="research.resources1"></textarea>
                         <div class="researchStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
@@ -222,7 +379,7 @@
                             data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
                         </span>
                         <br>
-                        <textarea class="form-control" rows="8" data-ng-model="imagine.listStep"></textarea>
+                        <textarea class="form-control" rows="8" data-ng-model="imagine.listStep1"></textarea>
                         <div class="imagineStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
@@ -246,13 +403,13 @@
                             data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
                         </span>
                         <br>
-                        <textarea class="form-control" rows="8" data-ng-model="plan.selectStep"></textarea>
+                        <textarea class="form-control" rows="8" data-ng-model="plan.selectStep1"></textarea>
                         
                         <a name="7"><font size = "3">Students should ask: what resources does the selected solution require? What will you have ready for them to use?</font></a>
                         <span class="glyphicon glyphicon-question-sign"
                             data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                         <br>
-                        <textarea class="form-control" rows="4" data-ng-model="plan.resources"></textarea>
+                        <textarea class="form-control" rows="4" data-ng-model="plan.resources1"></textarea>
                         <div class="planStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
@@ -276,7 +433,7 @@
                             data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
                         </span>
                         <br>
-                        <textarea class="form-control" rows="8" data-ng-model="createStep.buildStep"></textarea>
+                        <textarea class="form-control" rows="8" data-ng-model="createStep.buildStep1"></textarea>
                         <br>
                         <div class="createStandardCart">
                             <!--<div class="ui-widget-content">
@@ -301,13 +458,13 @@
                             data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
                         </span>
                         <br>
-                        <textarea class="form-control" rows="8" data-ng-model="testStep.designStep"></textarea>
+                        <textarea class="form-control" rows="8" data-ng-model="testStep.designStep1"></textarea>
                         
                         <a name="10"><font size = "3">Ask: Does the test show the model solves the problem? How well? Why does it work well/ or not work well for the application?</font></a>
                         <span class="glyphicon glyphicon-question-sign"
                             data-toggle="tooltip" data-original-title="Share" title ="Identify a simple problem or question that ties in to your goal. Focus on this for the rest of the document. Relating back to the roller coasters, a major problem would be how Roller Coasters overcome gravity."> </span>
                         <br>
-                        <textarea class="form-control" rows="4" data-ng-model="testStep.successStep"></textarea>
+                        <textarea class="form-control" rows="4" data-ng-model="testStep.successStep1"></textarea>
                         <br>
                         <div class="testStandardCart">
                             <!--<div class="ui-widget-content">
@@ -332,7 +489,7 @@
                             data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
                         </span>
                         <br>
-                        <textarea class="form-control" rows="8" data-ng-model="improveStep.changeStep"></textarea>
+                        <textarea class="form-control" rows="8" data-ng-model="improveStep.changeStep1"></textarea>
                         <div class="improveStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
