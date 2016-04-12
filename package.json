@@ -16,7 +16,8 @@
   },
   "scripts": {
     "start": "grunt",
-    "test": "grunt test",
+    "test" : "grunt test",
+    "test:single" : "istanbul cover -x *.test.js _mocha -- -R spec config/lib/app.js",
     "postinstall": "bower install --config.interactive=false && grunt build"
   },
   "dependencies": {
