@@ -5,9 +5,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 	function($scope, $stateParams, $sce, $location, $window, $timeout, Authentication, Projects, FileUploader, linkify , Users ) {
 		$scope.authentication = Authentication;
 		$scope.collaborators = [];
-		var _this = this;
-
-		console.log(_this);
 
 		//maybe should put in the create function
 		$scope.collaborators.push($scope.authentication.user._id);
@@ -348,23 +345,56 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			$scope.projects = Projects.query();
 		};
 
-		// Find existing Project
+		// Find existing Project AND set projectOwnership
 		$scope.findOne = function() {
 			$scope.project = Projects.get({
 				projectId: $stateParams.projectId
+			},
+			function(authentication){
+				console.log($scope.authentication.user);
+				console.log($scope.project.projAdmin);
+			$scope.projectOwnership= false;
+			for(var i in $scope.project.projAdmin){
+              if($scope.project.projAdmin[i] === $scope.authentication.user._id){
+                $scope.projectOwnership= true;
+              }
+            }
 			});
 
 		};
 
 		//get userID for collaborator from email
 		$scope.addCollab = function(collabEmail) {
-
+			//$scope.collaborators = $scope.project.projAdmin;
 			if(collabEmail) {  //check something was typed
 				Projects.addCollab({email: collabEmail}, function(collab){  //lookup user
 					if(typeof collab._id !== "undefined"){  // check that a user was returned
 						if($scope.collaborators.indexOf(collab._id) < 0){  //check that it is not in the array already
 							$scope.collaborators.push(collab._id);  //add user id
 							console.log($scope.collaborators);
+						}
+						// if($scope.project.projAdmin.indexOf(collab._id) < 0){  //check that it is not in the array already
+						// 	$scope.project.projAdmin.push(collab._id);  //add user id
+						// 	console.log($scope.project.projAdmin);
+						// }
+					}
+					//console.log($scope.collaborators);
+				});
+			}	
+		};
+
+		$scope.editCollab = function(collabEmail) {
+			//$scope.collaborators = $scope.project.projAdmin;
+			if(collabEmail) {  //check something was typed
+				Projects.addCollab({email: collabEmail}, function(collab){  //lookup user
+					if(typeof collab._id !== "undefined"){  // check that a user was returned
+						// if($scope.collaborators.indexOf(collab._id) < 0){  //check that it is not in the array already
+						// 	$scope.collaborators.push(collab._id);  //add user id
+						// 	console.log($scope.collaborators);
+						// }
+						if($scope.project.projAdmin.indexOf(collab._id) < 0){  //check that it is not in the array already
+							$scope.project.projAdmin.push(collab._id);  //add user id
+							console.log($scope.project.projAdmin);
 						}
 					}
 					//console.log($scope.collaborators);
