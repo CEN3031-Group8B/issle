@@ -16,7 +16,8 @@
   },
   "scripts": {
     "start": "grunt",
-    "test": "grunt test",
+    "test" : "mocha config/lib/app.js -w",
+    "test:single" : "istanbul cover -x *.test.js _mocha -- -R spec config/lib/app.js",
     "postinstall": "bower install --config.interactive=false"
   },
   "dependencies": {
