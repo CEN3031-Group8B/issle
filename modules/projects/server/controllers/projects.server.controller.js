@@ -127,11 +127,11 @@
  					res.jsonp(projects);
  				}
  			});
- 		} else if(req.query.subject) {
+ 		} else if(req.query.mainSub) {
  			Project.find().
  			where('minGrade').gte(req.query.minGrade).
  			where('maxGrade').lte(req.query.maxGrade).
- 			where('essentialDetails.overallSubjects').regex(new RegExp(req.query.subject,'i')).
+ 			where('mainSub').regex(new RegExp(req.query.mainSub,'i')).
  			sort('-created').populate('user', 'displayName').
  			exec(function(err, projects) {
  				if (err) {

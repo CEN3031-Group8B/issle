@@ -10,7 +10,7 @@
             <div class="panel-heading">I want projects with this subject...</div>
             <div class="panel-body">
               <h4>Subject:
-                <select style="height:27px; width: 265px" ng-model="search.subject">
+                <select style="height:27px; width: 265px" data-ng-model="search.mainSubject">
                   <option value="">Select one...</option>
                   <option value="Dance">Dance</option>
                   <option value="English Language Arts">English Language Arts</option>
@@ -122,6 +122,8 @@
                                         </div> {{noRatingCheck(prj.rating.avg_rating)}}
                                     </h5>
                               </div>
+                              <div class="col-xs-6 col-md-3"><h5>
+                                Main Subject: {{prj.mainSub}}</h5></div>
                       </div>
                 </div>
 
