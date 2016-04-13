@@ -1,7 +1,7 @@
 'use strict';
 // Projects controller
 
-angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$sce', '$location', '$window', '$timeout', 'Authentication', 'Projects', 'FileUploader', 'linkify', 'Users', 'selectionModel',
+angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$sce', '$location', '$window', '$timeout', 'Authentication', 'Projects', 'FileUploader', 'linkify', 'Users',
 	function($scope, $stateParams, $sce, $location, $window, $timeout, Authentication, Projects, FileUploader, linkify , Users ) {
 		$scope.authentication = Authentication;
 		$scope.collaborators = [];
@@ -229,7 +229,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				projAdmin: this.collaborators,
 				minGrade: this.minGrade,
 				maxGrade: this.maxGrade,
-				mainSub: this.mainSub,
 				askStandardStep: this.askStandardStep,
 				researchStandardStep: this.researchStandardStep,
 				imagineStandardStep: this.imagineStandardStep,
@@ -416,7 +415,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				projAdmin: this.collaborators,
 				minGrade: project_old.minGrade,
 				maxGrade: project_old.maxGrade,
-				mainSub: project_old.mainSub,
 				askStandardStep: project_old.askStandardStep,
 				ask: project_old.ask,
 				researchStandardStep: project_old.researchStandardStep,
