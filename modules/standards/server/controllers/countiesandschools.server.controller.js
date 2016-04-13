@@ -6,73 +6,102 @@
 var _ = require('lodash'),
 	path = require('path'),
 	mongoose = require('mongoose'),
-	Standard = mongoose.model('Standard'),
+	CountiesAndSchools = mongoose.model('CountiesAndSchools'),
 	errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-/**
- * Create a Standard
- */
+	
 exports.create = function(req, res) {
-	var standard = new Standard(req.body);
-	standard.user = req.user;
+	var countiesandschools = new CountiesAndSchools(req.body);
+	//standard.user = req.user;
 
-	standard.save(function(err) {
+	countiesandschools.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(standard);
+			res.jsonp(countiesandschools);
 		}
 	});
 };
-
-/**
- * Show the current Standard
- */
 exports.read = function(req, res) {
-	res.jsonp(req.standard);
+	res.jsonp(req.countiesandschools);
 };
-
-/**
- * Update a Standard
- */
 exports.update = function(req, res) {
-	var standard = req.standard ;
+	var countiesandschools = req.countiesandschools ;
 
-	standard = _.extend(standard , req.body);
+	//countiesandschools = _.extend(standard , req.body);
 
-	standard.save(function(err) {
+	countiesandschools.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(standard);
+			res.jsonp(countiesandschools);
 		}
 	});
 };
-
-/**
- * Delete an Standard
- */
+	
+	
 exports.delete = function(req, res) {
-	var standard = req.standard ;
+	var countiesandschools = req.countiesandschools ;
 
-	standard.remove(function(err) {
+	countiesandschools.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(standard);
+			res.jsonp(countiesandschools);
 		}
 	});
 };
 
-/**
- * List of Standards
- */
+exports.list = function(req, res) {
+/*
+  CountiesAndSchools.find().exec(function(err, countiesandschools) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      res.json(countiesandschools);
+    }
+  });
+  */
+  if(req.query.county){
+	CountiesAndSchools.find().
+		where('county').equals(req.query.county).
+		//where('grade').gte(req.query.minGrade).lte(req.query.maxGrade).
+		//sort('-created').populate('user', 'displayName').
+		exec(function(err, countiesandschools) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			console.log(countiesandschools);
+			res.jsonp(countiesandschools);
+		}
+	});
+  }
+  else{
+  CountiesAndSchools.find().
+		//where('grade').gte(req.query.minGrade).lte(req.query.maxGrade).
+		//sort('county');
+		//sort('-created').populate('user', 'displayName').
+		exec(function(err, countiesandschools) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(countiesandschools);
+		}
+	});
+  }
+  
+};	
+/*
 exports.list = function(req, res) { 
 	//this is where the search querries for search by standards are created
 	//the way the search works is by a hiarchy
@@ -80,6 +109,7 @@ exports.list = function(req, res) {
 	//if a description keyword is put in and but not a standard then that takes priority
 	//if none of the text based search parameters are put in then it first checks if thier is a subject
 	//if there is put it in with the query if not, then just search by the min and max grade.
+	console.log('tried to query');
 	if(req.query.benchmark) {
 	Standard.find().
 		where('benchmark').equals(req.query.benchmark).
@@ -135,17 +165,16 @@ exports.list = function(req, res) {
 		}
 	});
 	}
-	
 };
+	*/
 
-/**
- * Standard middleware
- */
-exports.standardByID = function(req, res, next, id) { Standard.findById(id).populate('user', 'displayName').exec(function(err, standard) {
-		console.log('got here');
-		if (err) return next(err);
-		if (! standard) return next(new Error('Failed to load Standard ' + id));
-		req.standard = standard ;
-		next();
-	});
+exports.countyByID = function(req, res, next, id) {
+  CountiesAndSchools.findById(id).exec(function(err, countiesandschools) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      req.countiesandschools = countiesandschools;
+      next();
+    }
+  });
 };
