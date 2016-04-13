@@ -269,18 +269,13 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		/////////////////////////////////////////////////////////////////////////////////////////////
 
 		$scope.incRemix = function(){
- 			console.log("in incRemixCounter");
  			$scope.project.remixCount = $scope.project.remixCount + 1;
              $scope.update();
-             console.log(" project being remixed ");
-             console.log($scope.project._id);
  		};
 
 		// Remix Project
 
 		$scope.remix = function() {
-           console.log('In $scope.remix');
-
 
            	var project_old = $scope.project;
            	var project_old_name = [];
