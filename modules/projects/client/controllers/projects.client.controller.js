@@ -17,6 +17,129 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			url: '/api/projects/picture'
 		});
 
+		$scope.setAskButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			if(this.ask !== undefined){
+				if(this.ask.learningObjective !== undefined){
+					if(this.ask.Constraints !== undefined){
+						if(this.ask.learningObjective !== "" && this.ask.Constraints !== ""){
+							document.getElementById(bID).className = stChange;
+						}
+						else{
+							document.getElementById(bID).className = stOrig;
+						}
+					}
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setResearchButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			console.log(this.research);
+			if(this.research !== undefined){
+				if(this.research.focus !== undefined){
+					if(this.research.resources !== undefined){
+						if(this.research.focus !== "" && this.research.resources !== ""){
+							document.getElementById(bID).className = stChange;
+						}
+						else{
+							document.getElementById(bID).className = stOrig;
+						}
+					}
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setImagineButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			console.log(this.research);
+			if(this.imagine !== undefined){
+				if(this.imagine.listStep !== "" ){
+					document.getElementById(bID).className = stChange;
+				}
+				else{
+					document.getElementById(bID).className = stOrig;
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setPlanButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			if(this.plan !== undefined){
+				if(this.plan.selectStep !== undefined){
+					if(this.plan.resources !== undefined){
+						if(this.plan.selectStep !== "" && this.plan.resources !== ""){
+							document.getElementById(bID).className = stChange;
+						}
+						else{
+							document.getElementById(bID).className = stOrig;
+						}
+					}
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setCreateButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			if(this.createStep !== undefined){
+				if(this.createStep.buildStep !== ""){
+					document.getElementById(bID).className = stChange;
+				}
+				else{
+					document.getElementById(bID).className = stOrig;
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setTestButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			if(this.testStep !== undefined){
+				if(this.testStep.designStep !== undefined){
+					if(this.testStep.successStep !== undefined){
+						if(this.testStep.designStep !== "" && this.testStep.successStep !== ""){
+							document.getElementById(bID).className = stChange;
+						}
+						else{
+							document.getElementById(bID).className = stOrig;
+						}
+					}
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setImproveButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			if(this.improveStep !== undefined){
+				if(this.improveStep.changeStep !== ""){
+					document.getElementById(bID).className = stChange;
+				}
+				else{
+					document.getElementById(bID).className = stOrig;
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
 		// Create new Project
 		$scope.create = function() {
 			// Create new Project object
@@ -121,6 +244,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				createStep: this.createStep,
 				testStep: this.testStep,
 				improveStep: this.improveStep,
+				worksheetStep: this.worksheetStep,
 				essentialDetails: this.essentialDetails,
 				rating: null
 			});
@@ -252,7 +376,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 			var project = $scope.project;
 
-			project.imagine.plan = '';
+			project.worksheetStep.theWorksheet = '';
 
 			project.$update(function() {
 
@@ -268,24 +392,28 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		};
 
 		/////////////////////////////////////////////////////////////////////////////////////////////
+
+		$scope.incRemix = function(){
+ 			$scope.project.remixCount = $scope.project.remixCount + 1;
+             $scope.update();
+ 		};
+
 		// Remix Project
 
 		$scope.remix = function() {
-           console.log('In $scope.remix');
-           console.log(this.name);
-
-
 
            	var project_old = $scope.project;
            	var project_old_name = [];
            	project_old_name.push(project_old.name);
            	project_old_name.push(" Remix");
+
             var project = new Projects ({
 				name: project_old_name,
 				created: project_old.created,
-				user: project_old.user,
+				user: this.user,
 				status: project_old.status,
 				isPublic: project_old.isPublic,
+				projAdmin: this.collaborators,
 				minGrade: project_old.minGrade,
 				maxGrade: project_old.maxGrade,
 				mainSub: project_old.mainSub,
@@ -303,6 +431,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				testStep: project_old.testStep,
 				improveStandardStep: project_old.improveStandardStep,
 				improveStep: project_old.improveStep,
+				//worksheetStep:: project_old.worksheetStep,
 				essentialDetails: project_old.essentialDetails,
 				rating: null
 			});
@@ -323,12 +452,12 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 				$location.path('projects/' + response._id);
 
+				$scope.project = project;
+ 				$scope.update();
 
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-
-
 			
 		};
 
@@ -412,7 +541,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 				fileReader.onload = function (fileReaderEvent) {
 					$timeout(function () {
-						$scope.project.imagine.plan = fileReaderEvent.target.result;
+						$scope.project.worksheetStep.theWorksheet = fileReaderEvent.target.result;
 					}, 0);
 				};
 			}
@@ -594,3 +723,21 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		*/
 	}
 ]);
+// .directive('popover', function($compile){
+//     return {
+//         restrict : 'A',
+//         link : function(scope, elem){
+            
+//             var content = $("#popover-content").html();
+//             var compileContent = $compile(content)(scope);
+//             var title = $("#popover-head").html();
+//             var options = {
+//                 content: compileContent,
+//                 html: true,
+//                 title: title
+//             };
+            
+//             $(elem).popover(options);
+//         }
+//     }
+// });
