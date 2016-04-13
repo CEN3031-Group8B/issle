@@ -62,12 +62,12 @@
 			  <span class="input-group-addon">
 				<i class="text-muted glyphicon glyphicon-education"></i>
 			  </span>
-			  <select  id="county" name="county" class="form-control" ng-model="credentials.county" ng-change="countyChange()">
-			    <option value="" selected disabled>Choose County</option>
+			  <select  id="county" name="county" class="form-control" ng-model="credentials.county" ng-change="countyChange()" required>
+			    <option value="" >Choose County</option>
 			    <option ng-repeat="county in schools | unique:'county'">{{county.county}}
 			  </select>
-			  <select required id="school" name="school" class="form-control" ng-model="credentials.school" >
-				<option value="" selected disabled>Choose School</option> 
+			  <select required id="school" name="school" class="form-control" ng-model="credentials.school"  >
+				<option selected disabled value="" >Choose School</option> 
 				<option ng-repeat="school in schoolsC | unique:'school' | orderBy: 'school'">{{school.school}}</option>
 			  </select>	
 			 </div>
