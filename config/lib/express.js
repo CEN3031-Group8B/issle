@@ -92,6 +92,7 @@ module.exports.initMiddleware = function (app) {
   })); */
 
   var upload = multer({dest: './uploads' });
+
 };
 
 /**

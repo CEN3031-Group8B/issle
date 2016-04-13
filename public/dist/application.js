@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function () {
   // Init module configuration options
   var applicationModuleName = 'mean';
-  var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload', 'linkify'];
+  var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload', 'linkify'  ];
 
   // Add a new vertical module
   var registerModule = function (moduleName, dependencies) {
@@ -88,7 +88,9 @@ ApplicationConfiguration.registerModule('core.admin.routes', ['ui.router']);
 'use strict';
 
 // Use applicaion configuration module to register a new module
-ApplicationConfiguration.registerModule('projects');
+ApplicationConfiguration.registerModule('projects', ['ngResource', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload', 'linkify', 'ngDragDrop']);
+ApplicationConfiguration.registerModule('standards' , ['projects']);
+
 'use strict';
 
 // Use applicaion configuration module to register a new module
@@ -502,7 +504,13 @@ angular.module('projects').controller('list-ProjectsController' , ['$scope', '$s
 
 	    // Find a list of Projects
 		$scope.find = function(search) {
-      //$scope.projects = Projects.query();  
+      //$scope.projects = Projects.query(); 
+      //the way the search works is by a hiarchy
+      //if a project name is put in then that over takes all other search parameters
+      //if a standard is put in and but not a standard then that takes priority
+      //if none of the text based search parameters are put in then it first checks if thier is a subject
+      //if there is put it in with the query if not, then just search by the min and max grade.
+
       if(!search.minGrade) search.minGrade = '0';
       if(!search.maxGrade) search.maxGrade = '912';
 
@@ -519,46 +527,233 @@ angular.module('projects').controller('list-ProjectsController' , ['$scope', '$s
 
     };
 
-		// Find existing Project
-		$scope.findOne = function() {
-			$scope.project = Projects.get({ 
-				projectId: $stateParams.projectId
-			});
-		};
+    //Allows for looping based on number of star ratings
+    $scope.range = function(min, max, step) {
+        step = step || 1;
+        var input = [];
+        for (var i = min; i <= max; i += step) {
+            input.push(i);
+        }
+        return input;
+    };
+
+    //  K 1st   2nd   3rd   4th   5th   6th   7th   8th   9th  10th 11th 12th
+    $scope.getGradeRange = function(min,max){
+      var retString = '';
+      if(min === 0)
+        retString = 'K';
+      else if(min === 1)
+        retString = '1st';
+      else if(min ===2)
+        retString = '2nd';
+      else if(min === 3)
+        retString = '3rd';
+      else
+        retString = min + 'th';
+
+      retString += ' - ';
+
+      if(max === 1)
+        retString += '1st';
+      else if(max ===2)
+        retString += '2nd';
+      else if(max === 3)
+        retString += '3rd';
+      else
+        retString += max + 'th';
+
+      return retString;
+    };
+
+    $scope.noRatingCheck = function(rats){
+      if(!(rats > 0 && rats <= 5))
+        return 'None yet!';
+      else return '';
+    };
+
+    $scope.enterPressName = function(keyEvent, search, show) {
+      if(keyEvent.which === 13){
+        $scope.projects = Projects.query({projectName:search.searchName});
+        $scope.show = true;
+      }
+    };
+
+    $scope.enterPressStandard = function(keyEvent, search, show) {
+      if(keyEvent.which === 13){
+        $scope.projects = Projects.query({benchmark:search.searchText});
+        $scope.show = true;
+      }
+    };
+
+    // Find existing Project
+    $scope.findOne = function() {
+        $scope.project = Projects.get({
+            projectId: $stateParams.projectId
+        });
+    };
+
+    $scope.getRatingNum = function(num) {
+      if(num !== null){
+        return num;
+      }
+    };
 	}
 ]);
 
 'use strict';
 // Projects controller
-angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Projects',
-	function($scope, $stateParams, $location, Authentication, Projects ) {
+
+angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$sce', '$location', '$window', '$timeout', 'Authentication', 'Projects', 'FileUploader', 'linkify', 'Users',
+	function($scope, $stateParams, $sce, $location, $window, $timeout, Authentication, Projects, FileUploader, linkify , Users ) {
 		$scope.authentication = Authentication;
+		$scope.collaborators = [];
+
+		//maybe should put in the create function
+		$scope.collaborators.push($scope.authentication.user._id);
+		// Create file uploader instance
+		$scope.uploader = new FileUploader({
+			url: '/api/projects/picture'
+		});
+
+		$scope.uploaderC = new FileUploader({
+			url: '/api/projects/picture'
+		});
 
 		// Create new Project
 		$scope.create = function() {
 			// Create new Project object
+			//please note the next segment of code it will not only combine standards but also subjects
+			//the main function of the this next large block if if statements is do that
+			//when a project has been created the overall standards and subjects are calculated
+			//so that they can be searched by those subjects and standards
+			//most of the if statements are to check if either that element exists or if it is not undefined
+			//in the case of checking undefined typeof allows us to preform this check without causing a crash if the array doesnt exist
+
+			$scope.essentialDetails.overallStandards = '';
+
+			$scope.essentialDetails.overallSubjects = '';
+			$scope.essentialDetails.overallSubjects += $scope.essentialDetails.litDetails.subjectName + ' , ';
+			$scope.essentialDetails.overallSubjects += $scope.essentialDetails.mathDetails.subjectName + ' , ';
+			$scope.essentialDetails.overallSubjects += $scope.essentialDetails.scienceDetails.subjectName + ' , ';
+			$scope.essentialDetails.overallSubjects += $scope.essentialDetails.ssDetails.subjectName + ' , ';
+
+			if($scope.essentialDetails.litDetails.standards !== undefined){
+				$scope.essentialDetails.overallStandards += $scope.essentialDetails.litDetails.standards + ', ';
+			}
+			if($scope.essentialDetails.mathDetails.standards !== undefined){
+				$scope.essentialDetails.overallStandards += $scope.essentialDetails.mathDetails.standards + ', ';
+			}
+			if($scope.essentialDetails.scienceDetails.standards !== undefined){
+				$scope.essentialDetails.overallStandards += $scope.essentialDetails.scienceDetails.standards + ', ';
+			}
+			if($scope.essentialDetails.ssDetails.standards !== undefined){
+				$scope.essentialDetails.overallStandards += $scope.essentialDetails.ssDetails.standards + ', ';
+			}
+			if(typeof $scope.essentialDetails.otherSubject !== 'undefined'){
+				if(typeof $scope.essentialDetails.otherSubject[0] !== 'undefined'){
+					if($scope.essentialDetails.otherSubject[0].subjectName !== undefined){
+						$scope.essentialDetails.overallSubjects += $scope.essentialDetails.otherSubject[0].subjectName + ' , ';
+					}
+					if($scope.essentialDetails.otherSubject[0].standards !== undefined){
+						$scope.essentialDetails.overallStandards += $scope.essentialDetails.otherSubject[0].standards + ', ';
+					}
+				}
+				if(typeof $scope.essentialDetails.otherSubject[1] !== 'undefined'){
+					if($scope.essentialDetails.otherSubject[1].subjectName !== undefined){
+						$scope.essentialDetails.overallSubjects += $scope.essentialDetails.otherSubject[1].subjectName + ' , ';
+					}
+					if($scope.essentialDetails.otherSubject[1].standards !== undefined){
+						$scope.essentialDetails.overallStandards += $scope.essentialDetails.otherSubject[1].standards + ', ';
+					}
+				}
+				if(typeof $scope.essentialDetails.otherSubject[2] !== 'undefined'){
+					if($scope.essentialDetails.otherSubject[2].subjectName !== undefined){
+						$scope.essentialDetails.overallSubjects += $scope.essentialDetails.otherSubject[2].subjectName + ' , ';
+					}
+					if($scope.essentialDetails.otherSubject[2].standards !== undefined){
+						$scope.essentialDetails.overallStandards += $scope.essentialDetails.otherSubject[2].standards + ', ';
+					}
+				}
+				if(typeof $scope.essentialDetails.otherSubject[3] !== 'undefined'){
+					if($scope.essentialDetails.otherSubject[3].subjectName !== undefined){
+						$scope.essentialDetails.overallSubjects += $scope.essentialDetails.otherSubject[3].subjectName + ' , ';
+					}
+					if($scope.essentialDetails.otherSubject[3].standards !== undefined){
+						$scope.essentialDetails.overallStandards += $scope.essentialDetails.otherSubject[3].standards + ', ';
+					}
+				}
+				if(typeof $scope.essentialDetails.otherSubject[4] !== 'undefined'){
+					if($scope.essentialDetails.otherSubject[4].subjectName !== undefined){
+						$scope.essentialDetails.overallSubjects += $scope.essentialDetails.otherSubject[4].subjectName + ' , ';
+					}
+					if($scope.essentialDetails.otherSubject[4].standards !== undefined){
+						$scope.essentialDetails.overallStandards += $scope.essentialDetails.otherSubject[4].standards + ', ';
+					}
+				}
+
+			}
+			//the slice is used to clean up so that the last standard does not have a quote and a space
+			//we do not need it for projects since overall projects will never be used to display to the user
+
+			//$scope.essentialDetails.overallStandards = $scope.essentialDetails.overallStandards.slice(0, -2);
+
+			
+
 			var project = new Projects ({
 				name: this.name,
 				created: this.created,
 				user: this.user,
 				status: this.status,
 				isPublic: this.isPublic,
+				projAdmin: this.collaborators,
 				minGrade: this.minGrade,
 				maxGrade: this.maxGrade,
+				askStandardStep: this.askStandardStep,
+				researchStandardStep: this.researchStandardStep,
+				imagineStandardStep: this.imagineStandardStep,
+				planStandardStep: this.planStandardStep,
+				createStandardStep: this.createStandardStep,
+				testStandardStep: this.testStandardStep,
+				improveStandardStep: this.improveStandardStep,
 				ask: this.ask,
+				research: this.research,
 				imagine: this.imagine,
-				essentialDetails: this.essentialDetails
+				plan: this.plan,
+				createStep: this.createStep,
+				testStep: this.testStep,
+				improveStep: this.improveStep,
+				worksheetStep: this.worksheetStep,
+				essentialDetails: this.essentialDetails,
+				rating: null
 			});
+
+
+		$scope.additionalSubjects = ['Dance', 'English Language Development', 'Gifted', 'Health Education', 'Music', 'Physical Education',
+		'Special Skills', 'Technology', 'Theatre', 'Visual Art'];
 
 			// Redirect after save
 			project.$save(function(response) {
-				$location.path('projects/' + response._id);
+
+				// Start upload of picture
+
+				if($scope.uploaderC.queue.length > 0) {
+
+					$scope.uploaderC.queue[0].url = '/api/projects/picture/' + response._id;
+					$scope.uploaderC.uploadAll();
+				}
+
 
 				// Clear form fields
 				$scope.name = '';
+
+
+				$location.path('projects/' + response._id);
+
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+
+
 		};
 
 		// Remove existing Project
@@ -577,29 +772,428 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			}
 		};
 
+		$scope.CombineStandards = function(){
+			//please note it will not only combine standards but also subjects
+			//the combine standards function's main goal is to be used in the edit project page
+			//when a project has been edited the overall standards and subjects are calculated
+			//so that they can be searched by those subjects and standards
+			//most of the if statements are to check if either that element exists or if it is not undefined
+			//in the case of checking undefined typeof allows us to preform this check without causing a crash if the array doesnt exist
+			$scope.project.essentialDetails.overallStandards = '';
+
+			$scope.project.essentialDetails.overallSubjects = '';
+			$scope.project.essentialDetails.overallSubjects += $scope.project.essentialDetails.litDetails[0].subjectName + ' , ';
+			$scope.project.essentialDetails.overallSubjects += $scope.project.essentialDetails.mathDetails[0].subjectName + ' , ';
+			$scope.project.essentialDetails.overallSubjects += $scope.project.essentialDetails.scienceDetails[0].subjectName + ' , ';
+			$scope.project.essentialDetails.overallSubjects += $scope.project.essentialDetails.ssDetails[0].subjectName + ' , ';
+
+			if($scope.project.essentialDetails.litDetails[0].standards !== ''){
+				$scope.project.essentialDetails.overallStandards += $scope.project.essentialDetails.litDetails[0].standards + ', ';
+			}
+			if($scope.project.essentialDetails.mathDetails[0].standards !== ''){
+				$scope.project.essentialDetails.overallStandards += $scope.project.essentialDetails.mathDetails[0].standards + ', ';
+			}
+			if($scope.project.essentialDetails.scienceDetails[0].standards !== ''){
+				$scope.project.essentialDetails.overallStandards += $scope.project.essentialDetails.scienceDetails[0].standards + ', ';
+			}
+			if($scope.project.essentialDetails.ssDetails[0].standards !== ''){
+				$scope.project.essentialDetails.overallStandards += $scope.project.essentialDetails.ssDetails[0].standards + ', ';
+			}
+			if(typeof $scope.project.essentialDetails.otherSubject !== 'undefined'){
+				if(typeof $scope.project.essentialDetails.otherSubject[0] !== 'undefined'){
+					if($scope.project.essentialDetails.otherSubject[0].subjectName !== ''){
+						$scope.project.essentialDetails.overallSubjects += $scope.project.essentialDetails.otherSubject[0].subjectName + ' , ';
+					}
+					if($scope.project.essentialDetails.otherSubject[0].standards !== ''){
+						$scope.project.essentialDetails.overallStandards += $scope.project.essentialDetails.otherSubject[0].standards + ', ';
+					}
+				}
+				if(typeof $scope.project.essentialDetails.otherSubject[1] !== 'undefined'){
+					if($scope.project.essentialDetails.otherSubject[1].subjectName !== ''){
+						$scope.project.essentialDetails.overallSubjects += $scope.project.essentialDetails.otherSubject[1].subjectName + ' , ';
+					}
+					if($scope.project.essentialDetails.otherSubject[1].standards !== ''){
+						$scope.project.essentialDetails.overallStandards += $scope.project.essentialDetails.otherSubject[1].standards + ', ';
+					}
+				}
+				if(typeof $scope.project.essentialDetails.otherSubject[2] !== 'undefined'){
+					if($scope.project.essentialDetails.otherSubject[2].subjectName !== ''){
+						$scope.project.essentialDetails.overallSubjects += $scope.project.essentialDetails.otherSubject[2].subjectName + ' , ';
+					}
+					if($scope.project.essentialDetails.otherSubject[2].standards !== ''){
+						$scope.project.essentialDetails.overallStandards += $scope.project.essentialDetails.otherSubject[2].standards + ', ';
+					}
+				}
+				if(typeof $scope.project.essentialDetails.otherSubject[3] !== 'undefined'){
+					if($scope.project.essentialDetails.otherSubject[3].subjectName !== ''){
+						$scope.project.essentialDetails.overallSubjects += $scope.project.essentialDetails.otherSubject[3].subjectName + ' , ';
+					}
+					if($scope.project.essentialDetails.otherSubject[3].standards !== ''){
+						$scope.project.essentialDetails.overallStandards += $scope.project.essentialDetails.otherSubject[3].standards + ', ';
+					}
+				}
+				if(typeof $scope.project.essentialDetails.otherSubject[4] !== 'undefined'){
+					if($scope.project.essentialDetails.otherSubject[4].subjectName !== ''){
+						$scope.project.essentialDetails.overallSubjects += $scope.project.essentialDetails.otherSubject[4].subjectName + ' , ';
+					}
+					if($scope.project.essentialDetails.otherSubject[4].standards !== ''){
+						$scope.project.essentialDetails.overallStandards += $scope.project.essentialDetails.otherSubject[4].standards + ', ';
+					}
+				}
+
+			}
+			
+			//the slice is used to clean up so that the last standard does not have a quote and a space
+			//we do not need it for projects since overall projects will never be used to display to the user
+			$scope.project.essentialDetails.overallStandards = $scope.project.essentialDetails.overallStandards.slice(0, -2);
+		};
+
 		// Update existing Project
 		$scope.update = function() {
+            console.log('In $scope.update');
+
 			var project = $scope.project;
 
+			project.worksheetStep.theWorksheet = '';
+
 			project.$update(function() {
+
 				$location.path('projects/' + project._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+
+			if ($scope.uploader.queue.length > 0) {
+				$scope.uploader.queue[0].url = '/api/projects/picture/' + project._id;
+				$scope.uploader.uploadAll();
+			}
 		};
+
+		/////////////////////////////////////////////////////////////////////////////////////////////
+		// Remix Project
+
+		$scope.remix = function() {
+           console.log('In $scope.remix');
+           console.log(this.name);
+
+
+
+           	var project_old = $scope.project;
+           	var project_old_name = [];
+           	project_old_name.push(project_old.name);
+           	project_old_name.push(" Remix");
+            var project = new Projects ({
+				name: project_old_name,
+				created: project_old.created,
+				user: project_old.user,
+				status: project_old.status,
+				isPublic: project_old.isPublic,
+				minGrade: project_old.minGrade,
+				maxGrade: project_old.maxGrade,
+				askStandardStep: project_old.askStandardStep,
+				ask: project_old.ask,
+				researchStandardStep: project_old.researchStandardStep,
+				research: project_old.research,
+				imagineStandardStep: project_old.imagineStandardStep,
+				imagine: project_old.imagine,
+				planStandardStep: project_old.planStandardStep,
+				plan: project_old.plan,
+				createStandardStep: project_old.createStandardStep,
+				createStep: project_old.createStep,
+				testStandardStep: project_old.testStandardStep,
+				testStep: project_old.testStep,
+				improveStandardStep: project_old.improveStandardStep,
+				improveStep: project_old.improveStep,
+				//worksheetStep:: project_old.worksheetStep,
+				essentialDetails: project_old.essentialDetails,
+				rating: null
+			});
+
+
+			// Redirect after save
+			project.$save(function(response) {
+
+				if($scope.uploaderC.queue.length > 0) {
+
+					$scope.uploaderC.queue[0].url = '/api/projects/picture/' + response._id;
+					$scope.uploaderC.uploadAll();
+				}
+				
+				// Clear form fields
+				$scope.name = '';
+
+
+				$location.path('projects/' + response._id);
+
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+
+
+			
+		};
+
+
+		// Redirect after save
+			
+
+
+
+
+
+		/////////////////////////////////////////////////////////////////////////////////////////////
 
 		// Find a list of Projects
 		$scope.find = function() {
 			$scope.projects = Projects.query();
 		};
 
-		// Find existing Project
+		// Find existing Project AND set projectOwnership
 		$scope.findOne = function() {
-			$scope.project = Projects.get({ 
+			$scope.project = Projects.get({
 				projectId: $stateParams.projectId
+			},
+			function(authentication){
+				console.log($scope.authentication.user);
+				console.log($scope.project.projAdmin);
+			$scope.projectOwnership= false;
+			for(var i in $scope.project.projAdmin){
+              if($scope.project.projAdmin[i] === $scope.authentication.user._id){
+                $scope.projectOwnership= true;
+              }
+            }
 			});
+
 		};
+
+		//get userID for collaborator from email
+		$scope.addCollab = function(collabEmail) {
+			//$scope.collaborators = $scope.project.projAdmin;
+			if(collabEmail) {  //check something was typed
+				Projects.addCollab({email: collabEmail}, function(collab){  //lookup user
+					if(typeof collab._id !== "undefined"){  // check that a user was returned
+						if($scope.collaborators.indexOf(collab._id) < 0){  //check that it is not in the array already
+							$scope.collaborators.push(collab._id);  //add user id
+							console.log($scope.collaborators);
+						}
+						// if($scope.project.projAdmin.indexOf(collab._id) < 0){  //check that it is not in the array already
+						// 	$scope.project.projAdmin.push(collab._id);  //add user id
+						// 	console.log($scope.project.projAdmin);
+						// }
+					}
+					//console.log($scope.collaborators);
+				});
+			}	
+		};
+
+		$scope.editCollab = function(collabEmail) {
+			//$scope.collaborators = $scope.project.projAdmin;
+			if(collabEmail) {  //check something was typed
+				Projects.addCollab({email: collabEmail}, function(collab){  //lookup user
+					if(typeof collab._id !== "undefined"){  // check that a user was returned
+						// if($scope.collaborators.indexOf(collab._id) < 0){  //check that it is not in the array already
+						// 	$scope.collaborators.push(collab._id);  //add user id
+						// 	console.log($scope.collaborators);
+						// }
+						if($scope.project.projAdmin.indexOf(collab._id) < 0){  //check that it is not in the array already
+							$scope.project.projAdmin.push(collab._id);  //add user id
+							console.log($scope.project.projAdmin);
+						}
+					}
+					//console.log($scope.collaborators);
+				});
+			}	
+		};
+
+		// Called after the user selected a new picture file
+		$scope.uploader.onAfterAddingFile = function (fileItem) {
+			if ($window.FileReader) {
+				var fileReader = new FileReader();
+				fileReader.readAsDataURL(fileItem._file);
+
+				fileReader.onload = function (fileReaderEvent) {
+					$timeout(function () {
+						$scope.project.worksheetStep.theWorksheet = fileReaderEvent.target.result;
+					}, 0);
+				};
+			}
+		};
+
+		$scope.linkify = function(link) {
+			//The linkify function parses text and creates hyperlinks out of URL's anything with www. is valid
+			//the linkify function is only used in the view project page
+			var text = linkify.normal(link);
+			if(text) {
+				//this is for every browser but firefox (and will only execute for compatible browsers)
+				text = text.replace(/<a href="www./gi, '<a href="http://www.');
+				//this line is specificly for linkify for the firefox browser
+				text = text.replace(/<a target="_blank" href="www./gi, '<a target="_blank" href="http://www.');
+			}
+			//console.log(text); //used for debugging
+			return $sce.trustAsHtml(text);
+		};
+
+		$scope.uploaderC.onAfterAddingFile = function (fileItem) {
+			if ($window.FileReader) {
+				var fileReader = new FileReader();
+				fileReader.readAsDataURL(fileItem._file);
+
+				fileReader.onload = function (fileReaderEvent) {
+					$timeout(function () {
+						$scope.imageURL = fileReaderEvent.target.result;
+					}, 0);
+				};
+			}
+		};
+
+/*	-------------------------------------Star Rating Stuff-------------------------------------- */
+
+		/*BROKEN: Animation doesn't work after the first time the user rates a project.
+			Broke at some point during development after the feature was done, and it's
+			too late to go back in and fix it.
+		*/
+
+		//an array containing the name of the glyphicon to use for each star
+		$scope.glyphs = new Array(
+			'gold glyphicon glyphicon-star-empty',
+			'gold glyphicon glyphicon-star-empty',
+			'gold glyphicon glyphicon-star-empty',
+			'gold glyphicon glyphicon-star-empty',
+			'gold glyphicon glyphicon-star-empty'
+		);
+
+		/*
+			Runs when a star glyphicon is hovered into. It sets all the stars up to the current one
+			to have the filled-in star glyphicon.
+		*/
+		$scope.rating_hover = function(num){
+			for(var i = 0; i < num; i++){
+				$scope.glyphs[i] = 'gold glyphicon glyphicon-star';
+			}
+			for(i = num; i < 5; i++){
+				$scope.glyphs[i] = 'gold glyphicon glyphicon-star-empty';
+			}
+		};
+
+		//Runs when a star glyphicon is hovered out of. Resets the  stars' highlighing to the current rating
+		$scope.reset_hover = function(){
+			$scope.rating_hover($scope.rating);
+		};
+
+		//Prints out user's current rating of the project
+		$scope.getMyRating = function(){
+
+			if ($scope.project.rating && $scope.project.rating.ratings ){
+				var rater = $scope.project.rating.ratings.filter(isRater)[0];
+				//console.log(rater);
+				if (typeof rater === 'undefined'){
+					$scope.rating = 0;	//current rating
+					return 'You haven\'t yet rated this project. Give it a couple of stars?';
+				}
+				$scope.rating = rater.num;
+				$scope.reset_hover();
+				return ('Your currently rate this project at ' + rater.num + ' stars');
+			}
+			$scope.rating = 0;	//current rating
+			return 'This project has not yet been rated. Give it a couple of stars?';
+
+		};
+
+        // Function to find the current rater
+        var isRater = function(value){
+			return value.reviewer === $scope.authentication.user._id;
+        };
+
+		//Changes the user's rating of the project
+		$scope.rate = function(){
+			console.log('In $scope.rate');
+				if(!$scope.project.rating){
+				$scope.project.rating = {		//Update the project's rating entry in schema
+					ratings : [ // Create ratings array with  first rating and reviewer
+						{
+							num: $scope.rating,
+							reviewer: $scope.authentication.user._id
+						}
+					],
+					avg_rating : $scope.rating // For first instance, avg = only rating
+				};
+			} else {
+                var rater = $scope.project.rating.ratings.filter(isRater)[0]; // Check if current user already has submitted a rating
+                var length = $scope.project.rating.ratings.length;  // Hold current length
+				var rateToRemove = 0;
+
+								// Variable to hold resulting length after comptation
+                var newLength = length + 1;
+
+								// If length is 0, the average should be 0
+                if(length === 0)
+                {
+                    $scope.project.rating.avg_rating = 0;
+                }
+
+				// If current user has already rated, delete previous rating
+				if(typeof rater !== 'undefined') {
+                    rateToRemove = rater.num;
+                    var rateIndex = $scope.project.rating.ratings.indexOf(rater);
+                    $scope.project.rating.ratings.splice(rateIndex, 1);
+                    newLength -= 1;
+                }
+
+				// Add new rating to total rating and recalculaate average
+				$scope.project.rating.avg_rating = ($scope.project.rating.avg_rating * length + $scope.rating - rateToRemove)/(newLength);
+
+				// Push new rating object into project schema
+				$scope.project.rating.ratings.push({
+						num: $scope.rating,
+						reviewer: $scope.authentication.user._id
+				});
+			}
+
+			// Update project
+			$scope.update();
+
+
+		};
+
 		
+	//$scope.testList1 = [{'title': 'Standard1'},{'title': 'Standard2'},{'title': 'Standard3'}];
+        $scope.askStandardStep = [];
+        $scope.researchStandardStep = [];
+        $scope.imagineStandardStep = [];
+        $scope.planStandardStep = [];
+        $scope.createStandardStep = [];
+        $scope.testStandardStep = [];
+        $scope.improveStandardStep = [];
+        /*
+        $scope.askHideMe = function() {
+            return $scope.askStandardStep.length > 0;
+        };
+        
+        $scope.researchHideMe = function() {
+            return $scope.researchStandardStep.length > 0;
+        };
+        
+        $scope.imagineHideMe = function() {
+            return $scope.imagineStandardStep.length > 0;
+        };
+		
+        $scope.planHideMe = function() {
+            return $scope.planStandardStep.length > 0;
+        };
+        
+        $scope.createHideMe = function() {
+            return $scope.createStandardStep.length > 0;
+        };
+		
+        $scope.testHideMe = function() {
+            return $scope.testStandardStep.length > 0;
+        };		
+		
+        $scope.improveHideMe = function() {
+            return $scope.improveStandardStep.length > 0;
+        };
+		*/
 	}
 ]);
 
@@ -608,11 +1202,14 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 //Projects service used to communicate Projects REST endpoints
 angular.module('projects').factory('Projects', ['$resource',
 	function($resource) {
-		return $resource('api/projects/:projectId', { projectId: '@_id'
-		}, {
-			update: {
+		return $resource('api/projects/:projectId', {projectId: '@_id'}, {
+			  update: {
 				method: 'PUT'
-			}
+			  },
+			  addCollab : {
+				method: 'GET',
+				url: '/api/projects/addCollab/:email'
+			  }
 		});
 	}
 ]);
@@ -720,15 +1317,19 @@ angular.module('standards').controller('StandardsController', ['$scope', '$state
 
 		// Find a list of Standards
 		$scope.find = function(search) {
-			//$scope.standards = Standards.query();
-			//search.minGrade = parseInt(search.minGrade, 10); //parseInt with radix
-			//$scope.standards = Standards.query({minGrade:search.minGrade,maxGrade:search.maxGrade,subject:search.subject,searchText:search.searchText});
-			
+			//if a min or max grade are not put in the min/max possible grade value is selected
 			if(!search.minGrade) search.minGrade = '0';
 			if(!search.maxGrade) search.maxGrade = '912';
 
+			//the way the search works is by a hiarchy
+			//if a standard is put in then that over takes all other search parameters
+			//if a description keyword is put in and but not a standard then that takes priority
+			//if none of the text based search parameters are put in then it first checks if thier is a subject
+			//if there is put it in with the query if not, then just search by the min and max grade.
 			if(search.searchText) {
 				$scope.standards = Standards.query({benchmark:search.searchText});
+			} else if(search.searchKeyword) {
+				$scope.standards = Standards.query({keyword:search.searchKeyword});
 			} else if(search.subject) {
 				$scope.standards = Standards.query({minGrade:search.minGrade,maxGrade:search.maxGrade,subject:search.subject});
 			} else {
@@ -737,6 +1338,20 @@ angular.module('standards').controller('StandardsController', ['$scope', '$state
 			console.log(search);
 
 		};
+
+	    $scope.enterPressStandard = function(keyEvent, search, show) {
+      		if(keyEvent.which === 13){
+        		$scope.standards = Standards.query({benchmark:search.searchText});
+        		$scope.show = true;
+      		}
+    	};
+
+	    $scope.enterPressKeyword = function(keyEvent, search, show) {
+	      if(keyEvent.which === 13){
+	        $scope.standards = Standards.query({keyword:search.searchKeyword});
+	        $scope.show = true;
+	      }
+	    };
 
 		// Find existing Standard
 		$scope.findOne = function() {
@@ -785,8 +1400,9 @@ angular.module('supports').run(['Menus',
 		});
 
         Menus.addSubMenuItem('topbar', 'support', {
-            title: 'Examples',
-            state: 'support.examples'
+            title: 'Example',
+
+            state: 'support.example'
         });
 
 		// Add the dropdown list item
@@ -821,7 +1437,11 @@ angular.module('supports').config(['$stateProvider',
 			url: '/FAQ',
 			templateUrl: 'modules/support/views/faq.client.view.html'
 		}).
-			state('support.examples', {
+        state('support.example', {
+            url: '/example',
+            templateUrl: 'modules/support/views/example.client.view.html'
+        }).
+		state('support.examples', {
 			url: '/examples',
 			templateUrl: 'modules/support/views/examples.client.view.html'
 		}).
@@ -1114,6 +1734,46 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         $scope.error = response.message;
       });
     };
+	
+	/*
+	Created my own lists manually just for testing purposes
+	*/
+	
+	$scope.countyList = ['None','Alachua', 'Broward'];
+	$scope.schoolList=[];
+	$scope.county0=['None0','None1','None2'];
+	$scope.county1=['University of Florida', 'Sante Fe'];
+	$scope.county2=['Mater','Lakes','Stirrup'];
+	$scope.county='';
+	$scope.school='';
+	
+	$scope.County = function(){
+		$scope.schoolList=[];
+		$scope.credentials.county=$scope.county;
+		if($scope.county.trim()===$scope.countyList[1]){
+			$scope.schoolList=[];
+			for(var i=0;i<$scope.county1.length;i++){
+				$scope.schoolList.push($scope.county1[i]);
+			}
+			//$scope.school=$scope.county1[0];
+		}
+		else if($scope.county.trim()===$scope.countyList[2]){
+			$scope.schoolList=[];
+			for(var i=0;i<$scope.county2.length;i++){
+				$scope.schoolList.push($scope.county2[i]);
+			}
+			//$scope.school=$scope.county2[0];
+		}
+		else{
+			$scope.schoolList=[];
+			for(var i=0;i<$scope.county0.length;i++){
+				$scope.schoolList.push($scope.county0[i]);
+			}
+			//$scope.school=$scope.county0[0];
+		}
+		console.log($scope.school);
+	};
+	
 
     // OAuth provider request
     $scope.callOauthProvider = function (url) {
@@ -1300,17 +1960,36 @@ angular.module('users').controller('EditProfileController', ['$scope', '$http', 
 angular.module('users').controller('SettingsController', ['$scope', 'Authentication','Projects',
   function ($scope, Authentication, Projects){
     $scope.user = Authentication.user;
-
+    // Grab projects that belong to this user
     $scope.getUserProjects = function(){
-      Projects.query(
-        {userId : $scope.user._id},
-        function(projects) {
-          $scope.userProjects = projects;
+    //   Projects.query(
+    //     //maybe changes here
+    //     //{projAdmin : $scope.user._id},
+    //     {},
+    //     function(projects) {
+    //       //projects.forEach(console.log
+    //       $scope.userProjects = projects;
+    //       //console.log($scope.userProjects);
+    //     }
+    // );
+      var userP = Projects.query({minGrade:0,maxGrade:12}, function(){
+        var goo =[];
+        for(var i in userP){
+          for(var j in userP[i].projAdmin){
+            
+            if(userP[i].projAdmin[j] === $scope.user._id){
+              goo.push(userP[i]);
+            }
+          }
         }
-    );};
+        console.log(goo);
+        $scope.userProjects = goo;
+      });
+    };
 
     $scope.deleteProject = function(project,$location){
-      if ( project ) { project.$remove();
+     if (confirm('Are you sure you want to delete this project?')) { // Confirmation for deletion
+	  if ( project ) { project.$remove();
 
         for (var i in $scope.userProjects ) {
           if ($scope.userProjects [i] === project ) {
@@ -1322,9 +2001,10 @@ angular.module('users').controller('SettingsController', ['$scope', 'Authenticat
           $location.path('projects');
         });
       }
+	 }
+	return false;
 
     };
-
   }
 ]);
 
@@ -1346,6 +2026,7 @@ angular.module('users').factory('Authentication', ['$window',
 // Users service used for communicating with the users REST endpoint
 angular.module('users').factory('Users', ['$resource',
   function ($resource) {
+    //return $resource('api/users', {email: ''}, {
     return $resource('api/users', {}, {
       update: {
         method: 'PUT'
@@ -1354,12 +2035,9 @@ angular.module('users').factory('Users', ['$resource',
   }
 ]);
 
-//TODO this should be Users service
 angular.module('users.admin').factory('Admin', ['$resource',
   function ($resource) {
-    return $resource('api/users/:userId', {
-      userId: '@_id'
-    }, {
+    return $resource('api/users/:userId', {userId: '@_id'}, {
       update: {
         method: 'PUT'
       }

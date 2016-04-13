@@ -243,6 +243,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				createStep: this.createStep,
 				testStep: this.testStep,
 				improveStep: this.improveStep,
+				worksheetStep: this.worksheetStep,
 				essentialDetails: this.essentialDetails,
 				rating: null
 			});
@@ -374,7 +375,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 			var project = $scope.project;
 
-			project.imagine.plan = '';
+			project.worksheetStep.theWorksheet = '';
 
 			project.$update(function() {
 
@@ -390,24 +391,28 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		};
 
 		/////////////////////////////////////////////////////////////////////////////////////////////
+
+		$scope.incRemix = function(){
+ 			$scope.project.remixCount = $scope.project.remixCount + 1;
+             $scope.update();
+ 		};
+
 		// Remix Project
 
 		$scope.remix = function() {
-           console.log('In $scope.remix');
-           console.log(this.name);
-
-
 
            	var project_old = $scope.project;
            	var project_old_name = [];
            	project_old_name.push(project_old.name);
            	project_old_name.push(" Remix");
+
             var project = new Projects ({
 				name: project_old_name,
 				created: project_old.created,
-				user: project_old.user,
+				user: this.user,
 				status: project_old.status,
 				isPublic: project_old.isPublic,
+				projAdmin: this.collaborators,
 				minGrade: project_old.minGrade,
 				maxGrade: project_old.maxGrade,
 				askStandardStep: project_old.askStandardStep,
@@ -424,6 +429,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				testStep: project_old.testStep,
 				improveStandardStep: project_old.improveStandardStep,
 				improveStep: project_old.improveStep,
+				//worksheetStep:: project_old.worksheetStep,
 				essentialDetails: project_old.essentialDetails,
 				rating: null
 			});
@@ -444,12 +450,12 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 				$location.path('projects/' + response._id);
 
+				$scope.project = project;
+ 				$scope.update();
 
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-
-
 			
 		};
 
@@ -488,13 +494,36 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		//get userID for collaborator from email
 		$scope.addCollab = function(collabEmail) {
-
+			//$scope.collaborators = $scope.project.projAdmin;
 			if(collabEmail) {  //check something was typed
 				Projects.addCollab({email: collabEmail}, function(collab){  //lookup user
 					if(typeof collab._id !== "undefined"){  // check that a user was returned
 						if($scope.collaborators.indexOf(collab._id) < 0){  //check that it is not in the array already
 							$scope.collaborators.push(collab._id);  //add user id
 							console.log($scope.collaborators);
+						}
+						// if($scope.project.projAdmin.indexOf(collab._id) < 0){  //check that it is not in the array already
+						// 	$scope.project.projAdmin.push(collab._id);  //add user id
+						// 	console.log($scope.project.projAdmin);
+						// }
+					}
+					//console.log($scope.collaborators);
+				});
+			}	
+		};
+
+		$scope.editCollab = function(collabEmail) {
+			//$scope.collaborators = $scope.project.projAdmin;
+			if(collabEmail) {  //check something was typed
+				Projects.addCollab({email: collabEmail}, function(collab){  //lookup user
+					if(typeof collab._id !== "undefined"){  // check that a user was returned
+						// if($scope.collaborators.indexOf(collab._id) < 0){  //check that it is not in the array already
+						// 	$scope.collaborators.push(collab._id);  //add user id
+						// 	console.log($scope.collaborators);
+						// }
+						if($scope.project.projAdmin.indexOf(collab._id) < 0){  //check that it is not in the array already
+							$scope.project.projAdmin.push(collab._id);  //add user id
+							console.log($scope.project.projAdmin);
 						}
 					}
 					//console.log($scope.collaborators);
@@ -510,7 +539,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 				fileReader.onload = function (fileReaderEvent) {
 					$timeout(function () {
-						$scope.project.imagine.plan = fileReaderEvent.target.result;
+						$scope.project.worksheetStep.theWorksheet = fileReaderEvent.target.result;
 					}, 0);
 				};
 			}

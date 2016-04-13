@@ -73,7 +73,7 @@
                                 <th>Grade(s)</th>
                                 <th>Topic</th>
                             </tr>
-                            <tr class="searchRow" ng-repeat="std in standards | filter:searchText" data-drag="true" ng-model="standards" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}">
+                            <tr class="searchRow" ng-repeat="std in standards | filter:searchText" data-drag="true" ng-model="standards" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}" style="width:35%">
                                 <td class = "line-break">{{std.benchmark}}</td>
                                 <td class = "line-break">{{std.description}}</td>
                                 <td>{{std.subject}}</td>
@@ -111,13 +111,26 @@
                  </ul> -->
             </div>
             <div class="col-sm-7  col-md-8 main" data-ng-hide="authentication.user._id==NULL">
-                    <h2 class="sub-header">Design : <input type="text" placeholder="Project Name" data-ng-model="project.name"></h2>
-                    <h4 class="sub-header" style="display: inline-block;">Grade(s) : <input type="number" min="0" max="12" placeholder="3" data-ng-model="project.minGrade">
-                        - <input type="number" min="0" max="12" placeholder="5" data-ng-model="project.maxGrade"></h4>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn" ng-class="{ 'active btn-success': (project.isPublic === true)}" ng-click="project.isPublic = true">Public</button>
-                        <button type="button" class="btn" ng-class="{ 'active btn-success': (project.isPublic === false)}" ng-click="project.isPublic = false">Private</button>
-                    </div>
+                  
+                    <div style="font-size:2em; display: block;" class="sub-header">Design : <input id="name" type="text" placeholder="{{project.name}}" data-ng-model="project.name">
+
+                  <span style="font-size:55%;" data-ng-init="isPublic = true">&nbsp;&nbsp; Project is:</span>
+                  <div class="btn-group" role="group" style="font-size:1em;">
+                      <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === true)}" ng-click="isPublic = true">Public</button>
+                      <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === false)}" ng-click="isPublic = false">Private</button>
+                  </div>
+                </div>
+
+
+                <div>
+                <h4 class="sub-header" style="display: inline-block;">Grade(s) : <input type="number" min="0" max="12" placeholder="3" data-ng-model="project.minGrade">
+                    - <input type="number" min="0" max="12" placeholder="5" data-ng-model="project.maxGrade"></h4>
+
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <button style="background-color:#fbc650" type="button" class="btn" ng-class="" ng-click="editCollab(collab)" data-ng-show="authentication.user._id === project.user._id">Add Collaborator</button>
+                  <input type="text" placeholder="Collaborator Email" data-ng-model="collab" data-ng-show="authentication.user._id === project.user._id">
+                </div>
+                   
                     <div data-drop="true" data-ng-model='project.askStandardStep' jqyoui-droppable="{multiple:true}">
                     <div class="panel panel-blue">
                         <div class="panel-heading">
@@ -328,7 +341,7 @@
                             <br>
                             <!-- Picture upload -->
                             <div class="form-group text-center" ng-init="setImgURL(project)">
-                                <img data-ng-src="{{project.imagine.plan}}" alt="No Picture Uploaded Yet" class="img-thumbnail">
+                                <img data-ng-src="{{project.worksheetStep.theWorksheet}}" alt="No Picture Uploaded Yet" class="img-thumbnail">
                                     </div>
                             <div class="text-center form-group">
                                 <span class="btn btn-default btn-file">

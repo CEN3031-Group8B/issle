@@ -6,73 +6,102 @@
 var _ = require('lodash'),
 	path = require('path'),
 	mongoose = require('mongoose'),
-	Standard = mongoose.model('Standard'),
+	Schools = mongoose.model('Schools'),
 	errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-/**
- * Create a Standard
- */
+	
 exports.create = function(req, res) {
-	var standard = new Standard(req.body);
-	standard.user = req.user;
+	var schools = new Schools(req.body);
+	//standard.user = req.user;
 
-	standard.save(function(err) {
+	schools.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(standard);
+			res.jsonp(schools);
 		}
 	});
 };
-
-/**
- * Show the current Standard
- */
 exports.read = function(req, res) {
-	res.jsonp(req.standard);
+	res.jsonp(req.schools);
 };
-
-/**
- * Update a Standard
- */
 exports.update = function(req, res) {
-	var standard = req.standard ;
+	var schools = req.schools ;
 
-	standard = _.extend(standard , req.body);
+	//schools = _.extend(standard , req.body);
 
-	standard.save(function(err) {
+	schools.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(standard);
+			res.jsonp(schools);
 		}
 	});
 };
-
-/**
- * Delete an Standard
- */
+	
+	
 exports.delete = function(req, res) {
-	var standard = req.standard ;
+	var schools = req.schools ;
 
-	standard.remove(function(err) {
+	schools.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(standard);
+			res.jsonp(schools);
 		}
 	});
 };
 
-/**
- * List of Standards
- */
+exports.list = function(req, res) {
+/*
+  Schools.find().exec(function(err, schools) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      res.json(schools);
+    }
+  });
+  */
+  if(req.query.county){
+	Schools.find().
+		where('county').equals(req.query.county).
+		//where('grade').gte(req.query.minGrade).lte(req.query.maxGrade).
+		//sort('-created').populate('user', 'displayName').
+		exec(function(err, schools) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			console.log(schools);
+			res.jsonp(schools);
+		}
+	});
+  }
+  else{
+  Schools.find().
+		//where('grade').gte(req.query.minGrade).lte(req.query.maxGrade).
+		//sort('county');
+		//sort('-created').populate('user', 'displayName').
+		exec(function(err, schools) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(schools);
+		}
+	});
+  }
+  
+};	
+/*
 exports.list = function(req, res) { 
 	//this is where the search querries for search by standards are created
 	//the way the search works is by a hiarchy
@@ -80,6 +109,7 @@ exports.list = function(req, res) {
 	//if a description keyword is put in and but not a standard then that takes priority
 	//if none of the text based search parameters are put in then it first checks if thier is a subject
 	//if there is put it in with the query if not, then just search by the min and max grade.
+	console.log('tried to query');
 	if(req.query.benchmark) {
 	Standard.find().
 		where('benchmark').equals(req.query.benchmark).
@@ -135,17 +165,16 @@ exports.list = function(req, res) {
 		}
 	});
 	}
-	
 };
+	*/
 
-/**
- * Standard middleware
- */
-exports.standardByID = function(req, res, next, id) { Standard.findById(id).populate('user', 'displayName').exec(function(err, standard) {
-		console.log('got here');
-		if (err) return next(err);
-		if (! standard) return next(new Error('Failed to load Standard ' + id));
-		req.standard = standard ;
-		next();
-	});
+exports.schoolsByID = function(req, res, next, id) {
+  Schools.findById(id).exec(function(err, schools) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      req.schools = schools;
+      next();
+    }
+  });
 };
