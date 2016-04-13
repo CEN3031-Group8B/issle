@@ -1,7 +1,7 @@
 'use strict';
 // Projects controller
 
-angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$sce', '$location', '$window', '$timeout', 'Authentication', 'Projects', 'FileUploader', 'linkify', 'Users', 'selectionModel',
+angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$sce', '$location', '$window', '$timeout', 'Authentication', 'Projects', 'FileUploader', 'linkify', 'Users',
 	function($scope, $stateParams, $sce, $location, $window, $timeout, Authentication, Projects, FileUploader, linkify , Users ) {
 		$scope.authentication = Authentication;
 		$scope.collaborators = [];
