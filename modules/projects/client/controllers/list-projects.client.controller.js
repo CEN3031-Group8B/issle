@@ -20,8 +20,8 @@ angular.module('projects').controller('list-ProjectsController' , ['$scope', '$s
         $scope.projects = Projects.query({projectName:search.searchName});
       } else if(search.searchText) {
         $scope.projects = Projects.query({benchmark:search.searchText});
-      } else if(search.mainSubject) {
-        $scope.projects = Projects.query({minGrade:search.minGrade,maxGrade:search.maxGrade,mainSub:search.mainSubject});
+      } else if(search.subject) {
+        $scope.projects = Projects.query({minGrade:search.minGrade,maxGrade:search.maxGrade,subject:search.subject});
       } else {
         $scope.projects = Projects.query({minGrade:search.minGrade,maxGrade:search.maxGrade});
       }
@@ -99,6 +99,5 @@ angular.module('projects').controller('list-ProjectsController' , ['$scope', '$s
         return num;
       }
     };
-
 	}
 ]);
