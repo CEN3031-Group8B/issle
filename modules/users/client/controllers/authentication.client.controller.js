@@ -10,7 +10,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 	$scope.schoolsC=[];
 	$scope.counties = Counties.query();
 	$scope.countyChange = function(){
-		$scope.schoolsC = Schools.query({county:$scope.county.trim()});
+		$scope.schoolsC = Schools.query({county:$scope.credentials.county.trim()});
 
 	};
 	// If user is signed in then redirect back home
