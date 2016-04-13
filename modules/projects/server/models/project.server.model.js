@@ -68,6 +68,9 @@ var ProjectSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
+	projAdmin:{
+		type: [Schema.ObjectId],
+	},
 	rating: {
 		ratings: [
 			{
@@ -183,6 +186,12 @@ var ProjectSchema = new Schema({
 	improveStandardStep: [dragListSchema],
 	improveStep:{
 		changeStep: {
+			type: String,
+			default: ''
+		}
+	},
+	worksheetStep:{
+		theWorksheet: {
 			type: String,
 			default: ''
 		}

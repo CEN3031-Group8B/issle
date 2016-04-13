@@ -1,85 +1,93 @@
 <section data-ng-controller="ProjectsController">
     <form class="container-fluid">
         <div class="row">
-            
             <!-- This is the start of the  standards side bar-->
-            <div data-ng-controller="StandardsController" class="col-sm-2 col-sm-offset-10 col-md-4 col-md-offset-8 sidebar">
-                
-                <h3 style="text-align:center">Search Standards by:</h3>
-                <div class="main row">
-                    <div style="text-align:left">
-                        
-                        
-                        <div ><span style="font-size:2em" class="blue glyphicon glyphicon-book" ></span>  Subject:
-                            <select style="height:27px; width: 175px" ng-model="search.subject">
-                                <option value="">Select one...</option>
-                                <option value="Dance">Dance</option>
-                                <option value="English Language Arts">English Language Arts</option>
-                                <option value="English Language Development">English Language Development</option>
-                                <option value="Gifted">Gifted</option>
-                                <option value="Health Education">Health Education</option>
-                                <option value="Mathematics">Mathematics</option>
-                                <option value="Music">Music</option>
-                                <option value="Physical Education">Physical Education</option>
-                                <option value="Science">Science</option>
-                                <option value="Social Studies">Social Studies</option>
-                                <option value="Special Skills">Special Skills</option>
-                                <option value="Theatre">Theatre</option>
-                                <option value="Visual Art">Visual Art</option>
-                            </select>
-                            
-                        </div>
+            <div data-ng-controller="StandardsController" class="col-sm-2 col-sm-offset-10 col-md-4 col-md-offset-8 sidebar"> 
+
+                    <h3 style="text-align:center">Search Standards by:</h3>
+                    <div class="main row">
+                        <div style="text-align:left">
+                          
+                          
+                              <div ><span style="font-size:2em" class="blue glyphicon glyphicon-book" ></span>  Subject: 
+                                <select style="height:27px; width: 175px" ng-model="search.subject">
+                                  <option value="">Select one...</option>
+                                  <option value="Dance">Dance</option>
+                                  <option value="English Language Arts">English Language Arts</option>
+                                  <option value="English Language Development">English Language Development</option>
+                                  <option value="Gifted">Gifted</option>
+                                  <option value="Health Education">Health Education</option>
+                                  <option value="Mathematics">Mathematics</option>
+                                  <option value="Music">Music</option>
+                                  <option value="Physical Education">Physical Education</option>
+                                  <option value="Science">Science</option>
+                                  <option value="Social Studies">Social Studies</option>
+                                  <option value="Special Skills">Special Skills</option>
+                                  <option value="Theatre">Theatre</option>
+                                  <option value="Visual Art">Visual Art</option>
+                                </select>
+
+                            </div>
+                      </div>
                     </div>
-                </div>
-                
-                
-                <div><span style="font-size:2em" class="gold glyphicon glyphicon-pencil" aria-hidden="true"></span>   Grade(s) :
-                    <select style="height:27px; width 50px" ng-model="search.minGrade">
-                        <option value="">Select one...</option>
-                        <option id="min0" value="0">K</option>
-                        <option id="min1" value="1">1</option>
-                        <option id="min2" value="2">2</option>
-                        <option id="min3" value="3">3</option>
-                        <option id="min4" value="4">4</option>
-                        <option id="min5" value="5">5</option>
-                        <option id="min6" value="6">6</option>
-                        <option id="min7" value="7">7</option>
-                        <option id="min8" value="8">8</option>
-                        <option id="min912" value="912">9-12</option>
-                    </select> -
-                    <select style="height:27px; width 50px" ng-model="search.maxGrade">
-                        <option value="">Select one...</option>
-                        <option id="max0" value="0">K</option>
-                        <option id="max1" value="1">1</option>
-                        <option id="max2" value="2">2</option>
-                        <option id="max3" value="3">3</option>
-                        <option id="max4" value="4">4</option>
-                        <option id="max5" value="5">5</option>
-                        <option id="max6" value="6">6</option>
-                        <option id="max7" value="7">7</option>
-                        <option id="max8" value="8">8</option>
-                        <option id="max912" value="912">9-12</option>
-                    </select>
-                </div>
-                
+
+                      
+                          <div><span style="font-size:2em" class="gold glyphicon glyphicon-pencil" aria-hidden="true"></span>   Grade(s) :
+                            <select style="height:27px; width 50px" ng-model="search.minGrade">
+                              <option value="">Select one...</option>
+                              <option id="min0" value="0">K</option>
+                              <option id="min1" value="1">1</option>
+                              <option id="min2" value="2">2</option>
+                              <option id="min3" value="3">3</option>
+                              <option id="min4" value="4">4</option>
+                              <option id="min5" value="5">5</option>
+                              <option id="min6" value="6">6</option>
+                              <option id="min7" value="7">7</option>
+                              <option id="min8" value="8">8</option>
+                              <option id="min912" value="912">9-12</option>
+                            </select> -
+                            <select style="height:27px; width 50px" ng-model="search.maxGrade">
+                              <option value="">Select one...</option>
+                              <option id="max0" value="0">K</option>
+                              <option id="max1" value="1">1</option>
+                              <option id="max2" value="2">2</option>
+                              <option id="max3" value="3">3</option>
+                              <option id="max4" value="4">4</option>
+                              <option id="max5" value="5">5</option>
+                              <option id="max6" value="6">6</option>
+                              <option id="max7" value="7">7</option>
+                              <option id="max8" value="8">8</option>
+                              <option id="max912" value="912">9-12</option>
+                            </select>
+                          </div>  
+
                 <h4 class="sub-header">Search : <input id="standard" type="text" placeholder="MAFS.912.A-APR.1.1" data-ng-model="standard_search"></h4>
-                <button id="submit" type="submit" class="btn btn-warning btn-block" ng-click="show = true; find(search)" style="width:50%">Search</button>
+                <button id="submit" type="submit" class="btn btn-warning btn-block" ng-click="show = true; find(search)" style="width:50%">Submit</button>
                 
-                <div class="panel panel-blue" ng-show="show">
-                    <div class="panel-heading"> <h2 class="panel-title"> Search Results </h2></div>
-                    <div class="panel-body">
-                        <h4 class="search-results">Displaying standard(s) selected: </h4>
-                        <!--Table containing the search results taken from the schema-->
-                        <br>
-                        <table class = "searchResults">
-                            <tr class = "searchRow">
-                                <th>Standard</th>
-                                <th>Summary</th>
-                                <th>Subject</th>
-                                <th>Grade(s)</th>
-                                <th>Topic</th>
-                            </tr>
-                            <tr class="searchRow" ng-repeat="std in standards | filter:searchText" data-drag="true" ng-model="standards" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}">
+
+                      <!--<div class="list-group">
+                        <a data-ng-repeat="std in standards" data-ui-sref="admin.user({userId: user._id})" class="list-group-item">
+                          <h4 class="list-group-item-heading" data-ng-bind="std.benchmark"></h4>
+                          <p class="list-group-item-text" data-ng-bind="std.description"></p>
+                        </a>
+                      </div>
+                      <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></pagination> -->
+
+                    <div class="panel panel-blue" ng-show="show">
+                        <div class="panel-heading"> <h2 class="panel-title"> Search Results </h2></div>
+                            <div class="panel-body">
+                            <h4 class="search-results">Displaying standard(s) selected: </h4>
+                            
+                            <br>
+                            <table class = "searchResults">
+                             <tr class = "searchRow">
+                               <th>Standard</th>
+                               <th>Summary</th>
+                               <th>Subject</th>
+                               <th>Grade(s)</th>
+                               <th>Topic</th>
+                             </tr>
+                               <tr class="searchRow" ng-repeat="std in standards | filter:searchText" data-drag="true" ng-model="standards" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep', scroll: false}" style="width:35%">
                                 <td class = "line-break">{{std.benchmark}}</td>
                                 <td class = "line-break">{{std.description}}</td>
                                 <td>{{std.subject}}</td>
@@ -119,25 +127,35 @@
             <!-- This is the main form with the various fileds the user has to fill out. It's linked to the database. -->
             
             <!--<div class="col-sm-7 col-sm-offset-3 col-md-8 col-md-offset-2 main" data-ng-hide="authentication.user._id==NULL" data-drop="true" ng-model='list4' jqyoui-droppable="{multiple:true}"> -->
-            
-            <div class="col-sm-7  col-md-8 main" data-ng-hide="authentication.user._id==NULL">
+
+            <div class="col-sm-7  col-md-8 main">
                 
-                <h2 class="sub-header">Design : <input id="name" type="text" placeholder="Project Name" data-ng-model="name"></h2>
-                
+                <div style="font-size:2em; display: block;" class="sub-header">Design : <input id="name" type="text" placeholder="Project Name" data-ng-model="name">
+
+                  <span style="font-size:55%;" data-ng-init="isPublic = true">&nbsp;&nbsp; Project is:</span>
+                  <div class="btn-group" role="group" style="font-size:1em;">
+                      <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === true)}" ng-click="isPublic = true">Public</button>
+                      <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === false)}" ng-click="isPublic = false">Private</button>
+                  </div>
+                </div>
+
+
+                <div>
                 <h4 class="sub-header" style="display: inline-block;">Grade(s) : <input type="number" min="0" max="12" placeholder="3" data-ng-model="minGrade">
                     - <input type="number" min="0" max="12" placeholder="5" data-ng-model="maxGrade"></h4>
-                
-                <span data-ng-init="isPublic = true">&nbsp;&nbsp; Project is:</span>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === true)}" ng-click="isPublic = true">Public</button>
-                    <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === false)}" ng-click="isPublic = false">Private</button>
+
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <button style="background-color:#fbc650" type="button" class="btn" ng-class="" ng-click="addCollab(collab)">Add Collaborator</button>
+                  <input type="text" placeholder="Collaborator Email" data-ng-model="collab">
                 </div>
-                <div data-drop="true" ng-model='askStandardStep' jqyoui-droppable="{multiple:true}">
+
+                <div data-drop="true" data-ng-model='askStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Ask: Identify the needs and constraints</h3>
                     </div>
                     <div class="panel-body">
+
                         <a name="1"><font size = "3">What is the goal of the project?</font></a>
                         <span class="glyphicon glyphicon-question-sign"
                             data-toggle="tooltip" data-original-title="Share" title ="Try imagining a simple learning objective that you want your students to gain from completing the assignment in mind. Make sure that this objective is broad enough so you can expand on it later. For example, 'I want to teach my students the science behind roller coasters' is a good, generic goal.">
@@ -155,16 +173,16 @@
                         <div class="askStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
-                            <ol ng-model="askStandardStep">
-                                <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}" onDrop="">{{item.benchmark}}</li>
-                                <li class="placeholder" ng-hide="askHideMe()">Add your Standards here</li>
+                            <ol>
+                                <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="askStandardStep.splice($index,1)"></span></li>
+                                <li class="placeholder">Add your Standards here</li><!--ng-hide="askHideMe()"-->
                             </ol>
                             <!-- </div> -->
                         </div>
                         </div>
                     </div>
                 </div>
-                <div data-drop="true" ng-model='researchStandardStep' jqyoui-droppable="{multiple:true}">
+                <div data-drop="true" data-ng-model='researchStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Research the problem</h3>
@@ -185,8 +203,8 @@
                         <div class="researchStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
-                            <ol>
-                                <li ng-repeat="item in researchStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="researchStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                            <ol data-ng-model="researchStandardStep">
+                                <li ng-repeat="item in researchStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="researchStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="researchStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="researchHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -194,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-                <div data-drop="true" ng-model='imagineStandardStep' jqyoui-droppable="{multiple:true}">
+                <div data-drop="true" data-ng-model='imagineStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Imagine: Develop possible solutions</h3>
@@ -209,8 +227,8 @@
                         <div class="imagineStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
-                            <ol>
-                                <li ng-repeat="item in imagineStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="imagineStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                            <ol data-ng-model="imagineStandardStep">
+                                <li ng-repeat="item in imagineStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="imagineStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="imagineStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="imagineHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -218,7 +236,7 @@
                         </div>
                     </div>
                 </div>
-                <div data-drop="true" ng-model='planStandardStep' jqyoui-droppable="{multiple:true}">
+                <div data-drop="true" data-ng-model='planStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Plan: Select a promising solution</h3>
@@ -239,8 +257,8 @@
                         <div class="planStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
-                            <ol>
-                                <li ng-repeat="item in planStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="planStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                            <ol data-ng-model="planStandardStep">
+                                <li ng-repeat="item in planStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="planStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="planStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="planHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -248,7 +266,7 @@
                     </div>
                 </div>
                 </div>
-                <div data-drop="true" ng-model='createStandardStep' jqyoui-droppable="{multiple:true}">
+                <div data-drop="true" data-ng-model='createStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Create: Build a prototype</h3>
@@ -264,8 +282,8 @@
                         <div class="createStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
-                            <ol>
-                                <li ng-repeat="item in createStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="createStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                            <ol data-ng-model="createStandardStep">
+                                <li ng-repeat="item in createStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="createStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="createStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="createHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -273,7 +291,7 @@
                     </div>
                 </div>
                 </div>
-                <div data-drop="true" ng-model='testStandardStep' jqyoui-droppable="{multiple:true}">
+                <div data-drop="true" data-ng-model='testStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Test and evaluate prototype</h3>
@@ -295,8 +313,8 @@
                         <div class="testStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
-                            <ol>
-                                <li ng-repeat="item in testStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="testStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                            <ol data-ng-model="testStandardStep">
+                                <li ng-repeat="item in testStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="testStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="testStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="testHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -304,7 +322,7 @@
                     </div>
                 </div>
                 </div>
-                <div data-drop="true" ng-model='improveStandardStep' jqyoui-droppable="{multiple:true}">
+                <div data-drop="true" data-ng-model='improveStandardStep' jqyoui-droppable="{multiple:true}">
                 <div class="panel panel-blue">
                     <div class="panel-heading">
                         <h3 class="panel-title">Improve: Redesign as needed</h3>
@@ -319,8 +337,8 @@
                         <div class="improveStandardCart">
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
-                            <ol>
-                                <li ng-repeat="item in improveStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="improveStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                            <ol data-ng-model="improveStandardStep">
+                                <li ng-repeat="item in improveStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="improveStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="improveStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="improveHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -346,7 +364,7 @@
                                 Select Image <input type="file" nv-file-select uploader="uploaderC" accept="image/jpeg">
                                     </span>
                         </div>
-                        
+
                         <br>
                     </div>
                 </div>
