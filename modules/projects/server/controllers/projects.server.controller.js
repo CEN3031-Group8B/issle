@@ -166,6 +166,10 @@
  exports.uploadDiagram = function (req,res){
 
 	 var project = req.project;
+	 console.log("body: " + req.body);
+	 console.log("files: " + req.files);
+	 console.log("file: " + req.file);
+	 console.log("buffer: " + req.file.buffer);
 	 // Upload Buffer from front-end client
 	 knoxClient.putBuffer(req.files.file.buffer, 'ProjectDrawings/' + req.files.file.name,{'Content-Type': 'image/jpeg'},function(uploadError){
 		 if (uploadError) {
@@ -174,13 +178,13 @@
 			 });
 		 } else {
 			 // Delete previous existing image
-			 knoxClient.deleteFile(project.imagine.plan.substring(project.imagine.plan.search('ProjectDrawings/')),{'Content-Type': 'image/jpeg'}, function(err){
+			 knoxClient.deleteFile(project.worksheetStep.theWorksheet.substring(project.worksheetStep.theWorksheet.search('ProjectDrawings/')),{'Content-Type': 'image/jpeg'}, function(err){
 				 if(err){
 					 return err.message;
 				 }
 			 });
 			 // Concatenate url onto image url
-			 project.imagine.plan = 'https://s3.amazonaws.com/issle/ProjectDrawings/' + req.files.file.name;
+			 project.worksheetStep.theWorksheet = 'https://s3.amazonaws.com/issle/ProjectDrawings/' + req.files.file.name;
 			 console.log('updating pic');
 			 project.save(function(err) {
 				 if (err) {

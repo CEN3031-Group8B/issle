@@ -120,6 +120,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				createStep: this.createStep,
 				testStep: this.testStep,
 				improveStep: this.improveStep,
+				worksheetStep: this.worksheetStep,
 				essentialDetails: this.essentialDetails,
 				rating: null
 			});
@@ -251,7 +252,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 			var project = $scope.project;
 
-			project.imagine.plan = '';
+			project.worksheetStep.theWorksheet = '';
 
 			project.$update(function() {
 
@@ -301,6 +302,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				testStep: project_old.testStep,
 				improveStandardStep: project_old.improveStandardStep,
 				improveStep: project_old.improveStep,
+				//worksheetStep:: project_old.worksheetStep,
 				essentialDetails: project_old.essentialDetails,
 				rating: null
 			});
@@ -410,7 +412,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 				fileReader.onload = function (fileReaderEvent) {
 					$timeout(function () {
-						$scope.project.imagine.plan = fileReaderEvent.target.result;
+						$scope.project.worksheetStep.theWorksheet = fileReaderEvent.target.result;
 					}, 0);
 				};
 			}

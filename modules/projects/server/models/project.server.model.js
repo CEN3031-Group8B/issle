@@ -190,6 +190,12 @@ var ProjectSchema = new Schema({
 			default: ''
 		}
 	},
+	worksheetStep:{
+		theWorksheet: {
+			type: String,
+			default: ''
+		}
+	},
 	essentialDetails: {
 		mathDetails: {
 			type: [SubjectSchema]
