@@ -267,24 +267,28 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		};
 
 		/////////////////////////////////////////////////////////////////////////////////////////////
+
+		$scope.incRemix = function(){
+ 			$scope.project.remixCount = $scope.project.remixCount + 1;
+             $scope.update();
+ 		};
+
 		// Remix Project
 
 		$scope.remix = function() {
-           console.log('In $scope.remix');
-           console.log(this.name);
-
-
 
            	var project_old = $scope.project;
            	var project_old_name = [];
            	project_old_name.push(project_old.name);
            	project_old_name.push(" Remix");
+
             var project = new Projects ({
 				name: project_old_name,
 				created: project_old.created,
-				user: project_old.user,
+				user: this.user,
 				status: project_old.status,
 				isPublic: project_old.isPublic,
+				projAdmin: this.collaborators,
 				minGrade: project_old.minGrade,
 				maxGrade: project_old.maxGrade,
 				askStandardStep: project_old.askStandardStep,
@@ -321,12 +325,12 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 				$location.path('projects/' + response._id);
 
+				$scope.project = project;
+ 				$scope.update();
 
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-
-
 			
 		};
 
