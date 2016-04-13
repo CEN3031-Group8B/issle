@@ -16,8 +16,9 @@
   },
   "scripts": {
     "start": "grunt",
-    "test": "grunt test",
-    "postinstall": "bower install --config.interactive=false"
+    "test" : "grunt test",
+    "test:single" : "istanbul cover -x *.test.js _mocha -- -R spec config/lib/app.js",
+    "postinstall": "bower install --config.interactive=false && grunt build"
   },
   "dependencies": {
     "acl": "~0.4.9",
