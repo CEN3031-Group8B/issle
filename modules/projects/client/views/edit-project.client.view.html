@@ -130,7 +130,25 @@
                   <button style="background-color:#fbc650" type="button" class="btn" ng-class="" ng-click="editCollab(collab)" data-ng-show="authentication.user._id === project.user._id">Add Collaborator</button>
                   <input type="text" placeholder="Collaborator Email" data-ng-model="collab" data-ng-show="authentication.user._id === project.user._id">
                 </div>
-                   
+                <div ><span style="font-size:2em" class="blue glyphicon glyphicon-book" for="mainSub"></span>Choose a Main Subject: 
+                    <select style="height:27px; width: 175px" id="mainSub" name="mainSub" ng-model="project.mainSub">
+                      <option value="">Select one...</option>
+                      <option value="Dance">Dance</option>
+                      <option value="English Language Arts">English Language Arts</option>
+                      <option value="English Language Development">English Language Development</option>
+                      <option value="Gifted">Gifted</option>
+                      <option value="Health Education">Health Education</option>
+                      <option value="Mathematics">Mathematics</option>
+                      <option value="Music">Music</option>
+                      <option value="Physical Education">Physical Education</option>
+                      <option value="Science">Science</option>
+                      <option value="Social Studies">Social Studies</option>
+                      <option value="Special Skills">Special Skills</option>
+                      <option value="Theatre">Theatre</option>
+                      <option value="Visual Art">Visual Art</option>
+                    </select>
+                </div>
+
                     <div data-drop="true" data-ng-model='project.askStandardStep' jqyoui-droppable="{multiple:true}">
                     <div class="panel panel-blue">
                         <div class="panel-heading">
