@@ -18,7 +18,7 @@
     position: relative;
     width: 360px;
     height: 360px;
-    padding: 30px;
+    padding: 20px;
     /*2.8em = 2em*1.4 (2em = half the width of a link with img, 1.4 = sqrt(2))*/
     border: dashed 1px;
     border-radius: 50%;
@@ -26,13 +26,13 @@
 }
 
 .circle-container img { display: block; width: 100%; }
-.deg0 { transform: translate(124px, -44px); } /* 12em = half the width of the wrapper */
-.deg51 { transform:  translate(48px,124px) rotate(55deg) translate(0,-180px) rotate(-55deg); }
-.deg102 { transform:  translate(-42px,124px) rotate(102deg) translate(0,-180px) rotate(-102deg); }
-.deg153 { transform:  translate(-114px,124px) rotate(153deg) translate(0,-180px) rotate(-153deg); }
-.deg207 { transform:  translate(114px,90px) rotate(207deg) translate(0,-180px) rotate(-207deg); }
-.deg258 { transform:  translate(16px,90px) rotate(258deg) translate(0,-180px) rotate(-258deg); }
-.deg309 { transform: translate(-84px,90px) rotate(304deg) translate(0,-180px) rotate(-304deg); }
+.deg0 { width: 110px; transform: translate(105px, 144px) translate(0,-180px)} 
+.deg51 { width: 110px; transform: translate(-15px, 144px) rotate(55deg) translate(0,-180px) rotate(-55deg);}
+.deg102 { width: 110px; transform: translate(105px, 110px) rotate(102deg) translate(0,-180px) rotate(-102deg);}
+.deg153 { width: 110px; transform: translate(-15px, 110px) rotate(153deg) translate(0,-180px) rotate(-153deg);}
+.deg207 { width: 110px; transform: translate(105px, 76px) rotate(207deg) translate(0,-180px) rotate(-207deg);}
+.deg258 { width: 110px; transform: translate(-15px, 76px) rotate(258deg) translate(0,-180px) rotate(-258deg);}
+.deg309 { width: 110px; transform: translate(105px, 42px) rotate(304deg) translate(0,-180px) rotate(-304deg); }
 
 .btn-circle.btn-xl {
   width: 70px;
