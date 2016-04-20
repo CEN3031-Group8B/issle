@@ -401,7 +401,14 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		$scope.remix = function() {
 
+			/*
+				Remix function allows users to take any public project, 
+				copy its contents and make it their own.
+			*/
+
+			// copies contents of current project
            	var project_old = $scope.project;
+           	// concatenates ", Remix" to the title
            	var project_old_name = [];
            	project_old_name.push(project_old.name);
            	project_old_name.push(" Remix");
