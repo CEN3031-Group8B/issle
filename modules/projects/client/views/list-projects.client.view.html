@@ -37,7 +37,7 @@
           <span style="font-size:5em" class="gold glyphicon glyphicon-pencil" aria-hidden="true"></span>
           <h3>Search by Grade</h3>
           <div class="panel panel-blue">
-            <div class="panel-heading">I want standards for the following grades...</div>
+            <div class="panel-heading">I want projects for the following grades...</div>
             <div class="panel-body">
               <h4>Grade(s) :
                 <select style="height:27px" ng-model="search.minGrade">
@@ -187,7 +187,7 @@
               </div>
     <br>
     <br>
-    <div class = "text-center"><button id="submit" type="submit" class="btn btn-warning btn-block" ng-click="show = true; find(search)" style="width:50%; margin-left:25%">Submit</button></div>
+    <div class = "text-center"><button id="submit" type="submit" class="btn btn-warning btn-block" ng-click="show = true; find(search)" style="width:50%; margin-left:25%">Search for Projects</button></div>
     <br>
     <div class="panel panel-blue" ng-show="show">
       <div class="panel-heading">  </div>
@@ -224,7 +224,7 @@
                                     </h5>
                               </div>
                               <div class="col-xs-6 col-md-3">
-                                <h5>Main Subject: {{project.mainSub}}</h5>
+                                <h5>Main Subject: {{prj.mainSub}}</h5>
                               </div>
                       </div>
                 </div>
