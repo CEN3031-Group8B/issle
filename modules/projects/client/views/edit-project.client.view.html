@@ -1,7 +1,7 @@
 <section data-ng-controller="ProjectsController" data-ng-init="findOne()">
     <div data-ng-show="project.user._id">
         <form class="container-fluid">
-            <div class="row" data-ng-show="authentication.user._id===project.user._id">
+            <div class="row" data-ng-show="projectOwnership">
                 <div data-ng-controller="StandardsController" class="col-sm-2 col-sm-offset-10 col-md-4 col-md-offset-8 sidebar">
                 
                 <h3 style="text-align:center">Search Standards by:</h3>
@@ -73,7 +73,7 @@
                                 <th>Grade(s)</th>
                                 <th>Topic</th>
                             </tr>
-                            <tr class="searchRow" ng-repeat="std in standards | filter:searchText" data-drag="true" ng-model="standards" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}">
+                            <tr class="searchRow" ng-repeat="std in standards | filter:searchText" data-drag="true" ng-model="standards" data-jqyoui-options="{revert: 'invalid', helper: 'clone', appendTo: 'body'}" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}" style="width:35%">
                                 <td class = "line-break">{{std.benchmark}}</td>
                                 <td class = "line-break">{{std.description}}</td>
                                 <td>{{std.subject}}</td>
@@ -111,14 +111,27 @@
                  </ul> -->
             </div>
             <div class="col-sm-7  col-md-8 main" data-ng-hide="authentication.user._id==NULL">
-                    <h2 class="sub-header">Design : <input type="text" placeholder="Project Name" data-ng-model="project.name"></h2>
-                    <h4 class="sub-header" style="display: inline-block;">Grade(s) : <input type="number" min="0" max="12" placeholder="3" data-ng-model="project.minGrade">
-                        - <input type="number" min="0" max="12" placeholder="5" data-ng-model="project.maxGrade"></h4>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn" ng-class="{ 'active btn-success': (project.isPublic === true)}" ng-click="project.isPublic = true">Public</button>
-                        <button type="button" class="btn" ng-class="{ 'active btn-success': (project.isPublic === false)}" ng-click="project.isPublic = false">Private</button>
-                    </div>
-                    <div data-drop="true" data-ng-model='askStandardStep' jqyoui-droppable="{multiple:true}">
+                  
+                    <div style="font-size:2em; display: block;" class="sub-header">Design : <input id="name" type="text" placeholder="{{project.name}}" data-ng-model="project.name">
+
+                  <span style="font-size:55%;" data-ng-init="isPublic = true">&nbsp;&nbsp; Project is:</span>
+                  <div class="btn-group" role="group" style="font-size:1em;">
+                      <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === true)}" ng-click="isPublic = true">Public</button>
+                      <button type="button" class="btn" ng-class="{ 'active btn-success': (isPublic === false)}" ng-click="isPublic = false">Private</button>
+                  </div>
+                </div>
+
+
+                <div>
+                <h4 class="sub-header" style="display: inline-block;">Grade(s) : <input type="number" min="0" max="12" placeholder="3" data-ng-model="project.minGrade">
+                    - <input type="number" min="0" max="12" placeholder="5" data-ng-model="project.maxGrade"></h4>
+
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <button style="background-color:#fbc650" type="button" class="btn" ng-class="" ng-click="editCollab(collab)" data-ng-show="authentication.user._id === project.user._id">Add Collaborator</button>
+                  <input type="text" placeholder="Collaborator Email" data-ng-model="collab" data-ng-show="authentication.user._id === project.user._id">
+                </div>
+                   
+                    <div data-drop="true" data-ng-model='project.askStandardStep' jqyoui-droppable="{multiple:true}">
                     <div class="panel panel-blue">
                         <div class="panel-heading">
                             <h3 class="panel-title">Ask: Identify the needs and constraints</h3>
@@ -141,7 +154,7 @@
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
                             <ol>
-                                <li ng-repeat="item in askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li ng-repeat="item in project.askStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="project.askStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="project.askStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="askHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -150,7 +163,7 @@
                         </div>
                     </div>
                     </div>
-                    <div data-drop="true" ng-model='researchStandardStep' jqyoui-droppable="{multiple:true}">
+                    <div data-drop="true" data-ng-model='project.researchStandardStep' jqyoui-droppable="{multiple:true}">
                     <div class="panel panel-blue">
                         <div class="panel-heading">
                             <h3 class="panel-title">Research the problem</h3>
@@ -173,7 +186,7 @@
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
                             <ol>
-                                <li ng-repeat="item in researchStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="researchStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li ng-repeat="item in project.researchStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="project.researchStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="project.researchStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="researchHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -181,7 +194,7 @@
                         </div>
                     </div>
                     </div>
-                    <div data-drop="true" ng-model='imagineStandardStep' jqyoui-droppable="{multiple:true}">
+                    <div data-drop="true" data-ng-model='project.imagineStandardStep' jqyoui-droppable="{multiple:true}">
                     <div class="panel panel-blue">
                         <div class="panel-heading">
                             <h3 class="panel-title">Imagine: Develop possible solutions</h3>
@@ -198,7 +211,7 @@
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
                             <ol>
-                                <li ng-repeat="item in imagineStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="imagineStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li ng-repeat="item in project.imagineStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="project.imagineStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="project.imagineStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="imagineHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -206,7 +219,7 @@
                         </div>
                     </div>
                     </div>
-                    <div data-drop="true" ng-model='planStandardStep' jqyoui-droppable="{multiple:true}">
+                    <div data-drop="true" data-ng-model='project.planStandardStep' jqyoui-droppable="{multiple:true}">
                     <div class="panel panel-blue">
                         <div class="panel-heading">
                             <h3 class="panel-title">Plan: Select a promising solution</h3>
@@ -229,7 +242,7 @@
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
                             <ol>
-                                <li ng-repeat="item in planStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="planStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li ng-repeat="item in project.planStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="project.planStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="project.plamStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="planHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -237,7 +250,7 @@
                         </div>
                     </div>
                     </div>
-                    <div data-drop="true" ng-model='createStandardStep' jqyoui-droppable="{multiple:true}">
+                    <div data-drop="true" data-ng-model='project.createStandardStep' jqyoui-droppable="{multiple:true}">
                     <div class="panel panel-blue">
                         <div class="panel-heading">
                             <h3 class="panel-title">Create: Build a prototype</h3>
@@ -254,7 +267,7 @@
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
                             <ol>
-                                <li ng-repeat="item in createStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="createStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li ng-repeat="item in project.createStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="project.createStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="project.createStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="createHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -262,7 +275,7 @@
                         </div>
                     </div>
                     </div>
-                    <div data-drop="true" ng-model='testStandardStep' jqyoui-droppable="{multiple:true}">
+                    <div data-drop="true" data-ng-model='project.testStandardStep' jqyoui-droppable="{multiple:true}">
                     <div class="panel panel-blue">
                         <div class="panel-heading">
                             <h3 class="panel-title">Test and evaluate prototype</h3>
@@ -285,7 +298,7 @@
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
                             <ol>
-                                <li ng-repeat="item in testStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="testStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li ng-repeat="item in project.testStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="project.testStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="project.testStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="testHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -293,7 +306,7 @@
                         </div>
                     </div>
                     </div>
-                    <div data-drop="true" ng-model='improveStandardStep' jqyoui-droppable="{multiple:true}">
+                    <div data-drop="true" data-ng-model='project.improveStandardStep' jqyoui-droppable="{multiple:true}">
                     <div class="panel panel-blue">
                         <div class="panel-heading">
                             <h3 class="panel-title">Improve: Redesign as needed</h3>
@@ -310,7 +323,7 @@
                             <!--<div class="ui-widget-content">
                              if this is wanted then add (adds a grey box which can be done a diff way probably) <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" /> to layout.server.view.html-->
                             <ol>
-                                <li ng-repeat="item in improveStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="improveStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}</li>
+                                <li ng-repeat="item in project.improveStandardStep track by $index" ng-show="item.benchmark" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" data-ng-model="project.improveStandardStep" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.benchmark}}<span class="glyphicon glyphicon-trash" ng-click="project.improveStandardStep.splice($index,1)"></span></li>
                                 <li class="placeholder" ng-hide="improveHideMe()">Add your Standards here</li>
                             </ol>
                             <!-- </div> -->
@@ -328,7 +341,7 @@
                             <br>
                             <!-- Picture upload -->
                             <div class="form-group text-center" ng-init="setImgURL(project)">
-                                <img data-ng-src="{{project.imagine.plan}}" alt="No Picture Uploaded Yet" class="img-thumbnail">
+                                <img data-ng-src="{{project.worksheetStep.theWorksheet}}" alt="No Picture Uploaded Yet" class="img-thumbnail">
                                     </div>
                             <div class="text-center form-group">
                                 <span class="btn btn-default btn-file">
@@ -362,7 +375,8 @@
             </div>
         </form>
         <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
-            <span data-ng-hide="authentication.user._id===project.user._id">
+            <!--<span data-ng-hide="authentication.user._id===project.user._id">-->
+            <span data-ng-hide="projectOwnership">
                 <!-- goes in previous line after span... data-ng-hide="authentication.user._id===project.user._id"-->
                 <div class="alert alert-success" role="alert">
                     <p>Project Page Not Available. This could be because you did not create this project, or you're not signed in to see it.</p>

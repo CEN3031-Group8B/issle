@@ -20,6 +20,7 @@
                         <div ng-repeat="n in range(1,project.rating.avg_rating,1)" class="gold glyphicon glyphicon-star"></div>
                         ({{project.rating.avg_rating.toPrecision(2)}}/5.0 stars)
                     </h4>
+                    <h4>Remixed {{project.remixCount}} times</h4>
                 </div>
                 
                 <div class="panel panel-blue">
@@ -35,7 +36,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.ask.Constraints)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-                        <!--<h5 class="tab"><span ng-bind-html="linkify(askStandardStep)"><span></h5>-->
+                        <ol>
+                                <li ng-repeat="item in project.askStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.askStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -52,7 +55,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.research.resources)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-
+                        <ol>
+                                <li ng-repeat="item in project.researchStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.researchStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -65,6 +70,10 @@
                         
                         <h5 class="tab"><span ng-bind-html="linkify(project.imagine.listStep)"><span></h5>
                         </br>
+                        <h4 class="blue">Linked Standards:</h4>
+                        <ol>
+                                <li ng-repeat="item in project.imagineStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.imagineStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -81,7 +90,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.plan.resources)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-
+                        <ol>
+                                <li ng-repeat="item in project.planStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.planStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -95,7 +106,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.createStep.buildStep)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-
+                        <ol>
+                                <li ng-repeat="item in project.createStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.createStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -112,7 +125,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.testStep.successStep)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-
+                        <ol>
+                                <li ng-repeat="item in project.testStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.testStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -126,7 +141,9 @@
                         <h5 class="tab"><span ng-bind-html="linkify(project.improveStep.changeStep)"><span></h5>
                         </br>
                         <h4 class="blue">Linked Standards:</h4>
-
+                        <ol>
+                                <li ng-repeat="item in project.improveStandardStep track by $index" ng-show="item.benchmark" data-ng-model="project.improveStandardStep">{{item.benchmark}}</li>
+                        </ol>
                     </div>
                 </div>
                 
@@ -135,7 +152,7 @@
                         <h3 class="panel-title">Worksheet</h3>
                     </div>
                     <div class="panel-body">
-                        <img src="{{project.imagine.plan}}" class="img-thumbnail" alt="No Image"/>
+                        <img src="{{project.worksheetStep.theWorksheet}}" class="img-thumbnail" alt="No Image"/>
                         </br>
                     </div>
                 </div>
@@ -285,18 +302,19 @@
             <div class="row" style="padding-bottom: 1%">
                 <div class="col-md-12">
                     <div class="pull-right">
-                        
-                        <a class="btn btn-info" data-ng-show="authentication.user._id!==NULL" data-ng-click="remix();">Remix</button </a>
+                        <!-- remix button, allows users to copy contents of any public project and make it their own-->
+                        <a class="btn btn-info" data-ng-show="authentication.user._id!==NULL" data-ng-click="incRemix(); remix()">Remix</button </a>
                             
                             <a class="btn btn-success" onclick="window.print()">
                                 Print Project
                             </a>
                             </div>
-                    <div class="pull-right" data-ng-show="authentication.user._id === project.user._id">
+                    <!--<div class="pull-right" data-ng-show="authentication.user._id === project.user._id">-->
+                        <div class="pull-right" data-ng-show="projectOwnership">
                         <a id="edit" class="btn btn-primary" data-ui-sref="projects.edit({projectId: project._id})">
                             Edit
                         </a>
-                        <a id="delete" class="btn btn-danger" data-ng-click="remove()">
+                        <a id="delete" class="btn btn-danger" data-ng-click="remove()" data-ng-show="authentication.user._id === project.user._id">
                             Delete
                         </a>
                     </div>
@@ -305,7 +323,7 @@
         </div>
         
         <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
-            <span data-ng-hide="project.status==='Active'&&project.isPublic||authentication.user._id===project.user._id">
+            <span data-ng-hide="project.status==='Active'&&project.isPublic||projectOwnership">
                 <div class="alert alert-success" role="alert">
                     <p>Project Page Not Available. This could be because the project isn't public, is in development, or you're not signed in to see it.</p>
                     <p><a data-ui-sref="home" class="alert-link">Click here to return to the home page</a></p>

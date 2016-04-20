@@ -1,17 +1,23 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication',
-  function ($scope, $state, $http, $location, $window, Authentication) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'CountiesAndSchools', 'Schools', 'Counties',
+  function ($scope, $state, $http, $location, $window, Authentication, CountiesAndSchools, Schools, Counties) {
     $scope.authentication = Authentication;
-
     // Get an eventual error defined in the URL query string:
-    $scope.error = $location.search().err;
+	$scope.error = $location.search().err;
+	$scope.countiesandschools = CountiesAndSchools.query();
+	$scope.schools = Schools.query();
+	$scope.schoolsC=[];
+	$scope.counties = Counties.query();
+	$scope.countyChange = function(){
+		$scope.schoolsC = Schools.query({county:$scope.credentials.county.trim()});
 
-    // If user is signed in then redirect back home
-    if ($scope.authentication.user) {
-      $location.path('/');
-    }
-
+	};
+	// If user is signed in then redirect back home
+     if ($scope.authentication.user) {
+       $location.path('/');
+     }
+	
     $scope.signup = function () {
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         // If successful we assign the response to the global user model
