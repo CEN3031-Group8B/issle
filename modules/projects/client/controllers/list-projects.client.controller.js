@@ -99,6 +99,5 @@ angular.module('projects').controller('list-ProjectsController' , ['$scope', '$s
         return num;
       }
     };
-
 	}
 ]);

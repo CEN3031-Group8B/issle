@@ -37,7 +37,7 @@
           <span style="font-size:5em" class="gold glyphicon glyphicon-pencil" aria-hidden="true"></span>
           <h3>Search by Grade</h3>
           <div class="panel panel-blue">
-            <div class="panel-heading">I want projects for the following grades...</div>
+            <div class="panel-heading">I want standards for the following grades...</div>
             <div class="panel-body">
               <h4>Grade(s) :
                 <select style="height:27px" ng-model="search.minGrade">
@@ -76,12 +76,12 @@
     <h3 style="text-align:center">Search by Project Name</h3>
     <div class="panel panel-blue">
     <div class="input-group input-group-lg">
-      <span class="input-group-addon" id="sizing-addon1">By Project...</span>
+      <span class="input-group-addon" id="sizing-addon1">Projects with this name...</span>
       <input id="project" type="text" class="form-control" placeholder="eg. Raz's Balloons" aria-describedby="sizing-addon1" ng-model= "search.searchName" ng-keypress = "enterPressName($event, search, show)">
     </div>
     </div>
     <br>
-    <div data-ng-controller="StandardsController">
+    </div> <div data-ng-controller="StandardsController">
     <div style="text-align:center">
     <h3 style="text-align:center">Search by Standard</h3>
     <div class="panel panel-blue">
@@ -185,10 +185,9 @@
                   </div>
                 </div>
               </div>
-
     <br>
     <br>
-    <div class = "text-center"><button id="submit" type="submit" class="btn btn-warning btn-block" ng-click="show = true; find(search)" style="width:50%; margin-left:25%">Search for Projects</button></div>
+    <div class = "text-center"><button id="submit" type="submit" class="btn btn-warning btn-block" ng-click="show = true; find(search)" style="width:50%; margin-left:25%">Submit</button></div>
     <br>
     <div class="panel panel-blue" ng-show="show">
       <div class="panel-heading">  </div>
@@ -224,8 +223,6 @@
                                         </div> {{noRatingCheck(prj.rating.avg_rating)}}
                                     </h5>
                               </div>
-                              <div class="col-xs-6 col-md-3"><h5>
-                                Main Subject: {{prj.mainSub}}</h5></div>
                       </div>
                 </div>
 
