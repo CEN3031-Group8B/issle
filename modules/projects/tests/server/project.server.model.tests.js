@@ -23,6 +23,10 @@ describe('Project Model Unit Tests:', function() {
 			lastName: 'Name',
 			displayName: 'Full Name',
 			email: 'test@test.com',
+			school: 'school',
+			county: 'county',
+			age: '0',
+			gradesTaught: '9',
 			username: 'username',
 			password: 'password'
 		});
