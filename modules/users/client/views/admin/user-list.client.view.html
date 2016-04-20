@@ -10,6 +10,11 @@
     </div>
   </div>
   <div class="list-group">
+    <!--Admin Control Page
+    Shows all accounts and their information:
+    username, email, school, age, and grades taught.
+    Allows quick analysis of demographics.
+     -->
     <a data-ng-repeat="user in pagedItems" data-ui-sref="admin.user({userId: user._id})" class="list-group-item">
       <div class="row">
         <div class="col-md-3"><strong>Username</strong></div>
