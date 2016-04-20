@@ -39,9 +39,9 @@ describe('Standard CRUD tests', function() {
 			displayName: 'Full Name',
 			email: 'test@test.com',
 			school: 'school',
-		    county: 'county',
-		    age: '0',
-		    gradesTaught: '9',
+			county: 'county',
+			age: '0',
+			gradesTaught: '9',
 			username: credentials.username,
 			password: credentials.password,
 			provider: 'local'

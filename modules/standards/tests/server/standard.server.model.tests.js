@@ -24,9 +24,9 @@ describe('Standard Model Unit Tests:', function() {
 			displayName: 'Full Name',
 			email: 'test@test.com',
 			school: 'school',
-		    county: 'county',
-		    age: '0',
-		    gradesTaught: '9',
+			county: 'county',
+			age: '0',
+			gradesTaught: '9',
 			username: 'username',
 			password: 'password'
 		});
