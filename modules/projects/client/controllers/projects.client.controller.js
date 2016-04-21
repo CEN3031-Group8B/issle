@@ -17,6 +17,129 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			url: '/api/projects/picture'
 		});
 
+		$scope.setAskButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			if(this.ask !== undefined){
+				if(this.ask.learningObjective !== undefined){
+					if(this.ask.Constraints !== undefined){
+						if(this.ask.learningObjective !== "" && this.ask.Constraints !== ""){
+							document.getElementById(bID).className = stChange;
+						}
+						else{
+							document.getElementById(bID).className = stOrig;
+						}
+					}
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setResearchButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			console.log(this.research);
+			if(this.research !== undefined){
+				if(this.research.focus !== undefined){
+					if(this.research.resources !== undefined){
+						if(this.research.focus !== "" && this.research.resources !== ""){
+							document.getElementById(bID).className = stChange;
+						}
+						else{
+							document.getElementById(bID).className = stOrig;
+						}
+					}
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setImagineButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			console.log(this.research);
+			if(this.imagine !== undefined){
+				if(this.imagine.listStep !== "" ){
+					document.getElementById(bID).className = stChange;
+				}
+				else{
+					document.getElementById(bID).className = stOrig;
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setPlanButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			if(this.plan !== undefined){
+				if(this.plan.selectStep !== undefined){
+					if(this.plan.resources !== undefined){
+						if(this.plan.selectStep !== "" && this.plan.resources !== ""){
+							document.getElementById(bID).className = stChange;
+						}
+						else{
+							document.getElementById(bID).className = stOrig;
+						}
+					}
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setCreateButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			if(this.createStep !== undefined){
+				if(this.createStep.buildStep !== ""){
+					document.getElementById(bID).className = stChange;
+				}
+				else{
+					document.getElementById(bID).className = stOrig;
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setTestButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			if(this.testStep !== undefined){
+				if(this.testStep.designStep !== undefined){
+					if(this.testStep.successStep !== undefined){
+						if(this.testStep.designStep !== "" && this.testStep.successStep !== ""){
+							document.getElementById(bID).className = stChange;
+						}
+						else{
+							document.getElementById(bID).className = stOrig;
+						}
+					}
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
+		$scope.setImproveButt = function(bID , bDeg){
+			var stChange = "btn btn-success ".concat(bDeg);
+			var stOrig = "btn btn-default ".concat(bDeg);
+			if(this.improveStep !== undefined){
+				if(this.improveStep.changeStep !== ""){
+					document.getElementById(bID).className = stChange;
+				}
+				else{
+					document.getElementById(bID).className = stOrig;
+				}
+			}
+			else{
+					document.getElementById(bID).className = stOrig;
+			}
+		}
 		// Create new Project
 		$scope.create = function() {
 			// Create new Project object
@@ -278,7 +401,14 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		$scope.remix = function() {
 
+			/*
+				Remix function allows users to take any public project, 
+				copy its contents and make it their own.
+			*/
+
+			// copies contents of current project
            	var project_old = $scope.project;
+           	// concatenates ", Remix" to the title
            	var project_old_name = [];
            	project_old_name.push(project_old.name);
            	project_old_name.push(" Remix");
@@ -598,3 +728,21 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		*/
 	}
 ]);
+// .directive('popover', function($compile){
+//     return {
+//         restrict : 'A',
+//         link : function(scope, elem){
+            
+//             var content = $("#popover-content").html();
+//             var compileContent = $compile(content)(scope);
+//             var title = $("#popover-head").html();
+//             var options = {
+//                 content: compileContent,
+//                 html: true,
+//                 title: title
+//             };
+            
+//             $(elem).popover(options);
+//         }
+//     }
+// });
