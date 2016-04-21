@@ -258,9 +258,12 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 				// Start upload of picture
 
 				if($scope.uploaderC.queue.length > 0) {
+					console.log("start queue");
 
 					$scope.uploaderC.queue[0].url = '/api/projects/picture/' + response._id;
 					$scope.uploaderC.uploadAll();
+
+					console.log("end queue");
 				}
 
 
@@ -541,6 +544,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		// Called after the user selected a new picture file
 		$scope.uploader.onAfterAddingFile = function (fileItem) {
 			if ($window.FileReader) {
+
 				var fileReader = new FileReader();
 				fileReader.readAsDataURL(fileItem._file);
 
@@ -568,12 +572,15 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 		$scope.uploaderC.onAfterAddingFile = function (fileItem) {
 			if ($window.FileReader) {
+				console.log("in uploaderc.onAfterAddingFile");
+				console.log($scope.uploaderC.queue);
 				var fileReader = new FileReader();
 				fileReader.readAsDataURL(fileItem._file);
 
 				fileReader.onload = function (fileReaderEvent) {
 					$timeout(function () {
 						$scope.imageURL = fileReaderEvent.target.result;
+						//console.log($scope.imageURL);
 					}, 0);
 				};
 			}

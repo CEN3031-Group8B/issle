@@ -17,7 +17,9 @@ var config = require('../config'),
   helmet = require('helmet'),
   flash = require('connect-flash'),
   consolidate = require('consolidate'),
-  path = require('path');
+  path = require('path'),
+  aws = ('aws-sdk'),
+  multerS3 = require('multer-s3');
 
 /**
  * Initialize local variables
@@ -91,7 +93,25 @@ module.exports.initMiddleware = function (app) {
     inMemory: true
   })); */
 
-  var upload = multer({dest: './uploads' });
+  //var upload = multer({dest: './uploads/' });
+
+var upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'issle/ProjectDrawings',
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString())
+    }
+  })
+});
+
+  app.post('/api/projects/picture/*', upload.any(), function(req, res, next){
+    console.log("middleware");
+    console.log(req.files);
+    res.send('Successfully uploaded ' + req.files.length + ' files!');
+    next();
+  });
+  //app.use(upload);
 
 };
 
@@ -212,6 +232,7 @@ module.exports.configureSocketIO = function (app, db) {
 module.exports.init = function (db) {
   // Initialize express app
   var app = express();
+  var s3 = new aws.S3({params: {Bucket: config.AWS.bucket } });
 
   // Initialize local variables
   this.initLocalVariables(app);

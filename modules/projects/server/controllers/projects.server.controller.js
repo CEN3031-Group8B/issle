@@ -166,10 +166,10 @@
  exports.uploadDiagram = function (req,res){
 
 	 var project = req.project;
-	 console.log("body: " + req.body);
+	 //console.log(req);
 	 console.log("files: " + req.files);
-	 console.log("file: " + req.file);
-	 console.log("buffer: " + req.file.buffer);
+	 //console.log("file: " + req.file);
+	 //console.log("buffer: " + req.file.buffer);
 	 // Upload Buffer from front-end client
 	 knoxClient.putBuffer(req.files.file.buffer, 'ProjectDrawings/' + req.files.file.name,{'Content-Type': 'image/jpeg'},function(uploadError){
 		 if (uploadError) {
