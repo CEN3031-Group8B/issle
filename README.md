@@ -2,9 +2,9 @@
 
 ![alt text](https://github.com/CEN3031-Group4A/issle/blob/Develop/screenshots/issleteam.JPG)
 
-**CEN3031 Group 4A**
+**CEN3031 Group 8B**
 
-**Members:** Raz Aloni, Salim Chaouqi, Juan Jauregui, Yayati Bagga, Logan Wood, Marie Urmano
+**Members:** Sarah Miller, Julian Tolentino, Robbie Bridgemate, Kyle McKissack, Mark Steele, Megan Mackay
 
 **Client:** Dr. Ruzycki
 
@@ -12,7 +12,9 @@ Florida school teachers are required to develop and provide coursework that adhe
 Issle (which stands for “integrating standards for students learning engineering”) is planned to provide a simple interface for teachers to create lesson plans while letting them link standards to them as they work. Users will be given hints and examples for all fields inside of a lesson plan framework to ensure that they are able to easily create their projects. Additionally, users will be able to share lesson plans linked to their account as well as view other posted lesson plans.
 
 ## Link to deployed site
-https://deployissle.herokuapp.com/
+https://issletest.herokuapp.com/
+
+www.issle.org
 
 ## People/organizations involved in the creation of issle
 * Bootstrap
