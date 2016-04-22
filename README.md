@@ -2,9 +2,9 @@
 
 ![alt text](https://github.com/CEN3031-Group4A/issle/blob/Develop/screenshots/issleteam.JPG)
 
-**CEN3031 Group 4A**
+**CEN3031 Group 8B**
 
-**Members:** Raz Aloni, Salim Chaouqi, Juan Jauregui, Yayati Bagga, Logan Wood, Marie Urmano
+**Members:** Sarah Miller, Julian Tolentino, Robbie Bridgemate, Kyle McKissack, Mark Steele, Megan Mackay
 
 **Client:** Dr. Ruzycki
 
@@ -12,7 +12,9 @@ Florida school teachers are required to develop and provide coursework that adhe
 Issle (which stands for “integrating standards for students learning engineering”) is planned to provide a simple interface for teachers to create lesson plans while letting them link standards to them as they work. Users will be given hints and examples for all fields inside of a lesson plan framework to ensure that they are able to easily create their projects. Additionally, users will be able to share lesson plans linked to their account as well as view other posted lesson plans.
 
 ## Link to deployed site
-https://deployissle.herokuapp.com/
+https://issletest.herokuapp.com/
+
+www.issle.org
 
 ## People/organizations involved in the creation of issle
 * Bootstrap
@@ -22,35 +24,40 @@ https://deployissle.herokuapp.com/
   
 ## Features
 
-![alt text](https://github.com/CEN3031-Group4A/issle/blob/Develop/screenshots/homepage.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/homepageTop.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/homepageBottom.JPG)
 
 #### Engineering Design Frame page
 
-![alt text](https://github.com/CEN3031-Group4A/issle/blob/Develop/screenshots/designpage.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourDesignPage.JPG)
 
 This page allows teachers to create their own engineering design projects, add multiple subjects to their projects, and link standards. These projects can be saved as drafts, and the user also has the option to mark a project as private (in which they will be the only user allowed to access the project).
 
 #### User Accounts
 
-![alt text](https://github.com/CEN3031-Group4A/issle/blob/Develop/screenshots/profilepage.jpg)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourProfilePage.JPG)
 
 issle also supports unique user accounts where each user can create, modify, and delete their own projects. Other settings associated with user accounts include changing user settings, such as school, username, email, and password, as well as changing a profile picture. Through the **My Projects** header in the user account page, users can also print out their projects to list them in their physical lesson plans.
 
+#### Administrator Management
+
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourAdminManageUsers.JPG)
+
 #### Search Standards
 
-![alt text](https://github.com/CEN3031-Group4A/issle/blob/Develop/screenshots/searchstandards.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/Develop/screenshots/searchstandards.JPG)
 
 A search standards system was also created, where teachers can look up Florida educational standards based on a grade and subject or by a keyword. The search will retrieve Florida common core standards to be referenced by the engineering design projects created by the user.
 
 #### Search Projects
 
-![alt text](https://github.com/CEN3031-Group4A/issle/blob/Develop/screenshots/searchprojects.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourSearchProjectsPage.JPG)
 
 The search projects page provides a way for teachers to look up public projects that meet a certain standard, name, or keyword.
 
 #### User Support
 
-![alt text](https://github.com/CEN3031-Group4A/issle/blob/Develop/screenshots/supportpage.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/Develop/screenshots/supportpage.JPG)
 
 User support in issle consists of an example page with framework designed for helping teachers understand the process of generating their own project ideas. An FAQ also exists to address common website navigation questions, educational standards, and user settings, referenced in the sidebar of the design engineering frame.
  
