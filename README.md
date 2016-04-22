@@ -1,6 +1,6 @@
 # issle :bulb:
 
-![alt text](https://github.com/CEN3031-Group4A/issle/blob/Develop/screenshots/issleteam.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/groupPhoto.JPG)
 
 **CEN3031 Group 8B**
 
