@@ -31,13 +31,13 @@ www.issle.org
 
 ![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourDesignPage.JPG)
 
-This page allows teachers to create their own engineering design projects, add multiple subjects to their projects, and link standards. These projects can be saved as drafts, and the user also has the option to mark a project as private (in which they will be the only user allowed to access the project).
+This page allows teachers to create their own engineering design projects and add multiple standards to the engineering process steps in the projects. These projects can be saved as drafts, and the user also has the option to mark a project as private (in which they will be the only user allowed to access the project). The user also has the ability to remix an existing project to have ownership of their own copy and make edits. Collaborators can also be added to the projects.
 
 #### User Accounts
 
 ![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourProfilePage.JPG)
 
-issle also supports unique user accounts where each user can create, modify, and delete their own projects. Other settings associated with user accounts include changing user settings, such as school, username, email, and password, as well as changing a profile picture. Through the **My Projects** header in the user account page, users can also print out their projects to list them in their physical lesson plans.
+issle also supports unique user accounts where each user can create, modify, and delete their own projects. Other settings associated with user accounts include changing user settings, such as county, school, username, email, and password, as well as changing a profile picture. Through the **My Projects** header in the user account page, users can also print out their projects to list them in their physical lesson plans.
 
 #### Administrator Management
 
