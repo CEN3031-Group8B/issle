@@ -43,7 +43,7 @@ issle also supports unique user accounts where each user can create, modify, and
 
 ![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourAdminManageUsers.JPG)
 
-
+Administrative users have their own unique profile as well as the ability to select registered users and see any field of their profile information.
 
 #### Search Projects
 
