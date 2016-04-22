@@ -1,0 +1,14 @@
+//This file holds any configuration variables we may need 
+//'config.js' is ignored by git to protect sensitive information, such as your database's username and password
+//copy this file's contents to another file 'config.js' and store your MongoLab uri there
+
+module.exports = {
+  db: {
+    uri: 'mongodb://user:password@ds047315.mongolab.com:47315/cendb', //place the URI of your mongo database here.
+  }
+};
+
+/* Now go to the JSONtoMongo.js file and include this file as a variable named 'config' with a require() */
+
+//mongodb://user:password@ds047315.mongolab.com:47315/cendb
+//mongodb://student:classcen3031@ds047065.mongolab.com:47065/ufbootcamp3sp16
