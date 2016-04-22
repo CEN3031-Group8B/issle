@@ -43,11 +43,7 @@ issle also supports unique user accounts where each user can create, modify, and
 
 ![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourAdminManageUsers.JPG)
 
-#### Search Standards
 
-![alt text](https://github.com/CEN3031-Group8B/issle/blob/Develop/screenshots/searchstandards.JPG)
-
-A search standards system was also created, where teachers can look up Florida educational standards based on a grade and subject or by a keyword. The search will retrieve Florida common core standards to be referenced by the engineering design projects created by the user.
 
 #### Search Projects
 
