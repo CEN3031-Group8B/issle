@@ -7,6 +7,7 @@
  path = require('path'),
  mongoose = require('mongoose'),
  Project = mongoose.model('Project'),
+ User = mongoose.model('User'),
  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
  knox = require(path.resolve('./config/lib/knox.js')), // S3 Connection
  knoxClient = knox.knoxClient;
@@ -165,6 +166,10 @@
  exports.uploadDiagram = function (req,res){
 
 	 var project = req.project;
+	 console.log("body: " + req.body);
+	 console.log("files: " + req.files);
+	 console.log("file: " + req.file);
+	 console.log("buffer: " + req.file.buffer);
 	 // Upload Buffer from front-end client
 	 knoxClient.putBuffer(req.files.file.buffer, 'ProjectDrawings/' + req.files.file.name,{'Content-Type': 'image/jpeg'},function(uploadError){
 		 if (uploadError) {
@@ -173,13 +178,13 @@
 			 });
 		 } else {
 			 // Delete previous existing image
-			 knoxClient.deleteFile(project.imagine.plan.substring(project.imagine.plan.search('ProjectDrawings/')),{'Content-Type': 'image/jpeg'}, function(err){
+			 knoxClient.deleteFile(project.worksheetStep.theWorksheet.substring(project.worksheetStep.theWorksheet.search('ProjectDrawings/')),{'Content-Type': 'image/jpeg'}, function(err){
 				 if(err){
 					 return err.message;
 				 }
 			 });
 			 // Concatenate url onto image url
-			 project.imagine.plan = 'https://s3.amazonaws.com/issle/ProjectDrawings/' + req.files.file.name;
+			 project.worksheetStep.theWorksheet = 'https://s3-us-west-2.amazonaws.com/isslepictures/ProjectDrawings/' + req.files.file.name;
 			 console.log('updating pic');
 			 project.save(function(err) {
 				 if (err) {
@@ -195,13 +200,46 @@
 	 });
  };
 
-/**
- * Project middleware
+ /**
+ * Add Collaborator to Project
  */
+ exports.addCollab = function(req, res) {
+ 	console.log(req.email);
+ 	res.json(req.email);
+
+ 	// User.find().where('email').equals(req.email).sort('-created').populate('user', 'displayName').exec(function(err, user) {
+ 	// 	if (err) {
+ 	// 		return res.status(400).send({
+ 	// 		message: errorHandler.getErrorMessage(err)
+ 	// 	});
+ 	// 	} else {
+ 	// 		res.jsonp(user);
+ 	// 	}
+ 	// });
+ };
+
  exports.projectByID = function(req, res, next, id) { Project.findById(id).populate('user', 'displayName').exec(function(err, project) {
  	if (err) return next(err);
  	if (! project) return next(new Error('Failed to load Project ' + id));
  	req.project = project ;
  	next();
- });
+ 	});
+};
+
+
+/**
+ * id by email
+ */
+exports.userByEmail = function (req, res, next, email) {
+  //MAKE req.email work and plug into kow@c.com spot
+  User.findOne({'email': email}, "displayName email").sort('-created').exec(function (err, user) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    req.email = user;
+    next();
+  });
 };

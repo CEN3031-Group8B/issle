@@ -71,7 +71,7 @@ exports.changeProfilePicture = function (req, res) {
           }
         });
         // Concatenate URL to file name
-        user.profileImageURL = 'https://s3.amazonaws.com/issle/ProfilePictures/' + req.files.file.name;
+        user.profileImageURL = 'https://s3-us-west-2.amazonaws.com/isslepictures/ProfilePictures/' + req.files.file.name;
 
         user.save(function (saveError) {
           if (saveError) {
@@ -103,3 +103,5 @@ exports.changeProfilePicture = function (req, res) {
 exports.me = function (req, res) {
   res.json(req.user || null);
 };
+
+
