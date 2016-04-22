@@ -1,10 +1,10 @@
 # issle :bulb:
 
-![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/groupPhoto.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/dev/screenshots/groupPhoto.JPG)
 
 **CEN3031 Group 8B**
 
-**Members:** Sarah Miller, Julian Tolentino, Robbie Bridgemate, Kyle McKissack, Mark Steele, Megan Mackay
+**Members:** Megan Mackay, Sarah Miller, Kyle McKissack, Julian Tolentino, Robbie Bridgemate, Mark Steele
 
 **Client:** Dr. Ruzycki
 
@@ -24,30 +24,30 @@ www.issle.org
   
 ## Features
 
-![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/homepageTop.JPG)
-![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/homepageBottom.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/dev/screenshots/homepageTop.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/dev/screenshots/homepageBottom.JPG)
 
 #### Engineering Design Frame page
 
-![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourDesignPage.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/dev/screenshots/ourDesignPage.JPG)
 
 This page allows teachers to create their own engineering design projects and add multiple standards to the engineering process steps in the projects. These projects can be saved as drafts, and the user also has the option to mark a project as private (in which they will be the only user allowed to access the project). The user also has the ability to remix an existing project to have ownership of their own copy and make edits. Collaborators can also be added to the projects.
 
 #### User Accounts
 
-![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourProfilePage.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/dev/screenshots/ourProfilePage.JPG)
 
 issle also supports unique user accounts where each user can create, modify, and delete their own projects. Other settings associated with user accounts include changing user settings, such as county, school, username, email, and password, as well as changing a profile picture. Through the **My Projects** header in the user account page, users can also print out their projects to list them in their physical lesson plans.
 
 #### Administrator Management
 
-![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourAdminManageUsers.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/dev/screenshots/ourAdminManageUsers.JPG)
 
 Administrative users have their own unique profile as well as the ability to select registered users and see any field of their profile information.
 
 #### Search Projects
 
-![alt text](https://github.com/CEN3031-Group8B/issle/blob/pictures/screenshots/ourSearchProjectsPage.JPG)
+![alt text](https://github.com/CEN3031-Group8B/issle/blob/dev/screenshots/ourSearchProjectsPage.JPG)
 
 The search projects page provides a way for teachers to look up public projects that meet a certain standard, name, or keyword.
 
